@@ -15,7 +15,9 @@
       <H1>깃 테스트</H1>
       <OL>
           <LI>aaaaa</LI>
-
+           <LI>ghdwnfl</LI>
+           <LI>ghd</LI>
+           <LI>hello world joo</LI>
       </OL>
   </DIV> 
 </body>
