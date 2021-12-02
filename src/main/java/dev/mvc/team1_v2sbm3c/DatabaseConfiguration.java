@@ -25,7 +25,7 @@ public class DatabaseConfiguration {
     private ApplicationContext applicationContext;
     
     @Bean
-    @ConfigurationProperties(prefix="spring.datasource.hikari")  // 설정 파일의 접두사 선언 spring.datasource.hikari....
+    @ConfigurationProperties(prefix="spring.datasource.hikari")  // 설정 파일의 접두사 선언 spring.datasource.hikari.
     public HikariConfig hikariConfig() {
         return new HikariConfig();
     }
