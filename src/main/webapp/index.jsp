@@ -15,6 +15,7 @@
       <H1>깃 테스트</H1>
       <OL>
           <LI>aaaaa</LI>
+           <LI>ghdwnfl</LI>
 
       </OL>
   </DIV> 
