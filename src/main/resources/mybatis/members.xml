@@ -3,8 +3,23 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-<mapper namespace="dev.mvc.members.MebersDAOInter">
 
+<mapper namespace="dev.mvc.members.MembersDAOInter">
+	<insert id="create" parameterType="dev.mvc.members.MembersVO">
+		INSERT INTO MEMBERS(mno, id,
+		pw, name , nickname, phone, housecode,
+		address1, address2, rdate, reco)
+		VALUES (members_seq.nextval, #{ id}, #{ pw}, #{ name}, #{ nickname},
+		#{
+		phone}, #{ housecode}, #{ address1}, #{ address2}, sysdate, 1)
+
+	</insert>
+
+	<select id="list" resultType="dev.mvc.members.MembersVO">
+		SELECT mno, id, pw, name ,
+		nickname, phone, housecode, address1, address2, rdate, reco
+		FROM
+		members
+	</select>
 
 </mapper>

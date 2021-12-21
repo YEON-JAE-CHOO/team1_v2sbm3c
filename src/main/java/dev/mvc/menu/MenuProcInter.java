@@ -1,5 +1,5 @@
 package dev.mvc.menu;
 
-public class MenuProcInter {
+public interface MenuProcInter {
 
 }

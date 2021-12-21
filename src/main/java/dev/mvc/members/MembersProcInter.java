@@ -1,5 +1,11 @@
 package dev.mvc.members;
 
-public class MembersProcInter {
+import java.util.List;
+
+public interface MembersProcInter {
+
+	public int create(MembersVO membersvo);
+
+	public List<MembersVO> list();
 
 }

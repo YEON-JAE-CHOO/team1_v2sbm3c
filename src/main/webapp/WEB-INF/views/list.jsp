@@ -22,17 +22,7 @@
 <body>
 	<jsp:include page="./menu/top.jsp" flush='false' />
 
-	<DIV style='width: 100%; margin: 30px auto; text-align: center;'>
-		<%-- /static/images/resort01.jpg --%>
-		<IMG src='/images/resort01.jpg' style='width: 50%;'>
-	</DIV>
-
-	<DIV style='margin: 0px auto; width: 90%;'>
-		<DIV style='float: left; width: 50%;'></DIV>
-		<DIV style='float: left; width: 50%;'></DIV>
-	</DIV>
-
-	<DIV style='width: 94.8%; margin: 0px auto;'></DIV>
+	<H3>회원 리스트 확인 -> 콘솔 확인</H3>
 
 	<jsp:include page="./menu/bottom.jsp" flush='false' />
 

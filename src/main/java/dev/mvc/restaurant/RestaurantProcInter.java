@@ -1,5 +1,5 @@
 package dev.mvc.restaurant;
 
-public class RestaurantProcInter {
+public interface RestaurantProcInter {
 
 }

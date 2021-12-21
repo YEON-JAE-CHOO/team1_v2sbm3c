@@ -1,5 +1,5 @@
 package dev.mvc.restaurant;
 
-public class RestaurantDAOInter {
+public interface RestaurantDAOInter {
 
 }

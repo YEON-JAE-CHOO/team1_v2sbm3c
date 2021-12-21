@@ -69,6 +69,14 @@ public class MembersVO {
 	private String pw = "";
 	/** 회원 성명 */
 	private String name = "";
+	/** 닉네임 */
+	private String nickname = "";
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	/** 전화 번호 */
 	private String phone = "";
 	/** 우편 번호 */

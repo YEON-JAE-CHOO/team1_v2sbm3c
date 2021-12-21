@@ -77,6 +77,9 @@ values (members_seq.nextval, 'dudqls', '1234' , '김빈','김영','010-1234-5678','1
 insert into members(mno, id, pw, name , nickname, phone, housecode, address1, address2, rdate, reco)
 values (members_seq.nextval, 'joo', '1234' , '박창','박주','010-1234-5678','12345','서울시 중구','부자',sysdate,'1');
 
+insert into members(mno, id, pw, name , nickname, phone, housecode, address1, address2, rdate, reco)
+values (members_seq.nextval, 'choo', '1234' , '추재','추연','010-1234-5678','12345','서울시 중구','부자',sysdate,'1');
+
 commit;
 
 select * from members;

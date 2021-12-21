@@ -1,5 +1,13 @@
 package dev.mvc.members;
 
-public class MembersDAOInter {
+import java.util.List;
+
+public interface MembersDAOInter {
+	
+	public int create(MembersVO membersvo);
+	
+	public List<MembersVO> list();
+	
+	
 
 }

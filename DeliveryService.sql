@@ -168,6 +168,8 @@ CREATE TABLE recommendation(
 );
 
 
+select * from members;
+
 ALTER TABLE restaurantowner ADD CONSTRAINT IDX_restaurantowner_PK PRIMARY KEY (rono);
 
 ALTER TABLE member ADD CONSTRAINT IDX_member_PK PRIMARY KEY (mno);
