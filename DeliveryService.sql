@@ -23,6 +23,7 @@ CREATE TABLE restaurantowner(
 );
 
 DROP SEQUENCE restaurantowner_seq;
+
 CREATE SEQUENCE restaurantowner_seq
   START WITH 1        
   INCREMENT BY 1    
@@ -30,6 +31,7 @@ CREATE SEQUENCE restaurantowner_seq
   CACHE 2                  
   NOCYCLE;     
 
+insert into restaurantowner values (rono, 
 /**********************************/
 /* Table Name: 회원 */
 /**********************************/
@@ -109,9 +111,21 @@ CREATE SEQUENCE restaurant_seq
 /**********************************/
 /* Table Name: 메뉴 */
 /**********************************/
+
+
+DROP SEQUENCE menu_seq;
+CREATE SEQUENCE menu_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;  
+  
+
+  ALTER TABLE menu DROP COLUMN scno;
+  
 CREATE TABLE menu(
 		rno INTEGER NOT NULL,
-		scno INTEGER,
 		menuno INTEGER NOT NULL PRIMARY KEY,
 		type VARCHAR(10) NOT NULL,
 		title VARCHAR(20) NOT NULL,
@@ -166,7 +180,7 @@ CREATE TABLE orders(
 		totalprice INTEGER NOT NULL,
 		address1 VARCHAR(30) NOT NULL,
 		address2 VARCHAR(40) NOT NULL,
-		method VARCHAR(15) DEFAULT '현금' NOT NULL,
+		method VARCHAR(15) DEFAULT 현금 NOT NULL,
 		phone VARCHAR(13) NOT NULL,
 		request VARCHAR(30),
 		state char(1) default 1 not null,
@@ -216,6 +230,12 @@ CREATE TABLE recommendation(
 SELECT * FROM USER_OBJECTS WHERE OBJECT_TYPE='TABLE';
 
 
+commit;
+
+select * from restaurant;
+select * from menu where rno =3;
+
+
 insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
 values (restaurantowner_seq.nextval, '주인장1','2021-12111','010-1234-2345','owner1','1234');
 
@@ -228,6 +248,20 @@ values (restaurantowner_seq.nextval, '주인장3','2021-14324','010-1234-2325','
 
 insert into cate (cateno, name, seq) values (cate_seq.nextval,'한식',1);
 insert into cate (cateno, name, seq) values (cate_seq.nextval,'중식',2);
+
+
+
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (3, menu_seq.nextval,'한식','두부김치','두부 많아요','매움','DG.jpg','savedDG.jpg','tumbDG.jpg', 1 );
+
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (3, menu_seq.nextval,'한식','감자전','감자 많아여','매움','DG.jpg','savedDG.jpg','tumbDG.jpg', 13 );
+
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (3, menu_seq.nextval,'한식','만두','만두 많아요','매움','DG.jpg','savedDG.jpg','tumbDG.jpg',3 );
+
+
+
 
 insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
 values(restaurant_seq.nextval,1,'맛있는 한식','12345','인천시 부평구 청천동','1동 ', '입구에~~~~','한식','10000',3000,'032-123-4567',5,100,40,1000,1);

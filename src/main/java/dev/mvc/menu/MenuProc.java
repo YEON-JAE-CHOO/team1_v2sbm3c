@@ -1,5 +1,7 @@
 package dev.mvc.menu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,18 @@ public class MenuProc implements MenuProcInter {
 
 	public MenuProc() {
 		System.out.println("-> MenuProc created.");
+	}
+
+	@Override
+	public List<MenuVO> testlist() {
+		List<MenuVO> list = this.menuDAO.testlist();
+		return list;
+	}
+
+	@Override
+	public int insert(MenuVO menuvo) {
+		int cnt = this.menuDAO.insert(menuvo);
+		return cnt;
 	}
 
 }
