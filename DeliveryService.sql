@@ -1,14 +1,16 @@
-DROP TABLE recommendation IF EXISTS;
-DROP TABLE zzim IF EXISTS;
-DROP TABLE delivery IF EXISTS;
-DROP TABLE orders IF EXISTS;
-DROP TABLE shoppingcart IF EXISTS;
-DROP TABLE review IF EXISTS;
-DROP TABLE menu IF EXISTS;
-DROP TABLE restaurant IF EXISTS;
-DROP TABLE cate IF EXISTS;
-DROP TABLE members IF EXISTS;
-DROP TABLE restaurantowner IF EXISTS;
+/*DROP TABLE recommendation IF EXISTS;
+//DROP TABLE zzim IF EXISTS;
+//DROP TABLE delivery IF EXISTS;
+//DROP TABLE orders IF EXISTS;
+//DROP TABLE shoppingcart IF EXISTS;
+//DROP TABLE review IF EXISTS;
+//DROP TABLE menu IF EXISTS;
+//DROP TABLE restaurant IF EXISTS;
+//DROP TABLE cate IF EXISTS;
+//DROP TABLE members IF EXISTS;
+//DROP TABLE restaurantowner IF EXISTS;
+
+*/
 
 /**********************************/
 /* Table Name: 사업자 */
@@ -229,13 +231,16 @@ CREATE TABLE recommendation(
 
 SELECT * FROM USER_OBJECTS WHERE OBJECT_TYPE='TABLE';
 
+select * from restaurantowner;
+select * from cate;
+select * from restaurant;
 
+delete from cate where cateno =2;
 commit;
 
-select * from restaurant;
-select * from menu where rno =3;
+select * from menu;
 
-
+/*==============================================================================================================================================================*/
 insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
 values (restaurantowner_seq.nextval, '주인장1','2021-12111','010-1234-2345','owner1','1234');
 
@@ -244,30 +249,45 @@ values (restaurantowner_seq.nextval, '주인장2','2021-23442','010-1234-23435',
 
 insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
 values (restaurantowner_seq.nextval, '주인장3','2021-14324','010-1234-2325','owner3','1234');
-
+/*==============================================================================================================================================================*/
 
 insert into cate (cateno, name, seq) values (cate_seq.nextval,'한식',1);
 insert into cate (cateno, name, seq) values (cate_seq.nextval,'중식',2);
+insert into cate (cateno, name, seq) values (cate_seq.nextval,'일식',3);
+insert into cate (cateno, name, seq) values (cate_seq.nextval,'양식',4);
 
-
+/*==============================================================================================================================================================*/
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (12, menu_seq.nextval,'한식','두부김치','두부 많아요','매움','DG.jpg','savedDG.jpg','tumbDG.jpg', 1 );
 
 insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
-values (3, menu_seq.nextval,'한식','두부김치','두부 많아요','매움','DG.jpg','savedDG.jpg','tumbDG.jpg', 1 );
+values (12, menu_seq.nextval,'한식','감자전','감자 많아여','매움','DG.jpg','savedDG.jpg','tumbDG.jpg', 13 );
 
 insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
-values (3, menu_seq.nextval,'한식','감자전','감자 많아여','매움','DG.jpg','savedDG.jpg','tumbDG.jpg', 13 );
+values (12, menu_seq.nextval,'한식','만두','만두 많아요','매움','DG.jpg','savedDG.jpg','tumbDG.jpg',3 );
 
-insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
-values (3, menu_seq.nextval,'한식','만두','만두 많아요','매움','DG.jpg','savedDG.jpg','tumbDG.jpg',3 );
+/*==============================================================================================================================================================*/
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user1', '1234','김', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 1);
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user2', '1234','홍', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 1);
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user3', '1234','추', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 1);
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user4', '1234','박', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 1);
 
 
-
+/*==============================================================================================================================================================*/
 
 insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
-values(restaurant_seq.nextval,1,'맛있는 한식','12345','인천시 부평구 청천동','1동 ', '입구에~~~~','한식','10000',3000,'032-123-4567',5,100,40,1000,1);
+values(restaurant_seq.nextval,1,'맛있는 한식','12345','인천시 부평구 청천동','1동 ', '입구에~~~~','한식','10000',3000,'032-123-4567',5,100,40,1000,3);
 
 insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
-values(restaurant_seq.nextval,1,'맛있는 중식','12345','인천시 부평구 청천동','2층', '입구에~~~~','중식','10000',3000,'032-123-4567',5,100,40,1000,1);
+values(restaurant_seq.nextval,1,'맛있는 중식','12345','인천시 부평구 청천동','2층', '입구에~~~~','중식','10000',3000,'032-123-4567',5,100,40,1000,3);
 
-insert into restaurant (rno,restaurant _seq.nextval, rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
-values(restaurant_seq.nextval,1,'맛있는 일식','12345','인천시 부평구 청천동','3층', '입구에~~~~','일식','10000,3000,'032-123-4567',5,100,40,1000,1);
+insert into restaurant  (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
+values(restaurant_seq.nextval,3,'맛있는 일식','12345','인천시 부평구 청천동','3층', '입구에~~~~','일식','10000',3000,'032-123-4567',5,100,40,1000,3);

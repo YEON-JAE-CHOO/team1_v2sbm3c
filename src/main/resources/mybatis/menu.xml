@@ -7,8 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.menu.MenuDAOInter">
 
 	<select id="testlist" resultType="dev.mvc.menu.MenuVO">
-		SELECT rno, menuno, title,
-		explanation
+		SELECT  rno, menuno, title, explanation, spiciness, file1,filesaved1, thumb, imagesize
 		FROM
 		menu
 	</select>

@@ -26,6 +26,12 @@ public class MembersVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getPhone() {
 		return phone;
 	}
@@ -71,12 +77,7 @@ public class MembersVO {
 	private String name = "";
 	/** 닉네임 */
 	private String nickname = "";
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+
 	/** 전화 번호 */
 	private String phone = "";
 	/** 우편 번호 */
