@@ -11,7 +11,7 @@
 				class='menu_link' href='/members/list.do'>회원 확인</A><span
 				class='top_menu_sep'> </span> <A class='menu_link'
 				href='/menu/list.do'>메뉴 테스트</A><span class='top_menu_sep'> </span> <A
-				class='menu_link' href='/cate/list_all_join.do'>카테고리 전체 목록 Join</A><span
+				class='menu_link' href="/restaurant/list.do">rest 목록</A><span
 				class='top_menu_sep'> </span>
 
 		</NAV>
