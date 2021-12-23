@@ -1,39 +1,41 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <meta name="viewport"
-	content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" />
-<title>메뉴 리스트 확인</title>
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>메뉴 등록</title>
+<!-- Favicon-->
+<link rel="stylesheet" 
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+crossorigin="anonymous">
+</head>
+<body>
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<jsp:include page="./menu/top.jsp" flush='false' />
+	</nav>
+	<!-- Header-->
+	<header class="py-4" style="background-color: #ef9578;">
 
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+	</header>
+	<!-- Section-->
+	<section class="py-5">
 
-<script type="text/JavaScript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
-<script type="text/javascript">
-	$(function() {
-
-	});
-</script>
-<Body>
-	<jsp:include page="./menu/top.jsp" flush='false' />
-
-	<H3>메뉴 테스트 확인 -> 콘솔 확인</H3>
-
-	<DIV class='content_body'>
-		<H3>----------------------------</H3>
-		<button class="w-100 btn btn-lg btn-primary" type="button"
-			onclick="location.href='/menu/create.do'">메뉴 등록</button>
-	</DIV>
-
-	<jsp:include page="./menu/bottom.jsp" flush='false' />
-</Body>
+	</section>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<jsp:include page="./menu/bottom.jsp" flush='false' />
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+</body>
+</html>
