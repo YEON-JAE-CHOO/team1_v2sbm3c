@@ -17,17 +17,16 @@ crossorigin="anonymous">
 </head>
 <body>
 	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<jsp:include page="./menu/top.jsp" flush='false' />
-	</nav>
 	<!-- Header-->
 	<header class="py-4" style="background-color: #ef9578;">
-
 	</header>
 	<!-- Section-->
 	<section class="py-5">
 
 	</section>
+    
+    
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<jsp:include page="./menu/bottom.jsp" flush='false' />
