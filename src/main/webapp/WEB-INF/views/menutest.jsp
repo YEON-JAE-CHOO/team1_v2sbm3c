@@ -33,11 +33,10 @@
 </head>
 <body>
 	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<jsp:include page="./menu/top.jsp" flush='false' />
-	</nav>
+	<jsp:include page="./menu/top.jsp" flush='false' />
 	<!-- Header-->
 	<header class="py-4" style="background-color: #ef9578;"> </header>
+
 	<!-- Section-->
 	<section class="py-5"></section>
 
@@ -115,9 +114,11 @@
 					</c:forEach>
 				</tbody>
 
+
 			</TABLE>
 		</div>
 	</div>
+
 	<!-- Footer-->
 	<footer class="py-5 bg-dark footer">
 		<jsp:include page="./menu/bottom.jsp" flush='false' />

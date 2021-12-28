@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
 <div class="container px-4 px-lg-5">
-	<a class="navbar-brand" href="/	">배달통</a>
+	<a class="navbar-brand" href="/index.do">배달통</a>
 
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 		data-bs-target="#navbarSupportedContent"
@@ -14,8 +16,8 @@
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 			<li class="nav-item"><a class="nav-link active"
 				aria-current="page" href="#!">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href='/menu/list.do'>메뉴
-					확인</a></li>
+			<li class="nav-item"><a class="nav-link" href='/cate/create.do'>메뉴
+					등록</a></li>
 
 			<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
 			<li class="nav-item dropdown"><a
@@ -36,3 +38,4 @@
 		</form>
 	</div>
 </div>
+</nav>
