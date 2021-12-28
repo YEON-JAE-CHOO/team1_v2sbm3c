@@ -18,15 +18,21 @@ public class MenuProc implements MenuProcInter {
 	}
 
 	@Override
-	public List<MenuVO> testlist() {
-		List<MenuVO> list = this.menuDAO.testlist();
-		return list;
-	}
-
-	@Override
 	public int insert(MenuVO menuvo) {
 		int cnt = this.menuDAO.insert(menuvo);
 		return cnt;
 	}
 
+	@Override
+	public List<MenuVO> testlist(int rno) {
+		List<MenuVO> list = this.menuDAO.testlist(rno);
+		return list;
+
+	}
+
+	@Override
+	public int delete(int menuno) {
+		int cnt = this.menuDAO.delete(menuno);
+		return cnt;
+	}
 }

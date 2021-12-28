@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container px-4 px-lg-5">
-	<a class="navbar-brand" href="#!">배달통</a>
+	<a class="navbar-brand" href="/	">배달통</a>
 
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 		data-bs-target="#navbarSupportedContent"

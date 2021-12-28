@@ -9,7 +9,7 @@ public interface MenuProcInter {
 	 * @param 없음
 	 * @return
 	 */
-	public List<MenuVO> testlist();
+	public List<MenuVO> testlist(int rno);
 
 	/**
 	 * 등록
@@ -18,5 +18,13 @@ public interface MenuProcInter {
 	 * @return
 	 */
 	public int insert(MenuVO menuvo);
+
+	/**
+	 * 등록
+	 * 
+	 * @param int menuno
+	 * @return
+	 */
+	public int delete(int menuno);
 
 }
