@@ -14,7 +14,7 @@ public class MembersProc implements MembersProcInter {
 	public MembersProc() {
 		System.out.println("-> MembersProc created.");
 	}
-
+	  
 	@Override
 	public int create(MembersVO membersvo) {
 		int cnt = this.membersDAO.create(membersvo);
