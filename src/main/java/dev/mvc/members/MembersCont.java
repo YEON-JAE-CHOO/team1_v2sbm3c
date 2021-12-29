@@ -22,7 +22,7 @@ public class MembersCont {
 		System.out.println("-> MembersCont created.");
 	}
 
-	// http://localhost:9091/member/create.do
+	// http://localhost:9091/members/create.do
 	/**
 	 * 등록 폼
 	 * 
@@ -31,7 +31,7 @@ public class MembersCont {
 	@RequestMapping(value = "/members/create.do", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/member/create"); // webapp/members/create.jsp
+		mav.setViewName("/members/create"); // webapp/members/create.jsp
 
 		return mav; // forward
 	}

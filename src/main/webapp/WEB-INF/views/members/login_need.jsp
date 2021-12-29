@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Delivery Service</title>
  
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
@@ -31,10 +31,10 @@
     <H3>로그인이 필요한 페이지입니다.</H3>
     <BR><BR>
     <button type='button' 
-                 onclick="location.href='/member/login.do'" 
+                 onclick="location.href='/members/login.do'" 
                  class="btn btn-info">로그인</button>       
     <button type='button' 
-                 onclick="location.href='/member/create.do'" 
+                 onclick="location.href='/members/create.do'" 
                  class="btn btn-info">회원 가입</button>       
 
   </DIV>

@@ -69,7 +69,7 @@
           } else {
             $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
             msg = "사용 가능한 ID 입니다.";
-            $('#btn_close').attr("data-focus", "passwd");  // passwd 입력으로 focus 이동
+            $('#btn_close').attr("data-focus", "pw");  // pw 입력으로 focus 이동
             // $.cookie('checkId', 'TRUE'); // Cookie 기록
           }
           
@@ -116,7 +116,7 @@
       $('#modal_content').html(msg);  // 내용
       $('#modal_panel').modal();         // 다이얼로그 출력
       
-      $('#btn_send').attr('data-focus', 'passwd');
+      $('#btn_send').attr('data-focus', 'pw');
       
       return false; // submit 중지
     }

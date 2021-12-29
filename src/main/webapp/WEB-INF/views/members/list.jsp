@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Delivery Service</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -65,13 +65,13 @@
       <TH class='th_bs'>기타</TH>
     </TR>
    
-    <c:forEach var="memberVO" items="${list }">
-      <c:set var="mno" value ="${memberVO.mno}" />
-      <c:set var="id" value ="${memberVO.id}" />
-      <c:set var="name" value ="${memberVO.name}" />
-      <c:set var="phone" value ="${memberVO.phone}" />
-      <c:set var="address1" value ="${memberVO.address1}" />
-      <c:set var="rdate" value ="${memberVO.rdate}" />
+    <c:forEach var="membersVO" items="${list }">
+      <c:set var="mno" value ="${membersVO.mno}" />
+      <c:set var="id" value ="${membersVO.id}" />
+      <c:set var="name" value ="${membersVO.name}" />
+      <c:set var="phone" value ="${membersVO.phone}" />
+      <c:set var="address1" value ="${membersVO.address1}" />
+      <c:set var="rdate" value ="${membersVO.rdate}" />
        
     <TR>
       <TD class=td_basic>${mno}</TD>
@@ -90,9 +90,9 @@
       </TD>
       <TD class='td_basic'>${rdate.substring(0, 10)}</TD> <!-- 년월일 -->
       <TD class='td_basic'>
-        <A href="./pw_update.do?mno=${mno}"><IMG src='/member/images/passwd.png' title='패스워드 변경'></A>
-        <A href="./read.do?memberno=${mno}"><IMG src='/member/images/update.png' title='수정'></A>
-        <A href="./delete.do?memberno=${mno}"><IMG src='/member/images/delete.png' title='삭제'></A>
+        <A href="./pw_update.do?mno=${mno}"><IMG src='/members/images/passwd.png' title='패스워드 변경'></A>
+        <A href="./read.do?mno=${mno}"><IMG src='/members/images/update.png' title='수정'></A>
+        <A href="./delete.do?mno=${mno}"><IMG src='/members/images/delete.png' title='삭제'></A>
       </TD>
       
     </TR>

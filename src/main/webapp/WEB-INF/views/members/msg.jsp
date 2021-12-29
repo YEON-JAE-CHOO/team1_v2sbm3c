@@ -85,7 +85,7 @@
           </LI>   
           <LI class='li_none'>
             <button type='button' 
-                         onclick="location.href='/member/list.do'"
+                         onclick="location.href='/members/list.do'"
                          class="btn btn-primary">회원 목록</button>
           </LI>                                                                     
         </c:when>    

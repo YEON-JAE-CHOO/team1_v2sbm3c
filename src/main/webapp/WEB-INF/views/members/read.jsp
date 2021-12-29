@@ -5,7 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>Delivery Service</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -65,13 +65,13 @@
       
     <FORM name='frm' id='frm' method='POST' action='./update.do' 
                 onsubmit="return send();" class="form-horizontal">
-      <input type='hidden' name='mno' id='mno' value='${memberVO.mno }'>          
-      <input type='hidden' name='id' id='id' value='${memberVO.id }'>          
+      <input type='hidden' name='mno' id='mno' value='${membersVO.mno }'>          
+      <input type='hidden' name='id' id='id' value='${membersVO.id }'>          
    
       <div class="form-group">
         <label class="col-md-2 control-label" style='font-size: 0.9em;'>아이디</label>    
         <div class="col-md-10">
-          ${memberVO.id } (변경 불가능 합니다.)       
+          ${membersVO.id } (변경 불가능 합니다.)       
         </div>
       </div>   
                   
@@ -79,7 +79,7 @@
         <label class="col-md-2 control-label" style='font-size: 0.9em;'>성명</label>    
         <div class="col-md-10">
           <input type='text' class="form-control" name='name' id='name' 
-                     value='${memberVO.name }' required="required" autofocus="autofocus" 
+                     value='${membersVO.name }' required="required" autofocus="autofocus" 
                      style='width: 30%;' placeholder="성명">
         </div>
       </div>   
@@ -88,7 +88,7 @@
         <label class="col-md-2 control-label" style='font-size: 0.9em;'>전화번호</label>    
         <div class="col-md-10">
           <input type='text' class="form-control" name='phone' id='phone' 
-                     value='${memberVO.phone }' required="required" style='width: 30%;' placeholder="전화번호"> 예) 010-0000-0000
+                     value='${membersVO.phone }' required="required" style='width: 30%;' placeholder="전화번호"> 예) 010-0000-0000
         </div>
       </div>   
    
@@ -96,7 +96,7 @@
         <label class="col-md-2 control-label" style='font-size: 0.9em;'>우편번호</label>    
         <div class="col-md-10">
           <input type='text' class="form-control" name='homecode' id='homecode' 
-                     value='${memberVO.homecode }' required="required" style='width: 30%;' placeholder="우편번호">
+                     value='${membersVO.homecode }' required="required" style='width: 30%;' placeholder="우편번호">
           <input type="button" onclick="DaumPostcode()" value="우편번호 찾기" class="btn btn-info btn-md">
         </div>
       </div>  
@@ -105,7 +105,7 @@
         <label class="col-md-2 control-label" style='font-size: 0.9em;'>주소</label>    
         <div class="col-md-10">
           <input type='text' class="form-control" name='address1' id='address1' 
-                     value='${memberVO.address1 }' required="required" style='width: 80%;' placeholder="주소">
+                     value='${membersVO.address1 }' required="required" style='width: 80%;' placeholder="주소">
         </div>
       </div>   
    
@@ -113,7 +113,7 @@
         <label class="col-md-2 control-label" style='font-size: 0.9em;'>상세 주소</label>    
         <div class="col-md-10">
           <input type='text' class="form-control" name='address2' id='address2' 
-                     value='${memberVO.address2 }' required="required" style='width: 80%;' placeholder="상세 주소">
+                     value='${membersVO.address2 }' required="required" style='width: 80%;' placeholder="상세 주소">
         </div>
       </div>   
    

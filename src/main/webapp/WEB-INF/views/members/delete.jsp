@@ -37,9 +37,9 @@
    
     <DIV class='message'>
       <FORM name='frm' method='POST' action='./delete.do'>
-        '${memberVO.name }(${memberVO.id })' 회원을 삭제하면 복구 할 수 없습니다.<br><br>
+        '${membersVO.name }(${membersVO.id })' 회원을 삭제하면 복구 할 수 없습니다.<br><br>
         정말로 삭제하시겠습니까?<br><br>         
-        <input type='hidden' name='mno' value='${memberVO.mno}'>     
+        <input type='hidden' name='mno' value='${membersVO.mno}'>     
             
         <button type="submit" class="btn btn-primary">삭제</button>
         <button type="button" onclick="location.href='./list.do'" class="btn btn-primary">취소(목록)</button>
