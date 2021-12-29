@@ -20,6 +20,7 @@
 						등록</a></li>
 
 				<li class="nav-item"><a class="nav-link" href="/menu/list.do">메뉴등록</a></li>
+                <li class="nav-item"><a class="nav-link" href="/members/login.do">Login</a></li>
 
                 <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdown" href=""
@@ -36,10 +37,7 @@
 					<i class="bi-cart-fill me-1"></i> Cart <span
 						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 				</button>
-                
-                <button class="btn btn-outline-dark" type="submit">
-                    Login
-                </button>                
+                                
 			</form>
 		</div>
 	</div>
