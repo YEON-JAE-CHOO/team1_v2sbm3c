@@ -14,10 +14,10 @@ public class CateCont {
     private CateProcInter cateProc;
 
     public CateCont() {
-        System.out.println("-> CategrpCont created.");
+        System.out.println("-> CateCont created.");
     }
     
- // http://localhost:9091/categrp/create.do
+ // http://localhost:9091/cate/create.do
     /**
      * 등록 폼
      * 
@@ -26,16 +26,16 @@ public class CateCont {
     @RequestMapping(value = "/cate/create.do", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/cate/create"); // webapp/WEB-INF/views/categrp/create.jsp
+        mav.setViewName("/cate/create"); // webapp/WEB-INF/views/cate/create.jsp
 
         return mav; // forward
     }
     
-    // http://localhost:9091/categrp/create.do
+    // http://localhost:9091/cate/create.do
     /**
      * 등록 처리
      * 
-     * @param categrpVO
+     * @param cateVO
      * @return
      */
     @RequestMapping(value = "/cate/create.do", method = RequestMethod.POST)
