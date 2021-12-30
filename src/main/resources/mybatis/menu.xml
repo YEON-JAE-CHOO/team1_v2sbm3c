@@ -6,17 +6,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dev.mvc.menu.MenuDAOInter">
 
-	<select id="testlist" resultType="dev.mvc.menu.MenuVO">
-		SELECT  rno, menuno, title, explanation, spiciness, file1,filesaved1, thumb, imagesize
+	<select id="testlist" resultType="dev.mvc.menu.MenuVO"
+		parameterType="int">
+		SELECT rno, menuno, title,menutype,
+		explanation, spiciness,
+		file1,file1saved, thumb, imagesize
 		FROM
-		menu
+		menu where rno = #{ rno}
 	</select>
 
 	<insert id="insert" parameterType="dev.mvc.menu.MenuVO">
 		insert into
-		menu(rno,menuno,type,title,explanation,spiciness,file1,file1saved,thumb,imagesize)
-		values(#{rno}, menu_seq.nextval, #{type}, #{title}, #{explanation}, #{spiciness}, #{file1}, #{file1saved}, #{thumb}, #{imagesize} )
-	</insert> 
+		menu(rno, menuno, menutype, title, explanation, spiciness, file1, file1saved, thumb, imagesize)
+		values(#{rno}, menu_seq.nextval, #{menutype}, #{title}, #{explanation}, #{spiciness}, #{file1}, #{file1saved}, #{thumb}, #{imagesize} )
+	</insert>
 
+	<update id="update" parameterType="int">
+		update menu set title = #{
+		title},
+		explanation = #{ explanation}, menutype = #{ menutype}, spiciness = #{
+		spiciness}, file1 = #{ file1},
+		file1saved = #{ file1saved},
+		thumb = #{thumb}, imagesize = #{ imagesize}
+		where menuno = #{ menuno}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from menu where menuno
+		= #{ menuno}
+	</delete>
 
 </mapper>

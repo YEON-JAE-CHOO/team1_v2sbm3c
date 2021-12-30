@@ -6,7 +6,7 @@ public class MenuVO {
 
 	@Override
 	public String toString() {
-		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", type=" + type + ", title=" + title + ", explanation="
+		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title + ", explanation="
 				+ explanation + ", spiciness=" + spiciness + ", file1=" + file1 + ", file1saved=" + file1saved
 				+ ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
 	}
@@ -27,13 +27,6 @@ public class MenuVO {
 		this.rno = rno;
 	}
 
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
 
 	public String getTitle() {
 		return title;
@@ -50,7 +43,13 @@ public class MenuVO {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
+	public String getMenutype() {
+		return menutype;
+	}
 
+	public void setMenutype(String menutype) {
+		this.menutype = menutype;
+	}
 	public String getSpiciness() {
 		return spiciness;
 	}
@@ -96,7 +95,8 @@ public class MenuVO {
 	/** 식당 번호 */
 	private int rno;
 	/** 음식점 타입 */
-	private int type;
+	private String menutype = "";
+
 	/** 메뉴 명 */
 	private String title = "";
 	/** 설명 */

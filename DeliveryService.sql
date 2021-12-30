@@ -129,16 +129,23 @@ CREATE SEQUENCE menu_seq
 CREATE TABLE menu(
 		rno INTEGER NOT NULL,
 		menuno INTEGER NOT NULL PRIMARY KEY,
-		type VARCHAR(10) NOT NULL,
-		title VARCHAR(20) NOT NULL,
+		menutype VARCHAR(30) NOT NULL,
+		title VARCHAR(50) NOT NULL,
 		explanation VARCHAR(50),
 		spiciness VARCHAR(10),
 		file1 VARCHAR(100),
-		filesaved1 VARCHAR(100),
+		file1saved VARCHAR(100),
 		thumb VARCHAR(100),
 		imagesize INTEGER,
   FOREIGN KEY (rno) REFERENCES restaurant (rno)
 );
+
+delete from menu;
+delete from menu where menuno =23;
+ALTER TABLE menu RENAME COLUMN type TO menutype;
+ALTER TABLE menu MODIFY title VARCHAR(50);
+ALTER TABLE menu MODIFY spiciness VARCHAR(30);
+commit;
 
 /**********************************/
 /* Table Name: 리뷰 */

@@ -30,33 +30,59 @@ public class MenuCont {
 	/** 업로드 파일 절대 경로 */
 	private String uploadDir = Menu.getUploadDir();
 
+	/** 페이지 오픈 & 메뉴 리스트 출력 */
+	/**/
+	/**/
 	@RequestMapping(value = "/menu/list.do", method = RequestMethod.GET)
 	public ModelAndView testlist() {
 		ModelAndView mav = new ModelAndView();
-		List<MenuVO> list = this.menuProc.testlist();
 
-		System.out.println("MenuVO list ->" + list);
-		System.out.println("MenuVO toString ->");
+		List<MenuVO> list = this.menuProc.testlist(12);
 
-		for (int i = 1; i <= list.size(); i++) {
-			System.out.println("MenuVO toString ->" + list.toString());
-
-		}
-
+		System.out.println("list -->" + list);
+		mav.addObject("list", list);
 		mav.setViewName("/menutest"); // webapp/members/list.jsp
 
 		return mav; // forward
 	}
 
-	@RequestMapping(value = "/menu/insert.do", method = RequestMethod.GET)
-	public ModelAndView insert() {
+	/** 메뉴 삭제 */
+	/**/
+	/**/
+	@RequestMapping(value = "/menu/delete.do", method = RequestMethod.GET)
+	public ModelAndView delete(int menuno) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/menu/insert");
+
+		int cnt = this.menuProc.delete(menuno);
+
+		System.out.println("cnt _> " + cnt);
+		if (cnt >= 1) {
+			System.out.println(menuno + "  삭제 성공");
+			mav.setViewName("/menu/list.do");
+		} else {
+			System.out.println("삭제 실패");
+
+		}
 
 		return mav;
 	}
 
-	@RequestMapping(value = "/stadium/register_stadium.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/restaurant/openaddmenupage.do", method = RequestMethod.GET)
+	public ModelAndView insert(int rno) {
+		ModelAndView mav = new ModelAndView();
+
+		System.out.println("rno -->" + rno);
+
+		mav.addObject("rno", rno);
+		mav.setViewName("/restaurant/addmenu");
+
+		return mav;
+	}
+
+	/** 메뉴 등록 */
+	/**/
+	/**/
+	@RequestMapping(value = "/restaurant/addmenu.do", method = RequestMethod.POST)
 	public ModelAndView register(HttpServletRequest request, MenuVO menuvo) {
 		ModelAndView mav = new ModelAndView();
 
@@ -93,6 +119,8 @@ public class MenuCont {
 		menuvo.setThumb(thumb1);
 		menuvo.setImagesize(size1);
 
+		menuvo.setRno(12);
+		System.out.println("menuvo의 rno ->" + menuvo.getRno());
 		// ------------------------------------------------------------------------------
 		// 파일 전송 코드 종료
 		// ------------------------------------------------------------------------------
@@ -103,9 +131,11 @@ public class MenuCont {
 			// mav.addObject("code", "create_success");
 			// cateProc.increaseCnt(contentsVO.getCateno()); // 글수 증가
 			System.out.println("success ////cnt->" + cnt);
+			mav.setViewName("/menutest");
 		} else {
 			// mav.addObject("code", "create_fail");
 			System.out.println("faile /////cnt->" + cnt);
+			mav.setViewName("redirect:/restaurant/openaddmenupage.do");
 		}
 		mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 		return mav;
