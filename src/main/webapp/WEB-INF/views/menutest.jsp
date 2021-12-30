@@ -19,7 +19,7 @@
 .footer {
 	width: 100%;
 	height: 100px;
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	background: #5eaeff;
 	text-align: center;
@@ -118,7 +118,6 @@
 			</TABLE>
 		</div>
 	</div>
-
 	<!-- Footer-->
 	<footer class="py-5 bg-dark footer">
 		<jsp:include page="./menu/bottom.jsp" flush='false' />
