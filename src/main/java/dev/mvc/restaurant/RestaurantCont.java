@@ -1,11 +1,15 @@
 package dev.mvc.restaurant;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import dev.mvc.menu.MenuVO;
 
 @Controller
 public class RestaurantCont {
@@ -64,4 +68,22 @@ public class RestaurantCont {
 
 		return mav; // forward
 	}
+	
+	/** 페이지 오픈 & 메뉴 리스트 출력 */
+	/**/
+	/**/
+	@RequestMapping(value = "/restaurant/list.do", method = RequestMethod.GET)
+	public ModelAndView getlist() {
+		ModelAndView mav = new ModelAndView();
+
+		List<RestaurantVO> list = this.restaurantProc.getlist();
+
+		System.out.println("list -->" + list);
+		mav.addObject("list", list);
+		mav.setViewName("/restaurant/list"); // webapp/members/list.jsp
+
+		return mav; // forward
+	}
+
+	
 }
