@@ -17,5 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{leastprice}, #{call}, 3)
 	</insert>
 
-
+	<select id="getlist" resultType="dev.mvc.restaurant.RestaurantVO"
+		parameterType="int">
+		SELECT name, code, address1,
+		explanation, type, leastprice, call
+		FROM
+		restaurant
+	</select>
 </mapper>

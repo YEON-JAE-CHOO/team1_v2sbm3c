@@ -33,7 +33,7 @@
 </head>
 <body>
 	<!-- Navigation-->
-	<jsp:include page="./../menu/top.jsp" flush='false' />
+	<jsp:include page="../menu/top.jsp" flush='false' />
 	<!-- Header-->
 	<header class="py-4" style="background-color: #ef9578;"> </header>
 
@@ -48,14 +48,12 @@
 			<TABLE class='table table-striped'
 				style="text-align: center; vertical-align: middle;">
 				<colgroup>
-					<col style='width: 5%;' />
-					<col style='width: 5%;' />
-					<col style='width: 10%;' />
-					<col style='width: 15%;' />
-					<col style='width: 15%;' />
-					<col style="width: 15%;" />
-					<col style='width: 15%;' />
 					<col style='width: 20%;' />
+					<col style='width: 10%;' />
+					<col style='width: 10%;' />
+					<col style='width: 20%;' />
+					<col style="width: 20%;" />
+					<col style='width: 10%;' />
 				</colgroup>
 
 				<thead>
@@ -76,31 +74,13 @@
 						<c:set var="explanation" value="${restaurantVO.explanation }" />
 						<c:set var="leastprice" value="${restaurantVO.leastprice }" />
 
-						<TD class="td_bs"><a
-							href="/stadium/stadium_read.do?s_no=${rno }">${rno }</a></TD>
-						<TD class="td_bs">${menuno }</TD>
-						<TD class="td_bs">${menutype }</TD>
-						<TD class="td_bs">${title }</TD>
-						<TD style='vertical-align: middle; text-align: center;'><c:choose>
-								<c:when
-									test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-									<IMG src="/storage/images/${thumb }"
-										style="width: 120px; height: 80px;">
-									</a>
-								</c:when>
-								<c:otherwise>
-									<!-- 기본 이미지 출력 -->
-									<IMG src="/storage/images/rice.jpg"
-										style="width: 120px; height: 80px;">
-								</c:otherwise>
-							</c:choose></TD>
-						<TD class="td_bs">${spiciness }</TD>
+						<TD class="td_bs">${name }</TD>
+						<TD class="td_bs"></TD>
+						<TD class="td_bs">${type }</TD>
+						<TD class="td_bs">${address1 }</TD>
 						<TD class="td_bs">${explanation }</TD>
-						<TD class="td_bs"><A
-							href="./read_update.do?cateno=${categrpno }" title="수정"><span
-								class="glyphicon glyphicon-pencil"></span>수정</A> <A
-							href="./menu/delete.do?menuno=${menuno }" title="삭제"><span
-								class="glyphicon glyphicon-trash"></span>삭제</A></TD>
+						<TD class="td_bs">${leastprice }</TD>
+
 						</TR>
 					</c:forEach>
 				</tbody>
@@ -111,7 +91,7 @@
 	</div>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark footer">
-		<jsp:include page="./../menu/bottom.jsp" flush='false' />
+		<jsp:include page="../menu/bottom.jsp" flush='false' />
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script
