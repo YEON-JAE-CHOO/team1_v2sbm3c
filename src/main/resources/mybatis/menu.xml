@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="testlist" resultType="dev.mvc.menu.MenuVO"
 		parameterType="int">
 		SELECT rno, menuno, title,menutype,
-		explanation, spiciness,
+		explanation, spiciness, price,
 		file1,filesaved1, thumb, imagesize
 		FROM
 		menu where rno = #{ rno}
@@ -17,15 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insert" parameterType="dev.mvc.menu.MenuVO">
 		insert into
-		menu(rno, menuno, menutype, title, explanation, spiciness, file1, filesaved1, thumb, imagesize)
-		values(#{rno}, menu_seq.nextval, #{menutype}, #{title}, #{explanation}, #{spiciness}, #{file1}, #{file1saved}, #{thumb}, #{imagesize} )
+		menu(rno, menuno, menutype, title, explanation, spiciness, price,  file1, filesaved1, thumb, imagesize)
+		values(#{rno}, menu_seq.nextval, #{menutype}, #{title}, #{explanation}, #{spiciness}, #{price}, #{file1}, #{file1saved}, #{thumb}, #{imagesize} )
 	</insert>
 
 	<update id="update" parameterType="int">
 		update menu set title = #{
 		title},
 		explanation = #{ explanation}, menutype = #{ menutype}, spiciness = #{
-		spiciness}, file1 = #{ file1},
+		spiciness}, price = #{ price},  file1 = #{ file1},
 		filesaved1 = #{ filesaved1},
 		thumb = #{thumb}, imagesize = #{ imagesize}
 		where menuno = #{ menuno}
