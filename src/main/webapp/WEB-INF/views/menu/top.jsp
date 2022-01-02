@@ -22,10 +22,9 @@
 					class="nav-link dropdown-toggle" id="navbarDropdown" href=""
 					role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="/restaurant/create.do">All Products</a></li>
+						<li><a class="dropdown-item" href="/restaurant/create.do">가게 등록</a></li>
 						<li><hr class="dropdown-divider" /></li>
-						<li><a class="dropdown-item" href="/restaurant/list.do">Popular Items</a></li>
-						<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+						<li><a class="dropdown-item" href="/restaurant/list.do">가게 리스트</a></li>
 					</ul></li>
 			</ul>
 			<form class="d-flex">
