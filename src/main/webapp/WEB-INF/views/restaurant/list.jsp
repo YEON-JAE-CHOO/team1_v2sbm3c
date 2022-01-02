@@ -33,7 +33,7 @@
 </head>
 <body>
 	<!-- Navigation-->
-	<jsp:include page="./menu/top.jsp" flush='false' />
+	<jsp:include page="./../menu/top.jsp" flush='false' />
 	<!-- Header-->
 	<header class="py-4" style="background-color: #ef9578;"> </header>
 
@@ -111,7 +111,7 @@
 	</div>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark footer">
-		<jsp:include page="./menu/bottom.jsp" flush='false' />
+		<jsp:include page="./../menu/bottom.jsp" flush='false' />
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script
