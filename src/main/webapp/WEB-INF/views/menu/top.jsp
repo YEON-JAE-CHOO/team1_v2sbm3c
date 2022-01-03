@@ -17,6 +17,7 @@
 
 				<li class="nav-item"><a class="nav-link" href="/menu/list.do">메뉴등록</a></li>
                 <li class="nav-item"><a class="nav-link" href="/members/login.do">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/members/create.do">Sign up</a></li>
 
                 <li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdown" href=""

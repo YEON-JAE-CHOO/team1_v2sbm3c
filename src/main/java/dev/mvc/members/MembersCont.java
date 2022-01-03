@@ -39,7 +39,22 @@ public class MembersCont {
 	public MembersCont() {
 		System.out.println("-> MembersCont created.");
 	}
-
+	// http://localhost:9091/members/checkID.do?id=user1
+	  /**
+	  * ID 중복 체크, JSON 출력
+	  * @return
+	  */
+	  @ResponseBody
+	  @RequestMapping(value="/members/checkID.do", method=RequestMethod.GET ,
+	                         produces = "text/plain;charset=UTF-8" )
+	  public String checkID(String id) {
+	    int cnt = this.membersProc.checkID(id);
+	   
+	    JSONObject json = new JSONObject();
+	    json.put("cnt", cnt);
+	   
+	    return json.toString(); 
+	  }
 	  
 	// http://localhost:9091/members/create.do
 	/**
@@ -61,7 +76,7 @@ public class MembersCont {
 		List<MembersVO> list = this.membersProc.list();
 		System.out.println("members list ->" + list);
 
-		mav.setViewName("/list"); // webapp/members/list.jsp
+		mav.setViewName("/members/list"); // webapp/members/list.jsp
 
 		return mav; // forward
 	}
@@ -165,7 +180,7 @@ public class MembersCont {
 	    
 	    if (cnt == 1) {
 	      mav.addObject("code", "update_success");
-	      mav.addObject("mname", membersVO.getName());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+	      mav.addObject("name", membersVO.getName());  // 홍길동님(user4) 회원 정보를 변경했습니다.
 	      mav.addObject("id", membersVO.getId());
 	    } else {
 	      mav.addObject("code", "update_fail");

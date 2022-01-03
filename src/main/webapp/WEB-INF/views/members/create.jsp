@@ -18,12 +18,11 @@ crossorigin="anonymous">
         <jsp:include page="../menu/top.jsp" flush='false' />
            <!-- Header-->
            <header class="py-4" style="background-color: #ef9578;">
-                <div class="container px-4 px-lg-5 my-5"
+                <div class="container px-2 px-lg-5 my-5"
                         style="background-color: #ef9578;">
                 <div class="text-center text-white">
-                        <h1 class="display-4 fw-bolder">Shop in style</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">With this shop
-                        hompeage template</p>
+                        <h1 class="display-4 fw-bolder">회원가입</h1>
+                        <p class="lead fw-normal text-white-50 mb-0">Please Sign up</p>
                </div>
               </div>
            </header>
@@ -137,9 +136,7 @@ crossorigin="anonymous">
 </script>
 </head> 
 
-
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
 
   <!-- ******************** Modal 알림창 시작 ******************** -->
   <div id="modal_panel" class="modal fade"  role="dialog">
