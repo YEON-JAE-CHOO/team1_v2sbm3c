@@ -2,6 +2,8 @@ package dev.mvc.menu;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletRequest;
 
-import dev.mvc.members.MembersProcInter;
-import dev.mvc.members.MembersVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
+
 
 @Controller
 public class MenuCont {
@@ -34,14 +34,28 @@ public class MenuCont {
 	/**/
 	/**/
 	@RequestMapping(value = "/menu/list.do", method = RequestMethod.GET)
-	public ModelAndView testlist() {
+	public ModelAndView testlist(int rno) {
 		ModelAndView mav = new ModelAndView();
 
-		List<MenuVO> list = this.menuProc.testlist(12);
+		System.out.println("rno ->" + rno);
+		List<MenuVO> list = this.menuProc.testlist(rno);
 
 		System.out.println("list -->" + list);
 		mav.addObject("list", list);
+		mav.addObject("rno", rno);
 		mav.setViewName("/menutest"); // webapp/members/list.jsp
+
+		return mav; // forward
+	}
+
+	/** 장바구니 페이지 오픈 */
+	/**/
+	/**/
+	@RequestMapping(value = "/menu/openshoppingcart.do", method = RequestMethod.GET)
+	public ModelAndView openshoppingcart() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/order/shoppingcart"); // webapp/members/list.jsp
 
 		return mav; // forward
 	}

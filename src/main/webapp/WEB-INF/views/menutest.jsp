@@ -5,6 +5,8 @@
 <%@ page import="java.util.List"%>
 
 <c:set var="list" value="${list }" />
+<c:set var="rno" value="${rno }" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,14 +46,14 @@
 		<h3>메뉴 추가하기</h3>
 		<DIV>
 			<button type="button" class="btn btn-light"
-				onclick="location.href='/restaurant/openaddmenupage.do?rno=${12 }'">메뉴
+				onclick="location.href='/restaurant/openaddmenupage.do?rno=${rno }'">메뉴
 				추가하기</button>
 		</DIV>
 
 		<div style="align-content: right:;">
 
 			<TABLE class='table table-striped'
-				style="text-align: center; vertical-align: middle;">
+				style="text-align: center; vertical-align: middle; width: 100%;">
 				<colgroup>
 					<col style='width: 5%;' />
 					<col style='width: 5%;' />
@@ -113,7 +115,12 @@
 							href="./read_update.do?cateno=${categrpno }" title="수정"><span
 								class="glyphicon glyphicon-pencil"></span>수정</A> <A
 							href="./menu/delete.do?menuno=${menuno }" title="삭제"><span
-								class="glyphicon glyphicon-trash"></span>삭제</A></TD>
+								class="glyphicon glyphicon-trash"></span>삭제</A>
+							<button class="btn btn-outline-dark" type="submit"
+								id="addshoppingcart" name="addshoppingcart">
+								<i class="bi-cart-fill me-1"></i> 추가 <span
+									class="badge bg-dark text-white ms-1 rounded-pill"></span>
+							</button></TD>
 						</TR>
 					</c:forEach>
 				</tbody>
