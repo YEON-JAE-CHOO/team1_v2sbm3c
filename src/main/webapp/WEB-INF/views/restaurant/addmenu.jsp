@@ -74,6 +74,8 @@
 					</div>
 				</div>
 
+
+
 				<div class="form-group">
 					<label class="control-label col-md-2">이미지</label>
 					<div class="col-md-10">
@@ -86,7 +88,8 @@
 					<label for="inputId" class="col-lg-2 control-label">음식 종류</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id=""menutype"" data-rule-required="true" name="menutype" maxlength="15">
+							id="" menutype"" data-rule-required="true" name="menutype"
+							maxlength="15">
 					</div>
 				</div>
 
@@ -98,6 +101,15 @@
 							maxlength="10">
 					</div>
 				</div>
+
+				<div class="form-group" id="divId">
+					<label for="inputId" class="col-lg-2 control-label">가격</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control onlyAlphabetAndNumber" width="20%"
+							id="price" data-rule-required="true" name=""price"" maxlength="15">원
+					</div>
+				</div>
+
 
 
 				<div class="form-group">

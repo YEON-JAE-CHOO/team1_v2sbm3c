@@ -58,6 +58,7 @@
 					<col style='width: 10%;' />
 					<col style='width: 15%;' />
 					<col style='width: 15%;' />
+					<col style='width: 15%;' />
 					<col style="width: 15%;" />
 					<col style='width: 15%;' />
 					<col style='width: 20%;' />
@@ -70,6 +71,7 @@
 						<TH class="th_bs">음식 종류</TH>
 						<TH class="th_bs">음식</TH>
 						<TH class="th_bs">사진</TH>
+						<TH class="th_bs">가격</TH>
 						<TH class="th_bs">매움 정도</TH>
 						<TH class="th_bs">음식 설명</TH>
 						<TH class="th_bs">기타</TH>
@@ -83,6 +85,7 @@
 						<c:set var="title" value="${menuVO.title }" />
 						<c:set var="thumb" value="${menuVO.file1saved }" />
 						<c:set var="spiciness" value="${menuVO.spiciness }" />
+						<c:set var="price" value="${menuVO.price }" />
 						<c:set var="explanation" value="${menuVO.explanation }" />
 
 						<TD class="td_bs"><a
@@ -103,6 +106,7 @@
 										style="width: 120px; height: 80px;">
 								</c:otherwise>
 							</c:choose></TD>
+						<TD class="td_bs">${price }</TD>
 						<TD class="td_bs">${spiciness }</TD>
 						<TD class="td_bs">${explanation }</TD>
 						<TD class="td_bs"><A
