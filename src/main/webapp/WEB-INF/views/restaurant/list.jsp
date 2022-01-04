@@ -69,12 +69,14 @@
 				<tbody>
 					<c:forEach var="restaurantVO" items="${list }">
 						<c:set var="name" value="${restaurantVO.name }" />
+						<c:set var="rno" value="${restaurantVO.rno }" />
 						<c:set var="type" value="${restaurantVO.type }" />
 						<c:set var="address1" value="${restaurantVO.address1 }" />
 						<c:set var="explanation" value="${restaurantVO.explanation }" />
 						<c:set var="leastprice" value="${restaurantVO.leastprice }" />
 
-						<TD class="td_bs">${name }</TD>
+						<TD class="td_bs"><a href="/menu/list.do?rno=${rno }">${name }
+						</a></TD>
 						<TD class="td_bs"></TD>
 						<TD class="td_bs">${type }</TD>
 						<TD class="td_bs">${address1 }</TD>

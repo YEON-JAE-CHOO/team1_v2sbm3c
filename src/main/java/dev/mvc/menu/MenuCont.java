@@ -34,14 +34,28 @@ public class MenuCont {
 	/**/
 	/**/
 	@RequestMapping(value = "/menu/list.do", method = RequestMethod.GET)
-	public ModelAndView testlist() {
+	public ModelAndView testlist(int rno) {
 		ModelAndView mav = new ModelAndView();
 
-		List<MenuVO> list = this.menuProc.testlist(12);
+		System.out.println("rno ->" + rno);
+		List<MenuVO> list = this.menuProc.testlist(rno);
 
 		System.out.println("list -->" + list);
 		mav.addObject("list", list);
+		mav.addObject("rno", rno);
 		mav.setViewName("/menutest"); // webapp/members/list.jsp
+
+		return mav; // forward
+	}
+
+	/** 장바구니 페이지 오픈 */
+	/**/
+	/**/
+	@RequestMapping(value = "/menu/openshoppingcart.do", method = RequestMethod.GET)
+	public ModelAndView openshoppingcart() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/order/shoppingcart"); // webapp/members/list.jsp
 
 		return mav; // forward
 	}
