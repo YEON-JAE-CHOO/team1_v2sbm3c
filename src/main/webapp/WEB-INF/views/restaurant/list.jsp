@@ -73,8 +73,8 @@
 						<c:set var="address1" value="${restaurantVO.address1 }" />
 						<c:set var="explanation" value="${restaurantVO.explanation }" />
 						<c:set var="leastprice" value="${restaurantVO.leastprice }" />
-
-						<TD class="td_bs">${name }</TD>
+						
+						<TD class="td_bs"><A href="./read.do?mno=${mno}">${name }</A></TD>
 						<TD class="td_bs"></TD>
 						<TD class="td_bs">${type }</TD>
 						<TD class="td_bs">${address1 }</TD>
@@ -82,6 +82,7 @@
 						<TD class="td_bs">${leastprice }</TD>
 
 						</TR>
+						</A>
 					</c:forEach>
 				</tbody>
 

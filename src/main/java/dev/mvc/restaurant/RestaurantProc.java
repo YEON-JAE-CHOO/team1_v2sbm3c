@@ -33,4 +33,10 @@ public class RestaurantProc implements RestaurantProcInter {
 		return list;
 	}
 
+	@Override
+	public RestaurantVO create_shop(int rno) {
+		
+		return null;
+	}
+
 }

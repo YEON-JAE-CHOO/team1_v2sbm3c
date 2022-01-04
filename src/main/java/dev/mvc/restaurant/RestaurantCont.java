@@ -68,7 +68,7 @@ public class RestaurantCont {
 
 		return mav; // forward
 	}
-	
+
 	/** 페이지 오픈 & 메뉴 리스트 출력 */
 	/**/
 	/**/
@@ -85,5 +85,18 @@ public class RestaurantCont {
 		return mav; // forward
 	}
 
-	
+	/**
+	 * 가게 출력 폼
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/restaurant/shop.do", method = RequestMethod.POST)
+	public ModelAndView createshop() {
+		ModelAndView mav = new ModelAndView();
+//		mav.addObject("rno", restaurantVO.g);
+		mav.setViewName("/restaurant/shop"); // webapp/WEB-INF/views/cate/create.jsp
+
+		return mav; // forward
+	}
+
 }
