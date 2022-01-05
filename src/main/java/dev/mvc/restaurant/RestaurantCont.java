@@ -114,4 +114,28 @@ public class RestaurantCont {
 		return mav; // forward
 	}
 
+	
+	@RequestMapping(value = "/restaurant/modification.do", method = RequestMethod.GET)
+	public ModelAndView modification() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/restaurant/modification"); // webapp/WEB-INF/views/cate/create.jsp
+
+		return mav; // forward
+	}
+	
+	@RequestMapping(value = "/restaurant/update.do", method = RequestMethod.POST)
+	public ModelAndView shop_update(RestaurantVO restaurantVO) {
+
+		ModelAndView mav = new ModelAndView();
+
+		int cnt = this.restaurantProc.create(restaurantVO); // 등록 처리
+		// cnt = 0; // error test
+
+		mav.addObject("cnt", cnt);
+
+
+		return mav; // forward
+	}
+
+
 }
