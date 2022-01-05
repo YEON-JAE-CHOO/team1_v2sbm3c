@@ -16,7 +16,7 @@ public class Menu {
 	public static synchronized String getUploadDir() {
 		String path = "";
 		if (File.separator.equals("\\")) {
-			path = "C:/kd1/ws_git/team1_v2sbm3c/deploy/menu/storage/";
+			path = "C:/kd1/team1/menulist/";
 
 			// System.out.println("Windows 10: " + path);
 

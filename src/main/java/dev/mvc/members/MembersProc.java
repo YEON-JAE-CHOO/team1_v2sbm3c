@@ -24,6 +24,12 @@ public class MembersProc implements MembersProcInter {
 	}
 	  
 	@Override
+	  public int checkID(String id) {
+	    int cnt = this.membersDAO.checkID(id);
+	    return cnt;
+	  }
+	
+	@Override
 	public int create(MembersVO membersvo) {
 		int cnt = this.membersDAO.create(membersvo);
 

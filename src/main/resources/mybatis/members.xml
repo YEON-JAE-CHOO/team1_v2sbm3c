@@ -1,25 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace = "dev.mvc.members.MembersDAOInter">
+  <select id="checkID" resultType="int" parameterType="String">
+    SELECT COUNT(id) as cnt
+    FROM members
+    WHERE id=#{id}
+  </select>
+  
+  <insert id="create" parameterType="dev.mvc.members.MembersVO">
+    INSERT INTO members(mno, id, pw, name, phone,  address1, address2, rdate, reco)
+    VALUES (members_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, 
+                 #{address1}, #{address2}, sysdate, #{reco})
+  </insert>
+  
+  <select id="list" resultType="dev.mvc.members.MembersVO">
+    SELECT mno, id, pw, name, phone,  address1, address2, rdate, reco
+    FROM members
+    ORDER BY mno ASC
+  </select>
 
-<mapper namespace="dev.mvc.members.MembersDAOInter">
-	<insert id="create" parameterType="dev.mvc.members.MembersVO">
-		INSERT INTO MEMBERS(mno, id,
-		pw, name , nickname, phone, housecode,
-		address1, address2, rdate, reco)
-		VALUES (members_seq.nextval, #{ id}, #{ pw}, #{ name}, #{ nickname},
-		#{
-		phone}, #{ housecode}, #{ address1}, #{ address2}, sysdate, 1)
+  <!-- mno로 회원 정보 조회 -->
+  <select id="read" resultType="dev.mvc.members.MembersVO" parameterType="int">
+    SELECT mno, id, pw, name, phone, address1, address2, rdate, reco
+    FROM members
+    WHERE mno = #{mno}
+  </select>  
 
-	</insert>
+  <!-- id로 회원 정보 조회 -->
+  <select id="readById" resultType="dev.mvc.members.MembersVO" parameterType="String">
+    SELECT mno, id, pw, name, phone, address1, address2, rdate, reco
+    FROM members
+    WHERE id = #{id}
+  </select>
+  
+  <update id="update" parameterType="dev.mvc.members.MembersVO">
+    UPDATE members 
+    SET name=#{name}, phone=#{phone},
+          address1=#{address1}, address2=#{address2}
+    WHERE mno=#{mno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM members
+    WHERE mno=#{mno}
+  </delete>
+ 
+  <!--  현재 패스워드 검사 -->
+  <select id="pw_check" parameterType="HashMap" resultType="int">
+    SELECT COUNT(mno) as cnt
+    FROM members
+    WHERE mno=#{mno} AND pw=#{pw}
+  </select>
+  
+  <!-- 패스워드 변경 -->
+  <update id="pw_update" parameterType="HashMap">
+    UPDATE members
+    SET pw=#{pw}
+    WHERE mno=#{mno}
+  </update>
 
-	<select id="list" resultType="dev.mvc.members.MembersVO">
-		SELECT mno, id, pw, name ,
-		nickname, phone, housecode, address1, address2, rdate, reco
-		FROM
-		members
-	</select>
+  <!-- 로그인 -->
+  <select id="login" resultType="int" parameterType="Map">
+    SELECT COUNT(mno) as cnt
+    FROM members
+    WHERE id=#{id} AND pw=#{pw}
+  </select>
+      
+</mapper> 
 
-</mapper>
