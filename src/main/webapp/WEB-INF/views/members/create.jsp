@@ -11,7 +11,6 @@
 
 <script type="text/JavaScript"
           src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
 
 <!-- Favicon-->
 <link rel="stylesheet" 
@@ -27,14 +26,14 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
                         style="background-color: #ef9578;">
                 <div class="text-center text-white">
                         <h1 class="display-4 fw-bolder">회원가입</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">Please Sign up</p>
+                        <p class="lead fw-normal text-white-50 mb-0">Please Sign Up</p>
+
                </div>
               </div>
            </header>
       <!-- Section-->
-      
-<script type="text/javascript">
 
+<script type="text/javascript">
   $(function() { // 자동 실행
     // id가 'btn_checkID'인 태그를 찾아 'click' 이벤트 처리자(핸들러)로 checkID 함수를 등록
     // document.getElementById('btn_checkID').addEventListener('click', checkID); 동일
@@ -331,8 +330,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </div>   
   </FORM>
   </DIV>
-
-<jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
 
 </html>

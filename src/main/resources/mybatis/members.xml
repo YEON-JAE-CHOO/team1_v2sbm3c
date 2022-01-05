@@ -11,13 +11,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <insert id="create" parameterType="dev.mvc.members.MembersVO">
-    INSERT INTO members(mno, id, pw, name, phone,  address1, address2, rdate, reco)
+
+    INSERT INTO members(mno, id, pw, name, phone, address1, address2, rdate, reco)
     VALUES (members_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, 
                  #{address1}, #{address2}, sysdate, #{reco})
   </insert>
   
   <select id="list" resultType="dev.mvc.members.MembersVO">
-    SELECT mno, id, pw, name, phone,  address1, address2, rdate, reco
+    SELECT mno, id, pw, name, phone, address1, address2, rdate, reco
     FROM members
     ORDER BY mno ASC
   </select>
@@ -38,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <update id="update" parameterType="dev.mvc.members.MembersVO">
     UPDATE members 
-    SET name=#{name}, phone=#{phone},
+    SET name=#{name}, phone=#{phone}, 
           address1=#{address1}, address2=#{address2}
     WHERE mno=#{mno}
   </update>
