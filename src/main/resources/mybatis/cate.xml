@@ -4,13 +4,41 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="dev.mvc.cate.CateDAOInter"> 
-  <!-- 등록, 입력: CategrpVO, 리턴: 등록된 레코드 갯수  -->
-  <insert id="create"  parameterType="dev.mvc.cate.CateVO">
-  
-    INSERT INTO cate(cateno, name, seq)
-    VALUES(cate_seq.nextval, #{name}, #{seq} )
+<mapper namespace="dev.mvc.cate.CateDAOInter">
+
+<insert id="create"  parameterType="dev.mvc.cate.CateVO">
+    INSERT INTO cate(cateno, name, seq , file1,file1saved,thumb1,size1)
+    VALUES(cate_seq.nextval, #{name}, #{seq} , #{file1}, #{file1saved}, #{thumb1}, #{size1} )
   </insert>
- 
+  
+   <select id="list_cateno_asc" resultType="dev.mvc.cate.CateVO">
+    select cateno,name,seq,file1,file1saved,thumb1,size1
+    from cate 
+    ORDER BY cateno asc
+  </select>
+  
+  <select id="read" resultType="dev.mvc.cate.CateVO" parameterType="int">
+  select cateno,name,seq,file1,file1saved,thumb1,size1
+  from cate 
+  WHERE cateno=#{cateno}
+</select>
+
+  <update id="update_text" parameterType="dev.mvc.cate.CateVO">
+UPDATE cate
+SET name=#{name} , seq = #{seq}
+WHERE cateno = #{cateno}
+</update>
+
+  <update id="update_file" parameterType="dev.mvc.cate.CateVO">
+    UPDATE cate
+    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+    WHERE cateno = #{cateno}
+</update>
+
+  <delete id="delete" parameterType="int">
+    delete 
+    from cate
+    where cateno = #{cateno}
+  </delete>
    
 </mapper> 

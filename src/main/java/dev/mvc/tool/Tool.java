@@ -261,9 +261,9 @@ public class Tool {
     String path = "";
     
     try{
-      // System.out.println("--> User dir: " + System.getProperty("user.dir"));
+       System.out.println("--> User dir: " + System.getProperty("user.dir"));
       path = request.getRealPath(dir) + "/";  
-      // System.out.println("--> Upload path: " + path);
+       System.out.println("--> Upload path: " + path);
     }catch(Exception e){
       System.out.println(e.toString());
     }
@@ -354,7 +354,7 @@ public class Tool {
       // System.out.println("-> File.separator: " +  File.separator);
       
       int last_separator_idx = path.lastIndexOf(File.separator); // \, /
-      // System.out.println("-> last_separator_idx: " +  last_separator_idx);
+       System.out.println("-> last_separator_idx: " +  last_separator_idx);
       
       String fname =  path.substring(last_separator_idx+1); // \ 제외
       System.out.println("-> fname: " +  fname);

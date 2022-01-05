@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-        
+    
+ <c:set var="cateno" value="${cateVO.cateno }" />
+<c:set var="seq" value="${cateVO.seq }" />
+<c:set var="name" value="${cateVO.name }" />
+<c:set var="file1saved" value="${cateVO.file1saved }" />
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -37,19 +42,20 @@ crossorigin="anonymous">
      <section class="py-5"></section>
      
     <div class="col-sm-12">
-    <h2>메뉴 카테고리 추가</h2>
-    <form method='POST' action='./create.do' enctype="multipart/form-data" >
+    <h2>메뉴 카테고리 삭제</h2>
+    <form method='POST' action='./delete.do' enctype="multipart/form-data" >
          <div class="form-group">
+         <input type="hidden" name="cateno" value="${cateno }">
        <label class="control-label col-md-4">카테고리 그룹 이름</label>
        <div class="col-md-8">
-         <input type='text' name='name' value='' required="required" placeholder="이름"
+         <input type='text' name='name' value='${name }' required="required" placeholder="이름"
                     autofocus="autofocus" class="form-control" style='width: 50%;'>
        </div>
     </div>
     <div class="form-group">
        <label class="control-label col-md-4">출력 순서</label>
        <div class="col-md-8">
-         <input type='number' name='seq' value='1' required="required" 
+         <input type='number' name='seq' value='${seq }' required="required" 
                    placeholder="출력 순서" min="1" max="1000" step="1" 
                    style='width: 30%;' class="form-control" >
        </div>
@@ -62,7 +68,7 @@ crossorigin="anonymous">
        </div>
        
     </div>   
-     <input type="submit" class="btn btn-primary" value="추가하기">
+     <input type="submit" class="btn btn-primary" value="삭제하기">
     </form>
       
 

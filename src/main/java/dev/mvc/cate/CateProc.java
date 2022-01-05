@@ -26,4 +26,38 @@ public class CateProc implements CateProcInter {
         return cnt;
     }
     
+    @Override
+    public List<CateVO> list_cateno_asc() {
+      List<CateVO> list = null;
+      list = this.cateDAOInter.list_cateno_asc();
+      return list;
+    }
+    
+    @Override
+    public CateVO read(int cateno) {
+        CateVO cateVO = this.cateDAOInter.read(cateno);
+      
+      return cateVO;
+    }
+    
+    @Override
+    public int update_text(CateVO cateVO) {
+      int cnt = this.cateDAOInter.update_text(cateVO);
+      
+      return cnt;
+    }
+    
+    @Override
+    public int update_file(CateVO cateVO) {
+      int cnt = this.cateDAOInter.update_file(cateVO);
+      
+      return cnt;
+    }
+    
+    @Override
+    public int delete(int cateno) {
+      int cnt = this.cateDAOInter.delete(cateno);
+      return cnt;
+    }
+    
 }
