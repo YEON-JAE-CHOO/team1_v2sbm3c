@@ -8,11 +8,16 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>배달통</title>
+
+<script type="text/JavaScript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
+
 <!-- Favicon-->
 <link rel="stylesheet" 
-href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-crossorigin="anonymous">
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
     <body>
         <jsp:include page="../menu/top.jsp" flush='false' />
@@ -27,7 +32,9 @@ crossorigin="anonymous">
               </div>
            </header>
       <!-- Section-->
-<script type="js/scripts.js">
+      
+<script type="text/javascript">
+
   $(function() { // 자동 실행
     // id가 'btn_checkID'인 태그를 찾아 'click' 이벤트 처리자(핸들러)로 checkID 함수를 등록
     // document.getElementById('btn_checkID').addEventListener('click', checkID); 동일

@@ -77,7 +77,6 @@ crossorigin="anonymous">
           <div class="col-md-offset-4 col-md-8">
             <button type="submit" class="btn btn-primary btn-md">로그인</button>
             <button type='button' id='btn_create' class="btn btn-primary btn-md">회원가입</button>
-            <button type='button' id='btn_loadDefault' class="btn btn-primary btn-md">테스트 계정</button>
           </div>
         </div>   
         

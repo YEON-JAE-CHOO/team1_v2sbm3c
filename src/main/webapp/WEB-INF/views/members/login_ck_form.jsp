@@ -8,9 +8,7 @@
 <title>배달통</title>
 <!-- Favicon-->
 <link rel="stylesheet" 
-href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-crossorigin="anonymous">
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
     <body>
         <jsp:include page="../menu/top.jsp" flush='false' />
@@ -25,7 +23,7 @@ crossorigin="anonymous">
               </div>
            </header>
       <!-- Section-->
-<script type="js/scripts.js">
+<script type="text/javascript">
   function loadDefault() {
     $('#id').val('user1');
     $('#pw').val('1234');

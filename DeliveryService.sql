@@ -45,7 +45,7 @@ CREATE TABLE members(
 		nickname VARCHAR(40),
 		phone VARCHAR(40),
 		housecode VARCHAR(5),
-		address1 VARCHAR(80),
+		address1 VARCHAR(80)
 		address2 VARCHAR(60),
 		rdate DATE NOT NULL,
 		reco char(1) not null

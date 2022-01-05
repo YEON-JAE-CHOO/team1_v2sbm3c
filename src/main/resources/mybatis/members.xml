@@ -11,34 +11,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <insert id="create" parameterType="dev.mvc.members.MembersVO">
-    INSERT INTO members(mno, id, pw, name, phone, housecode, address1, address2, rdate, reco)
-    VALUES (members_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{housecode}, 
+    INSERT INTO members(mno, id, pw, name, phone,  address1, address2, rdate, reco)
+    VALUES (members_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, 
                  #{address1}, #{address2}, sysdate, #{reco})
   </insert>
   
   <select id="list" resultType="dev.mvc.members.MembersVO">
-    SELECT mno, id, pw, name, phone, housecode, address1, address2, rdate, reco
+    SELECT mno, id, pw, name, phone,  address1, address2, rdate, reco
     FROM members
     ORDER BY mno ASC
   </select>
 
   <!-- mno로 회원 정보 조회 -->
   <select id="read" resultType="dev.mvc.members.MembersVO" parameterType="int">
-    SELECT mno, id, pw, name, phone, housecode, address1, address2, rdate, reco
+    SELECT mno, id, pw, name, phone, address1, address2, rdate, reco
     FROM members
     WHERE mno = #{mno}
   </select>  
 
   <!-- id로 회원 정보 조회 -->
   <select id="readById" resultType="dev.mvc.members.MembersVO" parameterType="String">
-    SELECT mno, id, pw, name, phone, housecode, address1, address2, rdate, reco
+    SELECT mno, id, pw, name, phone, address1, address2, rdate, reco
     FROM members
     WHERE id = #{id}
   </select>
   
   <update id="update" parameterType="dev.mvc.members.MembersVO">
     UPDATE members 
-    SET name=#{name}, phone=#{phone}, housecode=#{housecode},
+    SET name=#{name}, phone=#{phone},
           address1=#{address1}, address2=#{address2}
     WHERE mno=#{mno}
   </update>

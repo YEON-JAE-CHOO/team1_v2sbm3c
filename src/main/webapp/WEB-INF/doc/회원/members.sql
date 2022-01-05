@@ -91,8 +91,8 @@ WHERE id = 'user1';
     
 4. 수정
 UPDATE members
-SET name='네버랜드', phone='111-1111-1111', housecode='00000', address1='경기도', address2='파주시', reco=14
-WHERE mno=1;
+SET reco =15
+WHERE mno=6;
 
 COMMIT;
 
@@ -103,7 +103,7 @@ DELETE FROM members;
  
 2) 특정 회원 삭제
 DELETE FROM members
-WHERE mno=15;
+WHERE mno=10;
 
 COMMIT;
 
