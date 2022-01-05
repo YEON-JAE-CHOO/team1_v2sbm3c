@@ -6,9 +6,9 @@ public class MenuVO {
 
 	@Override
 	public String toString() {
-		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title + ", explanation="
-				+ explanation + ", spiciness=" + spiciness + ", file1=" + file1 + ", file1saved=" + file1saved
-				+ ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
+		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title
+				+ ", explanation=" + explanation + ", spiciness=" + spiciness + ", file1=" + file1 + ", file1saved="
+				+ file1saved + ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
 	}
 
 	public int getMenuno() {
@@ -27,7 +27,6 @@ public class MenuVO {
 		this.rno = rno;
 	}
 
-
 	public String getTitle() {
 		return title;
 	}
@@ -43,6 +42,7 @@ public class MenuVO {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
+
 	public String getMenutype() {
 		return menutype;
 	}
@@ -50,6 +50,7 @@ public class MenuVO {
 	public void setMenutype(String menutype) {
 		this.menutype = menutype;
 	}
+
 	public String getSpiciness() {
 		return spiciness;
 	}
@@ -90,6 +91,14 @@ public class MenuVO {
 		this.imagesize = imagesize;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	/** 메뉴 번호 */
 	private int menuno;
 	/** 식당 번호 */
@@ -103,6 +112,9 @@ public class MenuVO {
 	private String explanation = "";
 	/** 매운 정도--> 매움1 /매울2 등등등 */
 	private String spiciness = "";
+
+	/** 가격 **/
+	private int price;
 
 	/** 메인 이미지 */
 	private String file1 = "";

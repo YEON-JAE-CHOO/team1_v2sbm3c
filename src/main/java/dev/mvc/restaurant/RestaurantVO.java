@@ -1,128 +1,142 @@
 package dev.mvc.restaurant;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+/*
+     CREATE TABLE cate(
+        cateno INTEGER NOT NULL PRIMARY KEY,
+        name VARCHAR(20) DEFAULT 한식 NOT NULL,
+        seq INTEGER
+  */
+@Getter @Setter @ToString
 public class RestaurantVO {
-	private int RNO;
-	private int RONO;
-	private String NAME ="";
-	private int CODE;
-	private String ADDRESS1 = "";
-	private String ADDRESS2 = "";
-	private String EXPLANATION = "";
-	private String TYPE = "";
-	private int LEASTPRICE;
-	private int DELIVERYTIP;
-	private String CALL = "";
-	private int SCORE;
-	private int REVIEWCOUNT;
-	private int RECOCNT;
-	private int ORDERCNT;
-	private int CATENO;
+	private int rno;
+	private int rono;
+	private String name = "";
+	private int code;
+	private String address1 = "";
+	private String address2 = "";
+	private String explanation = "";
+	private String type = "";
+	private int leastprice; 
+	private int deliverytip;
+	private String call = "";
+	private int score;
+	private int reviewcount;
+	private int recocnt;
+	private int ordercnt;
+	private int cateno;
 	
-
-	public int getRNO() {
-		return RNO;
+	
+	public int getRno() {
+		return rno;
 	}
-	public void setRNO(int rNO) {
-		RNO = rNO;
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
-	public int getRONO() {
-		return RONO;
+	public int getRono() {
+		return rono;
 	}
-	public void setRONO(int rONO) {
-		RONO = rONO;
+	public void setRono(int rono) {
+		this.rono = rono;
 	}
-	public String getNAME() {
-		return NAME;
+	public String getName() {
+		return name;
 	}
-	public void setNAME(String nAME) {
-		NAME = nAME;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getCODE() {
-		return CODE;
+	public int getCode() {
+		return code;
 	}
-	public void setCODE(int cODE) {
-		CODE = cODE;
+	public void setCode(int code) {
+		this.code = code;
 	}
-	public String getADDRESS1() {
-		return ADDRESS1;
+	public String getAddress1() {
+		return address1;
 	}
-	public void setADDRESS1(String aDDRESS1) {
-		ADDRESS1 = aDDRESS1;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
-	public String getADDRESS2() {
-		return ADDRESS2;
+	public String getAddress2() {
+		return address2;
 	}
-	public void setADDRESS2(String aDDRESS2) {
-		ADDRESS2 = aDDRESS2;
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
-	public String getEXPLANATION() {
-		return EXPLANATION;
+	public String getExplanation() {
+		return explanation;
 	}
-	public void setEXPLANATION(String eXPLANATION) {
-		EXPLANATION = eXPLANATION;
+	public void setExplanation(String explanation) {
+		this.explanation = explanation;
 	}
-	public String getTYPE() {
-		return TYPE;
+	public String getType() {
+		return type;
 	}
-	public void setTYPE(String tYPE) {
-		TYPE = tYPE;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public int getLEASTPRICE() {
-		return LEASTPRICE;
+	public int getLeastprice() {
+		return leastprice;
 	}
-	public void setLEASTPRICE(int lEASTPRICE) {
-		LEASTPRICE = lEASTPRICE;
+	public void setLeastprice(int leastprice) {
+		this.leastprice = leastprice;
 	}
-	public int getDELIVERYTIP() {
-		return DELIVERYTIP;
+	public int getDeliverytip() {
+		return deliverytip;
 	}
-	public void setDELIVERYTIP(int dELIVERYTIP) {
-		DELIVERYTIP = dELIVERYTIP;
+	public void setDeliverytip(int deliverytip) {
+		this.deliverytip = deliverytip;
 	}
-	public String getCALL() {
-		return CALL;
+	public String getCall() {
+		return call;
 	}
-	public void setCALL(String cALL) {
-		CALL = cALL;
+	public void setCall(String call) {
+		this.call = call;
 	}
-	public int getSCORE() {
-		return SCORE;
+	public int getScore() {
+		return score;
 	}
-	public void setSCORE(int sCORE) {
-		SCORE = sCORE;
+	public void setScore(int score) {
+		this.score = score;
 	}
-	public int getREVIEWCOUNT() {
-		return REVIEWCOUNT;
+	public int getReviewcount() {
+		return reviewcount;
 	}
-	public void setREVIEWCOUNT(int rEVIEWCOUNT) {
-		REVIEWCOUNT = rEVIEWCOUNT;
+	public void setReviewcount(int reviewcount) {
+		this.reviewcount = reviewcount;
 	}
-	public int getRECOCNT() {
-		return RECOCNT;
+	public int getRecocnt() {
+		return recocnt;
 	}
-	public void setRECOCNT(int rECOCNT) {
-		RECOCNT = rECOCNT;
+	public void setRecocnt(int recocnt) {
+		this.recocnt = recocnt;
 	}
-	public int getORDERCNT() {
-		return ORDERCNT;
+	public int getOrdercnt() {
+		return ordercnt;
 	}
-	public void setORDERCNT(int oRDERCNT) {
-		ORDERCNT = oRDERCNT;
+	public void setOrdercnt(int ordercnt) {
+		this.ordercnt = ordercnt;
 	}
-	public int getCATENO() {
-		return CATENO;
+	public int getCateno() {
+		return cateno;
 	}
-	public void setCATENO(int cATENO) {
-		CATENO = cATENO;
+	public void setCateno(int cateno) {
+		this.cateno = cateno;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "RestaurantVO [RNO=" + RNO + ", RONO=" + RONO + ", NAME=" + NAME + ", CODE=" + CODE + ", ADDRESS1="
-				+ ADDRESS1 + ", ADDRESS2=" + ADDRESS2 + ", EXPLANATION=" + EXPLANATION + ", TYPE=" + TYPE
-				+ ", LEASTPRICE=" + LEASTPRICE + ", DELIVERYTIP=" + DELIVERYTIP + ", CALL=" + CALL + ", SCORE=" + SCORE
-				+ ", REVIEWCOUNT=" + REVIEWCOUNT + ", RECOCNT=" + RECOCNT + ", ORDERCNT=" + ORDERCNT + ", CATENO="
-				+ CATENO + "]";
+		return "RestaurantVO [rno=" + rno + ", rono=" + rono + ", name=" + name + ", code=" + code + ", address1="
+				+ address1 + ", address2=" + address2 + ", explanation=" + explanation + ", type=" + type
+				+ ", leastprice=" + leastprice + ", deliverytip=" + deliverytip + ", call=" + call + ", score=" + score
+				+ ", reviewcount=" + reviewcount + ", recocnt=" + recocnt + ", ordercnt=" + ordercnt + ", cateno="
+				+ cateno + "]";
 	}
 
+	
 }

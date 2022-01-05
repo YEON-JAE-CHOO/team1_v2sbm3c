@@ -2,17 +2,12 @@ package dev.mvc.restaurant;
 
 import java.util.List;
 
-
 public interface RestaurantDAOInter {
 
-	public List<RestaurantVO> testlist();
-
-	/**
-	 * 등록
-	 * 
-	 * @param MenuVO
-	 * @return
-	 */
-	public int insert(RestaurantVO restaurantvo);
-	
+    
+    public int create(RestaurantVO restaurantVO);
+    
+    public List<RestaurantVO> getlist();
+    
+    public RestaurantVO create_shop(int rno);
 }

@@ -6,9 +6,11 @@
 
 <c:set var="list" value="${list }" />
 <c:set var="rno" value="${rno }" />
+<c:set var="restaurantVO" value="${restaurantVO }" />
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -33,29 +35,36 @@
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 </head>
+
 <body>
 	<!-- Navigation-->
-	<jsp:include page="./menu/top.jsp" flush='false' />
+	<jsp:include page="../menu/top.jsp" flush='false' />
 	<!-- Header-->
 	<header class="py-4" style="background-color: #ef9578;"> </header>
 
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<img class="card-img-top mb-5 mb-md-0"
 						src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
 				</div>
 				<div class="col-md-6">
-					<div class="small mb-1">SKU: BST-498</div>
-					<h1 class="display-5 fw-bolder">가게 이름</h1>
-					<div class="fs-5 mb-5">
-						<span class="text-decoration-line-through">$45.00</span> <span>$40.00</span>
+					<div class="small mb-1">${restaurantVO.type}</div>
+					<h1 class="display-5 fw-bolder">${restaurantVO.name}</h1>
+					<div class="fs-5 mb-2">
+						<span class="text-decoration-line-through">배달 팁 - </span> <span>${restaurantVO.deliverytip} 원</span>
 					</div>
-					<p class="lead">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi
-						consequatur obcaecati excepturi alias magni, accusamus eius
-						blanditiis delectus ipsam minima ea iste laborum vero?</p>
+					<div class="fs-5 mb-2">
+						<span class="text-decoration-line-through">최소 주문 금액 - </span> <span>${restaurantVO.leastprice} 원</span>
+					</div>
+					<div class="fs-5 mb-2">
+						<span class="text-decoration-line-through">가게 번호 - </span> <span>${restaurantVO.call}</span>
+					</div>
+
+					<p class="fs-5 mb-5">주소 - ${restaurantVO.address1}
+						${restaurantVO.address2}</p>
+					<p class="lead">${restaurantVO.explanation}</p>
 					<div class="d-flex">
 						<input class="form-control text-center me-3" id="inputQuantity"
 							type="num" value="1" style="max-width: 3rem" />
@@ -157,7 +166,7 @@
 	</div>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark footer">
-		<jsp:include page="./menu/bottom.jsp" flush='false' />
+		<jsp:include page="../menu/bottom.jsp" flush='false' />
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script
@@ -165,4 +174,5 @@
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
 </body>
+
 </html>
