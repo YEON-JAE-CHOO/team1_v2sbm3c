@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.restaurant.RestaurantProcInter;
+import dev.mvc.restaurant.RestaurantVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -22,6 +24,10 @@ public class MenuCont {
 	@Autowired
 	@Qualifier("dev.mvc.menu.MenuProc")
 	private MenuProcInter menuProc = null;
+	
+	@Autowired
+	@Qualifier("dev.mvc.restaurant.RestaurantProc")
+	private RestaurantProcInter restaurantProc;
 
 	public MenuCont() {
 		System.out.println("-> MenuCont created.");
@@ -39,7 +45,7 @@ public class MenuCont {
 
 		System.out.println("rno ->" + rno);
 		List<MenuVO> list = this.menuProc.testlist(rno);
-
+		RestaurantVO restaurant = this.restaurantProc.create_shop(rno);
 		System.out.println("list -->" + list);
 		mav.addObject("list", list);
 		mav.addObject("rno", rno);

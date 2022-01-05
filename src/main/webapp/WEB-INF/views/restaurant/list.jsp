@@ -75,7 +75,7 @@
 						<c:set var="explanation" value="${restaurantVO.explanation }" />
 						<c:set var="leastprice" value="${restaurantVO.leastprice }" />
 
-						<TD class="td_bs"><a href="/menu/list.do?rno=${rno }">${name }
+						<TD class="td_bs"><a href="/restaurant/shop.do?rno=${rno }">${name }
 						</a></TD>
 						<TD class="td_bs"></TD>
 						<TD class="td_bs">${type }</TD>

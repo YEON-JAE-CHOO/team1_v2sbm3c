@@ -36,7 +36,9 @@ public class RestaurantProc implements RestaurantProcInter {
 	@Override
 	public RestaurantVO create_shop(int rno) {
 		
-		return null;
+		RestaurantVO restaurantVO = this.restaurantDAO.create_shop(rno);
+		
+		return restaurantVO;
 	}
 
 }
