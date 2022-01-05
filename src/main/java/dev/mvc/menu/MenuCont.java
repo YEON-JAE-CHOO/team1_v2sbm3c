@@ -54,7 +54,7 @@ public class MenuCont {
 	@RequestMapping(value = "/menu/openshoppingcart.do", method = RequestMethod.GET)
 	public ModelAndView openshoppingcart() {
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setViewName("/order/shoppingcart"); // webapp/members/list.jsp
 
 		return mav; // forward
@@ -64,19 +64,39 @@ public class MenuCont {
 	/**/
 	/**/
 	@RequestMapping(value = "/menu/delete.do", method = RequestMethod.GET)
-	public ModelAndView delete(int menuno) {
+	public ModelAndView delete(int menuno, int rno) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println("menuno _> " + menuno + "rno -> " + rno);
 
 		int cnt = this.menuProc.delete(menuno);
 
 		System.out.println("cnt _> " + cnt);
 		if (cnt >= 1) {
 			System.out.println(menuno + "  삭제 성공");
-			mav.setViewName("/menu/list.do");
+			mav.setViewName("redirect:/menu/list.do?rno=" + rno);
 		} else {
 			System.out.println("삭제 실패");
+			String msg = "오류";
+			mav.setViewName("redirect:/menu/list.do?rno=" + rno);
+			mav.addObject("msg", msg);
 
 		}
+
+		return mav;
+	}
+	
+	
+	/** 메뉴 수정 열기 */
+	/**/
+	/**/
+	@RequestMapping(value = "/menu/update.do", method = RequestMethod.GET)
+	public ModelAndView update(int menuno, int rno) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("menuno _> " + menuno + "rno -> " + rno);
+		
+		
+		
+		mav.setViewName("/restaurant/update_menu");
 
 		return mav;
 	}
