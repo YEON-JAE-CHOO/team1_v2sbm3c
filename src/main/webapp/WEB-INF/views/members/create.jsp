@@ -8,6 +8,10 @@
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>배달통</title>
+
+<script type="text/JavaScript"
+          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          
 <!-- Favicon-->
 <link rel="stylesheet" 
 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
@@ -21,14 +25,13 @@ crossorigin="anonymous">
                 <div class="container px-4 px-lg-5 my-5"
                         style="background-color: #ef9578;">
                 <div class="text-center text-white">
-                        <h1 class="display-4 fw-bolder">Shop in style</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">With this shop
-                        hompeage template</p>
+                        <h1 class="display-4 fw-bolder">회원가입</h1>
+                        <p class="lead fw-normal text-white-50 mb-0">Please Sign Up</p>
                </div>
               </div>
            </header>
       <!-- Section-->
-<script type="js/scripts.js">
+<script type="text/javascript">
   $(function() { // 자동 실행
     // id가 'btn_checkID'인 태그를 찾아 'click' 이벤트 처리자(핸들러)로 checkID 함수를 등록
     // document.getElementById('btn_checkID').addEventListener('click', checkID); 동일
@@ -327,8 +330,6 @@ crossorigin="anonymous">
     </div>   
   </FORM>
   </DIV>
-
-<jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
 
 </html>
