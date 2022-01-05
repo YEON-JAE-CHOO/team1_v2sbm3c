@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.shoppingcart.ShoppingcartDAOInter">
+	<insert id="add_cart"
+		parameterType="dev.mvc.shoppingcart.ShoppingcartVO">
+		insert into shoppingcart (scno, rno, count, rdate,
+		menuno, mno )
+		values (shoppingcart_seq.nextval, #{rno }, #{count },
+		sysdate, #{menuno }, #{mno })
+
+	</insert>
+
+	<select id="show_cart" parameterType="int"
+		resultType="dev.mvc.menu.MenuVO">
+
+		select menu.rno, menu.menuno, title, explanation,
+		spiciness, file1, price,
+		shoppingcart.rdate from menu, shoppingcart,
+		members
+		where shoppingcart.menuno = menu.menuno and shoppingcart.mno = members.mno members.mno=#{mno }
+
+	</select>
+
+
+</mapper>
+<!--  디코 ㄴㄴ임?있음 형 아 ㅇㅋㅇㅋㅇ안써짐? 여기도? 구글 기술 지원 워스트네
+설명해드릴게요 -->

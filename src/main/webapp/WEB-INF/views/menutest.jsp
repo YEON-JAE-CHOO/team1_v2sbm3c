@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="list" value="${list }" />
 <c:set var="rno" value="${rno }" />
@@ -16,6 +17,9 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>메뉴 등록</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <!-- Favicon-->
 <style type="text/css">
 .footer {
@@ -29,9 +33,59 @@
 }
 </style>
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<script type="text/javascript">
+
+	$(function() {
+		$('#add_shoppingcart').on('click', function() {cart_ajax_add(rno,menuno)});
+	});
+		
+    
+    
+<%-- 장바구니 추가 모달 --%>
+	
+
+
+	function cart_ajax_add(rno,menuno){
+		var mno = 10;
+		
+		var params = "";
+		params += 'rno=' + rno;
+		params += '&menuno=' + menuno;
+
+		<%-- alert("-> params: " + params); --%>
+
+		// return;
+
+		$.ajax({
+			url : '/shoppingcart/add.do',
+			type : 'post', // get, post
+			cache : false, // 응답 결과 임시 저장 취소
+			async : true, // true: 비동기 통신
+			dataType : 'json', // 응답 형식: json, html, xml 
+			data : params, // 데이터
+			success : function(rdata) { // 응답이 온경우
+				var str = '';
+				console.log('-> cart_ajax_add cnt: ' + rdata.cnt); // 1: 쇼핑카트 등록 성공
+				if (rdata.cnt == 1) {
+					var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
+					if (sw == true) {
+						// 쇼핑카트로 이동
+						// location.href='/cart/list.do';
+					}
+				} else {
+					alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
+				}
+			},
+			// Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+			error : function(request, status, error) { // callback 함수
+				console.log(error);
+			}
+		}); //  $.ajax END
+
+	}
+</script>
 </head>
 <body>
 	<!-- Navigation-->
@@ -87,7 +141,7 @@
 					<col style='width: 15%;' />
 					<col style='width: 15%;' />
 					<col style='width: 15%;' />
-					<col style="width: 15%;" />
+					<col style="width: 10%;" />
 					<col style='width: 15%;' />
 					<col style='width: 20%;' />
 				</colgroup>
@@ -126,7 +180,7 @@
 									test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
 									<IMG src="/storage/images/${thumb }"
 										style="width: 120px; height: 80px;">
-									</a>
+
 								</c:when>
 								<c:otherwise>
 									<!-- 기본 이미지 출력 -->
@@ -138,15 +192,15 @@
 						<TD class="td_bs">${spiciness }</TD>
 						<TD class="td_bs">${explanation }</TD>
 						<TD class="td_bs"><A
-							href="./read_update.do?cateno=${categrpno }" title="수정"><span
+							href="/menu/update.do?menuno=${menuno }&rno=${rno }" title="수정"><span
 								class="glyphicon glyphicon-pencil"></span>수정</A> <A
-							href="./menu/delete.do?menuno=${menuno }" title="삭제"><span
+							href="/menu/delete.do?menuno=${menuno }&rno=${rno }" title="삭제"><span
 								class="glyphicon glyphicon-trash"></span>삭제</A>
-							<button class="btn btn-outline-dark" type="submit"
-								id="addshoppingcart" name="addshoppingcart">
-								<i class="bi-cart-fill me-1"></i> 추가 <span
-									class="badge bg-dark text-white ms-1 rounded-pill"></span>
-							</button></TD>
+
+
+							<button class="btn btn-outline-dark" type="button"
+								id="add_shoppingcart" name="add_shoppingcart"
+								onclick="cart_ajax_add(${rno },${menuno })">장바구니</button></TD>
 						</TR>
 					</c:forEach>
 				</tbody>
@@ -154,6 +208,29 @@
 
 			</TABLE>
 		</div>
+
+		<!-- ******************** Modal 알림창 시작 ******************** -->
+		<div id="modal_panel" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+						<h4 class="modal-title" id='modal_title'></h4>
+						<!-- 제목 -->
+					</div>
+					<div class="modal-body">
+						<p id='modal_content'></p>
+						<!-- 내용 -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="btn_close" data-focus=""
+							class="btn btn-default" data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ******************** Modal 알림창 종료 ******************** -->
 	</div>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark footer">
@@ -162,7 +239,6 @@
 	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+
 </body>
 </html>

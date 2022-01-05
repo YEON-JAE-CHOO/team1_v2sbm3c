@@ -3,7 +3,6 @@
 <%@ page import="java.util.List"%>
 
 <c:set var="rno" value="${rno }" />
-<c:set var="menuno" value="${menuno }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +44,7 @@
 		<H3>메뉴 수정</H3>
 		<h2>${rno }</h2>
 		<div style="height: 100px; background-color: #ef9578;"text-align:center; display:flex;>
+
 
 			<H2>김밥프렌즈</H2>
 		</div>
@@ -114,7 +114,7 @@
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" class="btn btn-success">둥록</button>
+						<button type="submit" class="btn btn-success">수정</button>
 					</div>
 				</div>
 		</div>

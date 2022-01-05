@@ -10,20 +10,9 @@ DROP TABLE cate IF EXISTS;
 DROP TABLE members IF EXISTS;
 DROP TABLE restaurantowner IF EXISTS;
 
-
-SHOW TABLES;
 /**********************************/
-/* Table Name: ?‚¬?—…? */
+/* Table Name: ì‚¬ì—…ì */
 /**********************************/
-
-DROP SEQUENCE restaurantowner_seq;
-CREATE SEQUENCE restaurantowner_seq
-  START WITH 1        
-  INCREMENT BY 1    
-  MAXVALUE 9999999999   
-  CACHE 2                  
-  NOCYCLE;          
-  
 CREATE TABLE restaurantowner(
 		rono INTEGER NOT NULL PRIMARY KEY,
 		name VARCHAR(10) NOT NULL,
@@ -33,30 +22,9 @@ CREATE TABLE restaurantowner(
 		pw VARCHAR(20) NOT NULL
 );
 
-
-insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
-values (restaurantowner_seq.nextval, 'ÁÖÀÎÀå1','2021-12111','010-1234-2345','owner1','1234');
-
-insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
-values (restaurantowner_seq.nextval, 'ÁÖÀÎÀå2','2021-23442','010-1234-23435','owner2','1234');
-
-insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
-values (restaurantowner_seq.nextval, 'ÁÖÀÎÀå3','2021-14324','010-1234-2325','owner3','1234');
-
-
-
 /**********************************/
-/* Table Name: ?šŒ?› */
+/* Table Name: íšŒì› */
 /**********************************/
-
-DROP SEQUENCE members_seq;
-CREATE SEQUENCE members_seq
-  START WITH 1        
-  INCREMENT BY 1    
-  MAXVALUE 9999999999   
-  CACHE 2                  
-  NOCYCLE;  
-  
 CREATE TABLE members(
 		mno INTEGER NOT NULL PRIMARY KEY,
 		id VARCHAR(20) NOT NULL,
@@ -68,56 +36,25 @@ CREATE TABLE members(
 		address1 VARCHAR(80),
 		address2 VARCHAR(60),
 		rdate DATE NOT NULL,
-		reco char(1) not null
+		reco BOOLEAN(10) DEFAULT false NOT NULL
 );
-
-insert into members(mno, id, pw, name , nickname, phone, housecode, address1, address2, rdate, reco)
-values (members_seq.nextval, 'dudqls', '1234' , '±èºó','±è¿µ','010-1234-5678','12345','ÀÎÃµ½Ã ºÎÆò±¸','Ã»ÃµAPT',sysdate,'1');
-
-insert into members(mno, id, pw, name , nickname, phone, housecode, address1, address2, rdate, reco)
-values (members_seq.nextval, 'joo', '1234' , '¹ÚÃ¢','¹ÚÁÖ','010-1234-5678','12345','¼­¿ï½Ã Áß±¸','ºÎÀÚ',sysdate,'1');
-
-insert into members(mno, id, pw, name , nickname, phone, housecode, address1, address2, rdate, reco)
-values (members_seq.nextval, 'choo', '1234' , 'ÃßÀç','Ãß¿¬','010-1234-5678','12345','¼­¿ï½Ã Áß±¸','ºÎÀÚ',sysdate,'1');
-
-commit;
-
-select * from members;
-
-
 
 /**********************************/
 /* Table Name: ì¹´í…Œê³ ë¦¬ */
 /**********************************/
-
-DROP SEQUENCE cate_seq;
-CREATE SEQUENCE cate_seq
-  START WITH 1        
-  INCREMENT BY 1    
-  MAXVALUE 9999999999   
-  CACHE 2                  
-  NOCYCLE;  
-  
 CREATE TABLE cate(
 		cateno INTEGER NOT NULL PRIMARY KEY,
-		name VARCHAR(20) DEFAULT ÇÑ½Ä NOT NULL,
-		seq INTEGER
+		name VARCHAR(20) DEFAULT 'í•œì‹' NOT NULL,
+		seq INTEGER,
+		file1 VARCHAR(100),
+		file1saved1 VARCHAR(100),
+		thumb1 VARCHAR(100),
+		imagesize1 INTEGER
 );
 
-insert into cate (cateno, name, seq) values (cate_seq.nextval,'ÇÑ½Ä',1);
-insert into cate (cateno, name, seq) values (cate_seq.nextval,'Áß½Ä',2);
-
 /**********************************/
-/* Table Name: ?‹?‹¹ */
+/* Table Name: ì‹ë‹¹ */
 /**********************************/
-DROP SEQUENCE restaurant_seq;
-CREATE SEQUENCE restaurant_seq
-  START WITH 1        
-  INCREMENT BY 1    
-  MAXVALUE 9999999999   
-  CACHE 2                  
-  NOCYCLE;  
-  
 CREATE TABLE restaurant(
 		rno INTEGER NOT NULL PRIMARY KEY,
 		rono INTEGER NOT NULL,
@@ -139,20 +76,11 @@ CREATE TABLE restaurant(
   FOREIGN KEY (cateno) REFERENCES cate (cateno)
 );
 
-insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
-values(restaurant_seq.nextval,1,'¸ÀÀÖ´Â ÇÑ½Ä','12345','ÀÎÃµ½Ã ºÎÆò±¸ Ã»Ãµµ¿','1µ¿ ', 'ÀÔ±¸¿¡~~~~','ÇÑ½Ä','10000',3000,'032-123-4567',5,100,40,1000,1);
-
-insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
-values(restaurant_seq.nextval,1,'¸ÀÀÖ´Â Áß½Ä','12345','ÀÎÃµ½Ã ºÎÆò±¸ Ã»Ãµµ¿','2Ãş', 'ÀÔ±¸¿¡~~~~','Áß½Ä','10000',3000,'032-123-4567',5,100,40,1000,1);
-
-insert into restaurant (rno,restaurant _seq.nextval, rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
-values(restaurant_seq.nextval,1,'¸ÀÀÖ´Â ÀÏ½Ä','12345','ÀÎÃµ½Ã ºÎÆò±¸ Ã»Ãµµ¿','3Ãş', 'ÀÔ±¸¿¡~~~~','ÀÏ½Ä','10000,3000,'032-123-4567',5,100,40,1000,1);
 /**********************************/
 /* Table Name: ë©”ë‰´ */
 /**********************************/
 CREATE TABLE menu(
 		rno INTEGER NOT NULL,
-		scno INTEGER,
 		menuno INTEGER NOT NULL PRIMARY KEY,
 		type VARCHAR(10) NOT NULL,
 		title VARCHAR(20) NOT NULL,
@@ -160,7 +88,7 @@ CREATE TABLE menu(
 		spiciness VARCHAR(10),
 		file1 VARCHAR(100),
 		filesaved1 VARCHAR(100),
-		thumb VARCHAR(100),
+		thumb VARCHAR_IGNORECASE(100),
 		imagesize INTEGER,
   FOREIGN KEY (rno) REFERENCES restaurant (rno)
 );
@@ -170,24 +98,25 @@ CREATE TABLE menu(
 /**********************************/
 CREATE TABLE review(
 		rno INTEGER NOT NULL PRIMARY KEY,
+		rno INTEGER NOT NULL,
 		mno INTEGER NOT NULL,
 		title VARCHAR(50) NOT NULL,
 		content VARCHAR(200) NOT NULL,
-		rdate DATE NOT NULL,
-		rtime DATE NOT NULL,
+		date DATE NOT NULL,
+		time TIME NOT NULL,
 		score INTEGER NOT NULL,
   FOREIGN KEY (rno) REFERENCES restaurant (rno),
   FOREIGN KEY (mno) REFERENCES members (mno)
 );
 
 /**********************************/
-/* Table Name: ?¥ë°”êµ¬?‹ˆ */
+/* Table Name: ì¥ë°”êµ¬ë‹ˆ */
 /**********************************/
 CREATE TABLE shoppingcart(
 		scno INTEGER NOT NULL PRIMARY KEY,
 		rno INTEGER NOT NULL,
 		count INT DEFAULT 1 NOT NULL,
-		rdate DATE,
+		date DATE,
 		menuno INTEGER,
 		mno INTEGER,
   FOREIGN KEY (rno) REFERENCES restaurant (rno),
@@ -195,24 +124,22 @@ CREATE TABLE shoppingcart(
   FOREIGN KEY (mno) REFERENCES members (mno)
 );
 
-select * from shoppingca;
-
 /**********************************/
 /* Table Name: ì£¼ë¬¸ */
 /**********************************/
 CREATE TABLE orders(
 		ono INTEGER NOT NULL PRIMARY KEY,
 		scno INTEGER NOT NULL,
-		rdate DATE NOT NULL,
-		rtime date NOT NULL,
+		date DATE NOT NULL,
+		time TIME NOT NULL,
 		price INTEGER NOT NULL,
 		totalprice INTEGER NOT NULL,
 		address1 VARCHAR(30) NOT NULL,
 		address2 VARCHAR(40) NOT NULL,
-		method VARCHAR(15) DEFAULT 'Çö±İ' NOT NULL,
+		method VARCHAR(15) DEFAULT í˜„ê¸ˆ NOT NULL,
 		phone VARCHAR(13) NOT NULL,
 		request VARCHAR(30),
-		state char(1) default 1 not null,
+		state BOOLEAN(10) DEFAULT false NOT NULL,
 		mno INTEGER,
 		menuno INTEGER,
   FOREIGN KEY (mno) REFERENCES members (mno),
@@ -225,14 +152,15 @@ CREATE TABLE orders(
 CREATE TABLE delivery(
 		no INTEGER NOT NULL PRIMARY KEY,
 		ono INTEGER NOT NULL,
-		state char(1) default 1 not null,
-        starttime TIMESTAMP,
+		state BOOLEAN(10) DEFAULT false NOT NULL,
+		start BOOLEAN(10) DEFAULT false NOT NULL,
+		starttime TIMESTAMP,
 		driver VARCHAR(10),
   FOREIGN KEY (ono) REFERENCES orders (ono)
 );
 
 /**********************************/
-/* Table Name: ì°? */
+/* Table Name: ì°œ */
 /**********************************/
 CREATE TABLE zzim(
 		zno INTEGER NOT NULL PRIMARY KEY,
@@ -250,10 +178,65 @@ CREATE TABLE recommendation(
 		recono INTEGER NOT NULL PRIMARY KEY,
 		rno INTEGER,
 		mno INTEGER,
-		rdate date,
-        FOREIGN KEY (rno) REFERENCES restaurant (rno),
+		date TIME,
+  FOREIGN KEY (rno) REFERENCES restaurant (rno),
   FOREIGN KEY (mno) REFERENCES members (mno)
+  
+  
+  
+  -------------------------------------------
+  insert into cate(cateno,name,seq,file1,file1saved,thumb1,size1)
+  values(cate_seq.nextval,'ì•¼ì‹',3,'0','0','0',0)
+  /*==============================================================================================================================================================*/
+insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
+values (restaurantowner_seq.nextval, 'ì£¼ì¸ì¥1','2021-12111','010-1234-2345','owner1','1234');
+
+insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
+values (restaurantowner_seq.nextval, 'ì£¼ì¸ì¥2','2021-23442','010-1234-23435','owner2','1234');
+
+insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
+values (restaurantowner_seq.nextval, 'ì£¼ì¸ì¥3','2021-14324','010-1234-2325','owner3','1234');
+/*==============================================================================================================================================================*/
+
+insert into cate (cateno, name, seq) values (cate_seq.nextval,'í•œì‹',1);
+insert into cate (cateno, name, seq) values (cate_seq.nextval,'ì¤‘ì‹',2);
+insert into cate (cateno, name, seq) values (cate_seq.nextval,'ì¼ì‹',3);
+insert into cate (cateno, name, seq) values (cate_seq.nextval,'ì–‘ì‹',4);
+
+/*==============================================================================================================================================================*/
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (12, menu_seq.nextval,'í•œì‹','ë‘ë¶€ê¹€ì¹˜','ë‘ë¶€ ë§ì•„ìš”','ë§¤ì›€','DG.jpg','savedDG.jpg','tumbDG.jpg', 1 );
+
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (12, menu_seq.nextval,'í•œì‹','ê°ìì „','ê°ì ë§ì•„ì—¬','ë§¤ì›€','DG.jpg','savedDG.jpg','tumbDG.jpg', 13 );
+
+insert into menu ( rno, menuno, type, title, explanation, spiciness, file1,filesaved1, thumb, imagesize)
+values (12, menu_seq.nextval,'í•œì‹','ë§Œë‘','ë§Œë‘ ë§ì•„ìš”','ë§¤ì›€','DG.jpg','savedDG.jpg','tumbDG.jpg',3 );
+
+/*==============================================================================================================================================================*/
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user1', '1234','ê¹€', 'ìš°ì•„í•œí˜•ì œë“¤', '000-0000-0000', '12345', 'ì„œìš¸íŠ¹ë³„ì‹œ ì†¡íŒŒêµ¬', 'ìœ„ë¡€ì„±ëŒ€ë¡œ', sysdate, 1);
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user2', '1234','í™', 'ìš°ì•„í•œí˜•ì œë“¤', '000-0000-0000', '12345', 'ì„œìš¸íŠ¹ë³„ì‹œ ì†¡íŒŒêµ¬', 'ìœ„ë¡€ì„±ëŒ€ë¡œ', sysdate, 1);
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user3', '1234','ì¶”', 'ìš°ì•„í•œí˜•ì œë“¤', '000-0000-0000', '12345', 'ì„œìš¸íŠ¹ë³„ì‹œ ì†¡íŒŒêµ¬', 'ìœ„ë¡€ì„±ëŒ€ë¡œ', sysdate, 1);
+
+INSERT INTO members(mno, id, pw, name, nickname, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user4', '1234','ë°•', 'ìš°ì•„í•œí˜•ì œë“¤', '000-0000-0000', '12345', 'ì„œìš¸íŠ¹ë³„ì‹œ ì†¡íŒŒêµ¬', 'ìœ„ë¡€ì„±ëŒ€ë¡œ', sysdate, 1);
+
+
+/*==============================================================================================================================================================*/
+
+insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
+values(restaurant_seq.nextval,1,'ë§›ìˆëŠ” í•œì‹','12345','ì¸ì²œì‹œ ë¶€í‰êµ¬ ì²­ì²œë™','1ë™ ', 'ì…êµ¬ì—~~~~','í•œì‹','10000',3000,'032-123-4567',5,100,40,1000,3);
+
+insert into restaurant (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
+values(restaurant_seq.nextval,1,'ë§›ìˆëŠ” ì¤‘ì‹','12345','ì¸ì²œì‹œ ë¶€í‰êµ¬ ì²­ì²œë™','2ì¸µ', 'ì…êµ¬ì—~~~~','ì¤‘ì‹','10000',3000,'032-123-4567',5,100,40,1000,3);
+
+insert into restaurant  (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
+values(restaurant_seq.nextval,3,'ë§›ìˆëŠ” ì¼ì‹','12345','ì¸ì²œì‹œ ë¶€í‰êµ¬ ì²­ì²œë™','3ì¸µ', 'ì…êµ¬ì—~~~~','ì¼ì‹','10000',3000,'032-123-4567',5,100,40,1000,3);
 );
 
-
-commit;
