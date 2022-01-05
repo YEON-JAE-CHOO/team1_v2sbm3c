@@ -3,15 +3,11 @@ package dev.mvc.restaurant;
 import java.util.List;
 
 public interface RestaurantProcInter {
+    
+    public int create(RestaurantVO restaurantVO);
 
-	public List<RestaurantVO> testlist();
-
-	/**
-	 * 등록
-	 * 
-	 * @param MenuVO
-	 * @return
-	 */
-	public int insert(RestaurantVO restaurantvo);
+	public List<RestaurantVO> getlist();
+	
+	public RestaurantVO create_shop(int rno);
+    
 }
-
