@@ -2,18 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-		data-bs-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent" aria-expanded="false"
-		aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="/">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href='/cate/create.do'>카테
-					등록</a></li>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="/index.do">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href='/cate/list.do'>카테고리 목록</a></li>
+
 
 			<li class="nav-item"><a class="nav-link" href="/menu/list.do">메뉴등록</a></li>
 			<li class="nav-item"><a class="nav-link"

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.menu.MenuProcInter;
 import dev.mvc.menu.MenuVO;
 
 @Controller
@@ -17,6 +18,11 @@ public class RestaurantCont {
 	@Qualifier("dev.mvc.restaurant.RestaurantProc")
 	private RestaurantProcInter restaurantProc;
 
+	@Autowired
+	@Qualifier("dev.mvc.menu.MenuProc")
+	private MenuProcInter menuProc = null;
+
+	
 	public RestaurantCont() {
 		System.out.println("-> RestaurantCont created.");
 	}
@@ -68,7 +74,7 @@ public class RestaurantCont {
 
 		return mav; // forward
 	}
-	
+
 	/** 페이지 오픈 & 메뉴 리스트 출력 */
 	/**/
 	/**/
@@ -85,5 +91,51 @@ public class RestaurantCont {
 		return mav; // forward
 	}
 
+
 	
+	/** 페이지 오픈 & 메뉴 리스트 출력 */
+	/**/
+	/**/
+	@RequestMapping(value = "/restaurant/shop.do", method = RequestMethod.GET)
+	public ModelAndView create_shop(int rno) {
+		ModelAndView mav = new ModelAndView();
+
+		System.out.println("rno -->" + rno);
+		System.out.println();
+		List<MenuVO> list = this.menuProc.testlist(rno);
+		RestaurantVO restaurantVO = this.restaurantProc.create_shop(rno);
+		System.out.println("restaurantVO ->" + restaurantVO.toString());
+		System.out.println("list -->" + list);
+		mav.addObject("list", list);
+		mav.addObject("restaurantVO", restaurantVO);
+		mav.addObject("rno", rno);
+		mav.setViewName("/restaurant/shop"); // webapp/members/list.jsp
+
+		return mav; // forward
+	}
+
+	
+	@RequestMapping(value = "/restaurant/modification.do", method = RequestMethod.GET)
+	public ModelAndView modification() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/restaurant/modification"); // webapp/WEB-INF/views/cate/create.jsp
+
+		return mav; // forward
+	}
+	
+	@RequestMapping(value = "/restaurant/update.do", method = RequestMethod.POST)
+	public ModelAndView shop_update(RestaurantVO restaurantVO) {
+
+		ModelAndView mav = new ModelAndView();
+
+		int cnt = this.restaurantProc.create(restaurantVO); // 등록 처리
+		// cnt = 0; // error test
+
+		mav.addObject("cnt", cnt);
+
+
+		return mav; // forward
+	}
+
+
 }

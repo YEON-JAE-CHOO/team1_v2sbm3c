@@ -30,6 +30,8 @@ public class RestaurantVO {
 	private int recocnt;
 	private int ordercnt;
 	private int cateno;
+	
+	
 	public int getRno() {
 		return rno;
 	}

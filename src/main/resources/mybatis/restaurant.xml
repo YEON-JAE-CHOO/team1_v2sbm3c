@@ -27,4 +27,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 		restaurant
 	</select>
+
+	<select id="create_shop"
+		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+		SELECT 
+		rno, rono, name, address1, address2, explanation, 
+		type, leastprice, deliverytip, call, score, 
+		reviewcount, recocnt, ordercnt, cateno
+		FROM
+		restaurant WHERE rno = #{rno}
+	</select>
+	
 </mapper>

@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>가게 등록</title>
+<title>가게 수정</title>
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -55,7 +55,7 @@
 
 			<div class="col-xs-12 col-sm-12">
 				<h2>&nbsp;</h2>
-				<h2 class="text-center">가게 등록</h2>
+				<h2 class="text-center">가게 수정</h2>
 			</div>
 
 			<div class="col-xs-3 col-sm-3"></div>
@@ -114,7 +114,7 @@
 							</div>
 							<div class="col-sm-3">
 								<input type="text" id="code" placeholder="우편번호"
-									name="code" class="form-control" value="06267">
+									name="code" class="form-control" value="">
 							</div>
 							<div class="col-sm-3">
 								<input type="button" onclick="sample6_execDaumPostcode()"
@@ -130,7 +130,7 @@
 							<div class="col-sm-6">
 								<input type="text" id="address1" placeholder="주소"
 									name="address1" class="form-control"
-									value="서울 강남구 강남대로 238 (도곡동, 스카이쏠라빌딩)">
+									value="">
 							</div>
 						</div>
 

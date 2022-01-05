@@ -1,14 +1,16 @@
-DROP TABLE recommendation IF EXISTS;
-DROP TABLE zzim IF EXISTS;
-DROP TABLE delivery IF EXISTS;
-DROP TABLE orders IF EXISTS;
-DROP TABLE shoppingcart IF EXISTS;
-DROP TABLE review IF EXISTS;
-DROP TABLE menu IF EXISTS;
-DROP TABLE restaurant IF EXISTS;
-DROP TABLE cate IF EXISTS;
-DROP TABLE members IF EXISTS;
-DROP TABLE restaurantowner IF EXISTS;
+/*DROP TABLE recommendation IF EXISTS;
+//DROP TABLE zzim IF EXISTS;
+//DROP TABLE delivery IF EXISTS;
+//DROP TABLE orders IF EXISTS;
+//DROP TABLE shoppingcart IF EXISTS;
+//DROP TABLE review IF EXISTS;
+//DROP TABLE menu IF EXISTS;
+//DROP TABLE restaurant IF EXISTS;
+//DROP TABLE cate IF EXISTS;
+//DROP TABLE members IF EXISTS;
+//DROP TABLE restaurantowner IF EXISTS;
+
+*/
 
 /**********************************/
 /* Table Name: 사업자 */
@@ -22,6 +24,16 @@ CREATE TABLE restaurantowner(
 		pw VARCHAR(20) NOT NULL
 );
 
+DROP SEQUENCE restaurantowner_seq;
+
+CREATE SEQUENCE restaurantowner_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;     
+
+insert into restaurantowner values (rono, 
 /**********************************/
 /* Table Name: 회원 */
 /**********************************/
@@ -33,24 +45,38 @@ CREATE TABLE members(
 		nickname VARCHAR(40),
 		phone VARCHAR(40),
 		housecode VARCHAR(5),
-		address1 VARCHAR(80),
+		address1 VARCHAR(80)
 		address2 VARCHAR(60),
 		rdate DATE NOT NULL,
-		reco BOOLEAN(10) DEFAULT false NOT NULL
+		reco char(1) not null
 );
+
+
+DROP SEQUENCE members_seq;
+CREATE SEQUENCE members_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;  
+
 
 /**********************************/
 /* Table Name: 카테고리 */
 /**********************************/
 CREATE TABLE cate(
 		cateno INTEGER NOT NULL PRIMARY KEY,
-		name VARCHAR(20) DEFAULT '한식' NOT NULL,
-		seq INTEGER,
-		file1 VARCHAR(100),
-		file1saved1 VARCHAR(100),
-		thumb1 VARCHAR(100),
-		imagesize1 INTEGER
+		name VARCHAR(20) DEFAULT 한식 NOT NULL,
+		seq INTEGER
 );
+
+DROP SEQUENCE cate_seq;
+CREATE SEQUENCE cate_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;  
 
 /**********************************/
 /* Table Name: 식당 */
@@ -76,34 +102,61 @@ CREATE TABLE restaurant(
   FOREIGN KEY (cateno) REFERENCES cate (cateno)
 );
 
+DROP SEQUENCE restaurant_seq;
+CREATE SEQUENCE restaurant_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;  
+
 /**********************************/
 /* Table Name: 메뉴 */
 /**********************************/
+
+
+DROP SEQUENCE menu_seq;
+CREATE SEQUENCE menu_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;  
+  
+
+  ALTER TABLE menu DROP COLUMN scno;
+  
 CREATE TABLE menu(
 		rno INTEGER NOT NULL,
 		menuno INTEGER NOT NULL PRIMARY KEY,
-		type VARCHAR(10) NOT NULL,
-		title VARCHAR(20) NOT NULL,
+		menutype VARCHAR(30) NOT NULL,
+		title VARCHAR(50) NOT NULL,
 		explanation VARCHAR(50),
 		spiciness VARCHAR(10),
 		file1 VARCHAR(100),
-		filesaved1 VARCHAR(100),
-		thumb VARCHAR_IGNORECASE(100),
+		file1saved VARCHAR(100),
+		thumb VARCHAR(100),
 		imagesize INTEGER,
   FOREIGN KEY (rno) REFERENCES restaurant (rno)
 );
+
+delete from menu;
+delete from menu where menuno =23;
+ALTER TABLE menu RENAME COLUMN type TO menutype;
+ALTER TABLE menu MODIFY title VARCHAR(50);
+ALTER TABLE menu MODIFY spiciness VARCHAR(30);
+commit;
 
 /**********************************/
 /* Table Name: 리뷰 */
 /**********************************/
 CREATE TABLE review(
 		rno INTEGER NOT NULL PRIMARY KEY,
-		rno INTEGER NOT NULL,
 		mno INTEGER NOT NULL,
 		title VARCHAR(50) NOT NULL,
 		content VARCHAR(200) NOT NULL,
-		date DATE NOT NULL,
-		time TIME NOT NULL,
+		rdate DATE NOT NULL,
+		rtime DATE NOT NULL,
 		score INTEGER NOT NULL,
   FOREIGN KEY (rno) REFERENCES restaurant (rno),
   FOREIGN KEY (mno) REFERENCES members (mno)
@@ -116,7 +169,7 @@ CREATE TABLE shoppingcart(
 		scno INTEGER NOT NULL PRIMARY KEY,
 		rno INTEGER NOT NULL,
 		count INT DEFAULT 1 NOT NULL,
-		date DATE,
+		rdate DATE,
 		menuno INTEGER,
 		mno INTEGER,
   FOREIGN KEY (rno) REFERENCES restaurant (rno),
@@ -130,8 +183,8 @@ CREATE TABLE shoppingcart(
 CREATE TABLE orders(
 		ono INTEGER NOT NULL PRIMARY KEY,
 		scno INTEGER NOT NULL,
-		date DATE NOT NULL,
-		time TIME NOT NULL,
+		rdate DATE NOT NULL,
+		rtime date NOT NULL,
 		price INTEGER NOT NULL,
 		totalprice INTEGER NOT NULL,
 		address1 VARCHAR(30) NOT NULL,
@@ -139,7 +192,7 @@ CREATE TABLE orders(
 		method VARCHAR(15) DEFAULT 현금 NOT NULL,
 		phone VARCHAR(13) NOT NULL,
 		request VARCHAR(30),
-		state BOOLEAN(10) DEFAULT false NOT NULL,
+		state char(1) default 1 not null,
 		mno INTEGER,
 		menuno INTEGER,
   FOREIGN KEY (mno) REFERENCES members (mno),
@@ -152,9 +205,8 @@ CREATE TABLE orders(
 CREATE TABLE delivery(
 		no INTEGER NOT NULL PRIMARY KEY,
 		ono INTEGER NOT NULL,
-		state BOOLEAN(10) DEFAULT false NOT NULL,
-		start BOOLEAN(10) DEFAULT false NOT NULL,
-		starttime TIMESTAMP,
+		state char(1) default 1 not null,
+        		starttime TIMESTAMP,
 		driver VARCHAR(10),
   FOREIGN KEY (ono) REFERENCES orders (ono)
 );
@@ -175,19 +227,27 @@ CREATE TABLE zzim(
 /* Table Name: 추천 */
 /**********************************/
 CREATE TABLE recommendation(
-		recono INTEGER NOT NULL PRIMARY KEY,
+		zno INTEGER NOT NULL PRIMARY KEY,
+		name VARCHAR(40) NOT NULL,
 		rno INTEGER,
 		mno INTEGER,
-		date TIME,
   FOREIGN KEY (rno) REFERENCES restaurant (rno),
   FOREIGN KEY (mno) REFERENCES members (mno)
-  
-  
-  
-  -------------------------------------------
-  insert into cate(cateno,name,seq,file1,file1saved,thumb1,size1)
-  values(cate_seq.nextval,'야식',3,'0','0','0',0)
-  /*==============================================================================================================================================================*/
+);
+
+
+SELECT * FROM USER_OBJECTS WHERE OBJECT_TYPE='TABLE';
+
+select * from restaurantowner;
+select * from cate;
+select * from restaurant;
+
+delete from cate where cateno =2;
+commit;
+
+select * from menu;
+
+/*==============================================================================================================================================================*/
 insert into restaurantowner(rono, name, businessnumber, phone, id, pw)
 values (restaurantowner_seq.nextval, '주인장1','2021-12111','010-1234-2345','owner1','1234');
 
@@ -238,5 +298,3 @@ values(restaurant_seq.nextval,1,'맛있는 중식','12345','인천시 부평구 
 
 insert into restaurant  (rno,rono, name, code ,address1 ,address2, explanation, type, leastprice ,deliverytip, call ,score, reviewcount, recocnt ,ordercnt ,cateno)
 values(restaurant_seq.nextval,3,'맛있는 일식','12345','인천시 부평구 청천동','3층', '입구에~~~~','일식','10000',3000,'032-123-4567',5,100,40,1000,3);
-);
-

@@ -11,14 +11,20 @@ import dev.mvc.members.MembersVO;
 import dev.mvc.members.MembersVO;
 
 public interface MembersProcInter {
+    /**
+     * 중복 아이디 검사
+     * @param id
+     * @return 중복 아이디 갯수
+     */
+    public int checkID(String id);
     
     /**
      * 회원 가입
-     * @param memberVO
+     * @param membersVO
      * @return
      */
 
-	public int create(MembersVO membersvo);
+	public int create(MembersVO membersVO);
 	
 	 /**
 	   * 회원 전체 목록

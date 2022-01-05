@@ -32,14 +32,29 @@ import dev.mvc.members.MembersProcInter;
 @Controller
 public class MembersCont {
 
-	@Autowired
+    @Autowired
 	@Qualifier("dev.mvc.members.MembersProc")
 	private MembersProcInter membersProc = null;
 
 	public MembersCont() {
 		System.out.println("-> MembersCont created.");
 	}
-
+	// http://localhost:9091/members/checkID.do?id=user1
+	  /**
+	  * ID 중복 체크, JSON 출력
+	  * @return
+	  */
+	  @ResponseBody
+	  @RequestMapping(value="/members/checkID.do", method=RequestMethod.GET ,
+	                         produces = "text/plain;charset=UTF-8" )
+	  public String checkID(String id) {
+	    int cnt = this.membersProc.checkID(id);
+	   
+	    JSONObject json = new JSONObject();
+	    json.put("cnt", cnt);
+	   
+	    return json.toString(); 
+	  }
 	  
 	// http://localhost:9091/members/create.do
 	/**
@@ -54,17 +69,21 @@ public class MembersCont {
 
 		return mav; // forward
 	}
-
-	@RequestMapping(value = "/members/list.do", method = RequestMethod.GET)
-	public ModelAndView list() {
-		ModelAndView mav = new ModelAndView();
-		List<MembersVO> list = this.membersProc.list();
-		System.out.println("members list ->" + list);
-
-		mav.setViewName("/list"); // webapp/members/list.jsp
-
-		return mav; // forward
-	}
+//	  /**
+//	  * 목록 출력 가능
+//	  * @param session
+//	  * @return
+//	  */
+//	@RequestMapping(value = "/members/list.do", method = RequestMethod.GET)
+//	public ModelAndView list() {
+//		ModelAndView mav = new ModelAndView();
+//		List<MembersVO> list = this.membersProc.list();
+//		System.out.println("members list ->" + list);
+//
+//		mav.setViewName("/members/list"); // webapp/members/list.jsp
+//
+//		return mav; // forward
+//	}
 	 /**
 	   * 등록 처리
 	   * @param membersVO
@@ -165,7 +184,7 @@ public class MembersCont {
 	    
 	    if (cnt == 1) {
 	      mav.addObject("code", "update_success");
-	      mav.addObject("mname", membersVO.getName());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+	      mav.addObject("name", membersVO.getName());  // 홍길동님(user4) 회원 정보를 변경했습니다.
 	      mav.addObject("id", membersVO.getId());
 	    } else {
 	      mav.addObject("code", "update_fail");
@@ -491,5 +510,43 @@ public class MembersCont {
 	        
 	    return mav;
 	  }
-	  
+	  /**
+	   * Session test
+	   * http://localhost:9091/members/session.do
+	   * @param session
+	   * @return
+	   */
+	  @RequestMapping(value="/members/session.do", 
+	                             method=RequestMethod.GET)
+	  public ModelAndView session(HttpSession session){
+	    ModelAndView mav = new ModelAndView();
+	    
+	    mav.addObject("url", "session");
+	    mav.setViewName("redirect:/members/msg.do"); 
+	    
+	    return mav;
+	  }
+	  /**
+	   * 목록 출력 가능
+	   * @param session
+	   * @return
+	   */
+	   @RequestMapping(value="/members/list.do", method=RequestMethod.GET)
+	   public ModelAndView list(HttpSession session) {
+	     ModelAndView mav = new ModelAndView();
+	     
+	     if (this.membersProc.isAdmin(session)) {
+	       List<MembersVO> list = membersProc.list();
+	       mav.addObject("list", list);
+
+	       mav.setViewName("/members/list"); // /webapp/WEB-INF/views/members/list.jsp
+	      
+	     } else {
+	       mav.addObject("url", "login_need"); // login_need.jsp, redirect parameter 적용
+	       
+	       mav.setViewName("redirect:/members/msg.do");      
+	     }
+	     return mav;
+	   }  
+	    
 }
