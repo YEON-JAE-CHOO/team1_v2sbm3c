@@ -27,6 +27,24 @@ public class ShoppingcartCont {
 		System.out.println("-> ShoppingcartCont created.");
 	}
 
+	/** 장바구니 페이지 오픈 */
+	// http://localhost:9091/shoppingcart/openshoppingcart.do
+	@RequestMapping(value = "/shoppingcart/openshoppingcart.do", method = RequestMethod.GET)
+	public ModelAndView openshoppingcart() {
+		ModelAndView mav = new ModelAndView();
+		
+		List<Menu_Memeber_Shoppingcart_VO> list = this.shoppingcartProc.show_cart(10);
+
+		System.out.println("shoppingcartvo -> "+ list);
+		System.out.println("list size->" + list.size());
+		mav.setViewName("/order/shoppingcart"); // webapp/members/list.jsp
+
+		return mav; // forward
+	}
+	//목록 출력 테이블은 안 만들어놨고 만들기 전에 print로 list 출력해보려는 것입니다.
+	
+
+	//이거는 주문목록으로 가는 메서드이고 아직 처리를 앙ㄴ 했습니다.
 	/** 쇼핑카트 등록 */
 	/**/
 	/**/

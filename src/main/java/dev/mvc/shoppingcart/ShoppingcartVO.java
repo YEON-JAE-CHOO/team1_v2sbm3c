@@ -1,5 +1,8 @@
 package dev.mvc.shoppingcart;
 
+import dev.mvc.members.MembersVO;
+import dev.mvc.menu.MenuVO;
+
 public class ShoppingcartVO {
 
 	@Override
@@ -50,4 +53,4 @@ public class ShoppingcartVO {
 	private int count;
 	private String rdate;
 
-}
+	}

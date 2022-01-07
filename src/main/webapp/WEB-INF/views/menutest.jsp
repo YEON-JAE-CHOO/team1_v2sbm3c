@@ -16,7 +16,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>메뉴 등록</title>
+<title>메뉴 등록33</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -72,7 +72,7 @@
 					var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
 					if (sw == true) {
 						// 쇼핑카트로 이동
-						// location.href='/cart/list.do';
+						 location.href='/shoppingcart/openshoppingcart.do';
 					}
 				} else {
 					alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');

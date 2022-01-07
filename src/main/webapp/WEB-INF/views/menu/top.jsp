@@ -15,7 +15,7 @@
 				<li class="nav-item"><a class="nav-link" href='/cate/list.do'>카테고리 목록</a></li>
 
 
-			<li class="nav-item"><a class="nav-link" href="/menu/list.do">메뉴등록</a></li>
+			<li class="nav-item"><a class="nav-link" href="/menu/list.do?rno=12">메뉴</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/members/login.do">Login</a></li>
 			<li class="nav-item"><a class="nav-link"

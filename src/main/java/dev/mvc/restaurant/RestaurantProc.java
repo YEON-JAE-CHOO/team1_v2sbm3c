@@ -41,4 +41,11 @@ public class RestaurantProc implements RestaurantProcInter {
 		return restaurantVO;
 	}
 
+	@Override
+	public int update_recom(int rno) {
+		int cnt = this.update_recom(rno);
+	
+		return cnt;
+	}
+
 }

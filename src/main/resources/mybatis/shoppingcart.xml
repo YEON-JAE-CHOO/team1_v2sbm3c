@@ -15,17 +15,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="show_cart" parameterType="int"
-		resultType="dev.mvc.menu.MenuVO">
+		resultType="dev.mvc.shoppingcart.Menu_Memeber_Shoppingcart_VO">
 
-		select menu.rno, menu.menuno, title, explanation,
-		spiciness, file1, price,
-		shoppingcart.rdate from menu, shoppingcart,
-		members
-		where shoppingcart.menuno = menu.menuno and shoppingcart.mno = members.mno members.mno=#{mno }
+		select n.rno, n.menuno, n.title, n.explanation,
+		n.spiciness, n.file1,
+		n.price, t.rdate , t.mno
+		from menu n, shoppingcart
+		t, members m
+		where n.rno = t.rno and m.mno = t.mno and t.menuno =
+		n.menuno and m.mno =#{mno }
+	</select>
 
+	<select id="cart_count" parameterType="int" resultType="int">
+		select
+		count(n.menuno)
+		from menu n, shoppingcart t, members m
+		where
+		n.rno =
+		t.rno and m.mno = t.mno and t.menuno = n.menuno and m.mno =#{mno }
+	</select>
+
+	<select id="cart_sum" parameterType="int" resultType="int">
+		select
+		sum(n.price)
+		from menu n, shoppingcart t, members m
+		where
+		n.rno = t.rno
+		and m.mno = t.mno and t.menuno = n.menuno and m.mno =#{mno }
 	</select>
 
 
+
+
 </mapper>
-<!--  디코 ㄴㄴ임?있음 형 아 ㅇㅋㅇㅋㅇ안써짐? 여기도? 구글 기술 지원 워스트네
-설명해드릴게요 -->

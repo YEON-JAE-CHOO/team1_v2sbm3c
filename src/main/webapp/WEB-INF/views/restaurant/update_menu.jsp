@@ -3,6 +3,7 @@
 <%@ page import="java.util.List"%>
 
 <c:set var="rno" value="${rno }" />
+<c:set var="menuvo" value="${menuvo }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,8 +43,10 @@
 
 		<br> <br>
 		<H3>메뉴 수정</H3>
-		<h2>${rno }</h2>
-		<div style="height: 100px; background-color: #ef9578;"text-align:center; display:flex;>
+		<h2>${menuvo.title }</h2>
+
+		<h3>${menuvo.menuno }</h3>
+		<div style="height: 100px; background-color: #ef9578;"text-align:center; display:flex; >
 
 
 			<H2>김밥프렌즈</H2>
@@ -52,25 +55,41 @@
 
 		<div>
 			<form class="form-horizontal" role="form" method="post"
-				action="/restaurant/addmenu.do" enctype="multipart/form-data">
+				action="/restaurant/updatemenu.do" enctype="multipart/form-data">
 
 				<div class="form-group" id="divId">
-					<label for="inputId" class="col-lg-2 control-label" name="rno"
-						id="rno" value="${rno }">식당 번호 ${rno }</label>
-					<div class="col-lg-10"></div>
+					<label for="inputId" class="col-lg-2 control-label">식당 번호</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control onlyAlphabetAndNumber"
+							value='${rno }' id="rno" data-rule-required="true"
+							name="rno" maxlength="15">
+					</div>
 				</div>
+
+				<div class="form-group" id="divId">
+					<label for="inputId" class="col-lg-2 control-label">메뉴 번호</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control onlyAlphabetAndNumber"
+							value='${menuvo.menuno }' id="menuno" data-rule-required="true"
+							name="menuno" maxlength="15">
+					</div>
+				</div>
+
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">메뉴 명</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id="title" data-rule-required="true" name="title" maxlength="15">
+							value='${menuvo.title }' id="title" data-rule-required="true"
+							name="title" maxlength="15">
 					</div>
 				</div>
+
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">메뉴 설명</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control " id="explanation"
-							data-rule-required="true" name="explanation" maxlength="15">
+							value='${menuvo.explanation }' data-rule-required="true"
+							name="explanation" maxlength="15">
 					</div>
 				</div>
 
@@ -89,7 +108,7 @@
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
 							id="" menutype"" data-rule-required="true" name="menutype"
-							maxlength="15">
+							value='${menuvo.menutype }' maxlength="15">
 					</div>
 				</div>
 
@@ -98,15 +117,16 @@
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
 							id="spiciness" data-rule-required="true" name="spiciness"
-							maxlength="10">
+							value='${menuvo.spiciness }' maxlength="10">
 					</div>
 				</div>
 
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">가격</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyAlphabetAndNumber" width="20%"
-							id="price" data-rule-required="true" name=""price"" maxlength="15">원
+						<input type="text" class="form-control onlyAlphabetAndNumber"
+							width="20%" id="price" data-rule-required="true" name="price"
+							value='${menuvo.price }' price"" maxlength="15">원
 					</div>
 				</div>
 
@@ -117,6 +137,7 @@
 						<button type="submit" class="btn btn-success">수정</button>
 					</div>
 				</div>
+			</form>
 		</div>
 
 
