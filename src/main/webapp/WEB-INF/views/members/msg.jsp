@@ -11,7 +11,6 @@
 <script type="text/JavaScript"
           src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
-
 <!-- Favicon-->
 <link rel="stylesheet" 
 href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -19,7 +18,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 </head>
     <body>
-        <jsp:include page="../menu/top.jsp" flush='false' />
            <!-- Header-->
            <header class="py-4" style="background-color: #ef9578;">
                 <div class="container px-2 px-lg-5 my-5"
@@ -155,7 +153,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 </DIV>
 
-<jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
 
 </html>

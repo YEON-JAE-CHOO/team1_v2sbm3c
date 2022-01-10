@@ -37,6 +37,7 @@ insert into restaurantowner values (rono,
 /**********************************/
 /* Table Name: 회원 */
 /**********************************/
+DROP TABLE MEMBERS CASCADE CONSTRAINTS;
 CREATE TABLE members(
 		mno INTEGER NOT NULL PRIMARY KEY,
 		id VARCHAR(20) NOT NULL,
