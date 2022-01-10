@@ -125,7 +125,7 @@ public class MenuCont {
 		// 파일 전송 코드 시작
 		// ------------------------------------------------------------------------------
 		String file1 = ""; // 원본 파일명 image
-		String file1saved = ""; // 저장된 파일명, image
+		String filesaved1 = ""; // 저장된 파일명, image
 		String thumb1 = ""; // preview image
 		String uploadDir = this.uploadDir; // 파일 업로드 경로
 
@@ -141,16 +141,16 @@ public class MenuCont {
 
 		if (size1 > 0) { // 파일 크기 체크
 			// 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-			file1saved = Upload.saveFileSpring(mf, uploadDir);
+			filesaved1 = Upload.saveFileSpring(mf, uploadDir);
 
-			if (Tool.isImage(file1saved)) { // 이미지인지 검사
+			if (Tool.isImage(filesaved1)) { // 이미지인지 검사
 				// thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
-				thumb1 = Tool.preview(uploadDir, file1saved, 200, 150);
+				thumb1 = Tool.preview(uploadDir, filesaved1, 200, 150);
 			}
 
 		}
 		menuvo.setFile1(file1);
-		menuvo.setFile1saved(file1saved);
+		menuvo.setFilesaved1(filesaved1);
 		menuvo.setThumb(thumb1);
 		menuvo.setImagesize(size1);
 
@@ -188,7 +188,7 @@ public class MenuCont {
 		// 파일 전송 코드 시작
 		// ------------------------------------------------------------------------------
 		String file1 = ""; // 원본 파일명 image
-		String file1saved = ""; // 저장된 파일명, image
+		String filesaved1 = ""; // 저장된 파일명, image
 		String thumb1 = ""; // preview image
 		String uploadDir = this.uploadDir; // 파일 업로드 경로
 
@@ -208,26 +208,27 @@ public class MenuCont {
 
 		if (size1 > 0) { // 파일 크기 체크
 			// 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-			file1saved = Upload.saveFileSpring(mf, uploadDir);
+			filesaved1 = Upload.saveFileSpring(mf, uploadDir);
 
-			if (Tool.isImage(file1saved)) { // 이미지인지 검사
+			if (Tool.isImage(filesaved1)) { // 이미지인지 검사
 				// thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
-				thumb1 = Tool.preview(uploadDir, file1saved, 200, 150);
+				thumb1 = Tool.preview(uploadDir, filesaved1, 200, 150);
 			}
 
 		}
 		menuvo.setFile1(file1);
-		menuvo.setFile1saved(file1saved);
+		menuvo.setFilesaved1(filesaved1);
 		menuvo.setThumb(thumb1);
 		menuvo.setImagesize(size1);
 		
 		menuvo.setRno(12);
+		System.out.println("333333"+menuvo.toString());
 		System.out.println("menuvo의 rno2 ->" + menuvo.getRno());
 		// ------------------------------------------------------------------------------
 		// 파일 전송 코드 종료
 		// ------------------------------------------------------------------------------
 
-		int cnt = this.menuProc.update(menuvo.getMenuno());
+		int cnt = this.menuProc.update(menuvo);
 
 		if (cnt == 1) {
 			// mav.addObject("code", "create_success");

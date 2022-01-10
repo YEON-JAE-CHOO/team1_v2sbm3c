@@ -57,23 +57,13 @@
 			<form class="form-horizontal" role="form" method="post"
 				action="/restaurant/updatemenu.do" enctype="multipart/form-data">
 
-				<div class="form-group" id="divId">
-					<label for="inputId" class="col-lg-2 control-label">식당 번호</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control onlyAlphabetAndNumber"
-							value='${rno }' id="rno" data-rule-required="true"
-							name="rno" maxlength="15">
-					</div>
-				</div>
+				<input type="hidden" class="form-control onlyAlphabetAndNumber"
+					value=12 id="rno" data-rule-required="true" name="rno"
+					maxlength="15"> <input type="hidden"
+					class="form-control onlyAlphabetAndNumber"
+					value='${menuvo.menuno }' id="menuno" data-rule-required="true"
+					name="menuno" maxlength="15">
 
-				<div class="form-group" id="divId">
-					<label for="inputId" class="col-lg-2 control-label">메뉴 번호</label>
-					<div class="col-lg-10">
-						<input type="text" class="form-control onlyAlphabetAndNumber"
-							value='${menuvo.menuno }' id="menuno" data-rule-required="true"
-							name="menuno" maxlength="15">
-					</div>
-				</div>
 
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">메뉴 명</label>

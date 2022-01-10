@@ -24,10 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		thumb, imagesize)
 		values(#{rno}, menu_seq.nextval, #{menutype},
 		#{title}, #{explanation}, #{spiciness}, #{price}, #{file1},
-		#{file1saved}, #{thumb}, #{imagesize} )
+		#{filesaved1}, #{thumb}, #{imagesize} )
 	</insert>
 
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="dev.mvc.menu.MenuVO">
 		update menu set title = #{
 		title},
 		explanation = #{ explanation}, menutype = #{ menutype},

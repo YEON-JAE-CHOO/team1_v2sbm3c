@@ -30,10 +30,10 @@ public interface MenuProcInter {
 	/**
 	 * 수정
 	 * 
-	 * @param int menuno
+	 * @param MenuVO menuvo
 	 * @return
 	 */
-	public int update(int menuno);
+	public int update(MenuVO menuvo);
 
 	/**
 	 * menuVO 읽기

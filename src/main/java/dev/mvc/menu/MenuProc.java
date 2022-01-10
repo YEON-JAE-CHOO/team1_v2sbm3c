@@ -37,8 +37,8 @@ public class MenuProc implements MenuProcInter {
 	}
 
 	@Override
-	public int update(int menuno) {
-		int cnt = this.menuDAO.update(menuno);
+	public int update(MenuVO menuvo) {
+		int cnt = this.menuDAO.update(menuvo);
 		
 		return cnt;
 	}

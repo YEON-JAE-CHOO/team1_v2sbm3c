@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="dev.mvc.shoppingcart.Menu_Memeber_Shoppingcart_VO">
 
 		select n.rno, n.menuno, n.title, n.explanation,
-		n.spiciness, n.file1,
+		n.spiciness, n.file1, n.thumb,
 		n.price, t.rdate , t.mno
 		from menu n, shoppingcart
 		t, members m

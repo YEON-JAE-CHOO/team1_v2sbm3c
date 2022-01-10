@@ -19,7 +19,7 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/members/login.do">Login</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/menu/openshoppingcart.do">쇼핑카트</a></li>
+				href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
 
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" href=""

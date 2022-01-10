@@ -11285,13 +11285,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
-<<<<<<< HEAD
-  
-  
-  .container_main {
-    width: 90%; 
-    margin: 10px auto;
-  }
+
   
   /* 이미지 사용시 경로 지정
   /css/images/top_image_1920.jpg
@@ -11729,11 +11723,10 @@ textarea.form-control-lg {
     font-size: 1.5em;
   }
   
+  
+  
     
   
   
 }
-=======
-}
-  
->>>>>>> d562e142954bab555057d872a3d869dcee559595
+

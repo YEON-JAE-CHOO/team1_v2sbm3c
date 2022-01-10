@@ -46,7 +46,7 @@ function recom_ajax(rno, status_count) {
     params = 'rno=' + rno; // 공백이 값으로 있으면 안됨.
     $.ajax(
       {
-        url: '/contents/update_recom_ajax.do',
+        url: '/restaurant/update_recom_ajax.do',
         type: 'post',  // get, post
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -56,6 +56,7 @@ function recom_ajax(rno, status_count) {
           var str = '';
           if (rdata.cnt == 1) {
             // $('#span_animation_' + status_count).hide();   // SPAN 태그에 animation 출력
+            console.log("rdata -> "+rdata.cnt);
             $('#recom_' + status_count).html('♥('+rdata.recom+')');     // A 태그에 animation 출력
           } else {
             // $('#span_animation_' + status_count).html("X");
@@ -69,7 +70,7 @@ function recom_ajax(rno, status_count) {
       }
     );  //  $.ajax END
 
-    $('#recom_' + status_count).html("<img src='/contents/images/ani04.gif' style='width: 10%;'>");
+    // $('#recom_' + status_count).html("<img src='/contents/images/ani04.gif' style='width: 10%;'>");
     // $('#span_animation_' + status_count).css('text-align', 'center');
     // $('#span_animation_' + status_count).html("<img src='/contents/images/ani04.gif' style='width: 10%;'>");
     // $('#span_animation_' + status_count).show(); // 숨겨진 태그의 출력
@@ -116,9 +117,9 @@ function recom_ajax(rno, status_count) {
 							onclick="location.href='/restaurant/modification.do?rno=${rno }'">
 							수정</button>
 						<button class="btn btn-outline-dark flex-shrink-0" type="button"
-							id="recom_${status.count }"
-							onclick="javascript:recom_ajax(${rno }, ${status.count })">
-							♥(${recom })</button>
+							id="recom_${restaurantVO.recocnt }"
+							onclick="javascript:recom_ajax(${rno }, ${restaurantVO.recocnt })">
+							♥(${restaurantVO.recocnt })</button>
 					</div>
 				</div>
 			</div>
@@ -168,7 +169,7 @@ function recom_ajax(rno, status_count) {
 						<c:set var="menuno" value="${menuVO.menuno }" />
 						<c:set var="menutype" value="${menuVO.menutype }" />
 						<c:set var="title" value="${menuVO.title }" />
-						<c:set var="thumb" value="${menuVO.file1saved }" />
+						<c:set var="thumb" value="${menuVO.thumb }" />
 						<c:set var="spiciness" value="${menuVO.spiciness }" />
 						<c:set var="price" value="${menuVO.price }" />
 						<c:set var="explanation" value="${menuVO.explanation }" />

@@ -30,6 +30,18 @@ public class ShoppingcartProc implements ShoppingcartProcInter {
 		return list;
 	}
 
+	@Override
+	public int cart_count(int mno) {
+		int cnt = this.shoppingcartDAO.cart_count(mno);
+		return cnt;
+	}
+
+	@Override
+	public int cart_sum(int mno) {
+		int sum = this.shoppingcartDAO.cart_sum(mno);
+		return sum;
+	}
+
 
 
 }
