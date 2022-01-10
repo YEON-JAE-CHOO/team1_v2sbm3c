@@ -21,16 +21,16 @@ CREATE TABLE members (
 );
  
 COMMENT ON TABLE MEMBERS is '회원';
-COMMENT ON COLUMN MEMBER.MNO is '회원 번호';
-COMMENT ON COLUMN MEMBER.ID is '아이디';
-COMMENT ON COLUMN MEMBER.PW is '패스워드';
-COMMENT ON COLUMN MEMBER.NAME is '성명';
-COMMENT ON COLUMN MEMBER.PHONE is '전화번호';
-COMMENT ON COLUMN MEMBER.HOUSECODE is '우편번호';
-COMMENT ON COLUMN MEMBER.ADDRESS1 is '주소1';
-COMMENT ON COLUMN MEMBER.ADDRESS2 is '주소2';
-COMMENT ON COLUMN MEMBER.RDATE is '가입일';
-COMMENT ON COLUMN MEMBER.RECO is '등급';
+COMMENT ON COLUMN MEMBERS.MNO is '회원 번호';
+COMMENT ON COLUMN MEMBERS.ID is '아이디';
+COMMENT ON COLUMN MEMBERS.PW is '패스워드';
+COMMENT ON COLUMN MEMBERS.NAME is '성명';
+COMMENT ON COLUMN MEMBERS.PHONE is '전화번호';
+COMMENT ON COLUMN MEMBERS.HOUSECODE is '우편번호';
+COMMENT ON COLUMN MEMBERS.ADDRESS1 is '주소1';
+COMMENT ON COLUMN MEMBERS.ADDRESS2 is '주소2';
+COMMENT ON COLUMN MEMBERS.RDATE is '가입일';
+COMMENT ON COLUMN MEMBERS.RECO is '등급';
 
 DROP SEQUENCE members_seq;
 CREATE SEQUENCE members_seq
@@ -59,11 +59,11 @@ WHERE id='user1';
 2) 등록
 
 -- 회원 관리용 계정, Q/A 용 계정
-INSERT INTO members(mno, id, pw, nickname, phone, housecode, address1, address2, rdate, reco)
+INSERT INTO members(mno, id, pw, name ,phone, housecode, address1, address2, rdate, reco)
 VALUES (members_seq.nextval, 'qnaadmin', '1234', '질문답변관리자', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 1);
 
 -- 개인 회원 테스트 계정
-INSERT INTO members(mno, id, pw, nickname, phone, housecode, address1, address2, rdate, reco)
+INSERT INTO members(mno, id, pw, name, phone, housecode, address1, address2, rdate, reco)
 VALUES (members_seq.nextval, 'user1', '1234', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 15);
 
 COMMIT;
@@ -91,8 +91,14 @@ WHERE id = 'user1';
     
 4. 수정
 UPDATE members
-SET reco =15
-WHERE mno=6;
+SET reco =1
+WHERE mno=20;
+
+SELECT A.SID, A.SERIAL#
+FROM V$SESSION A, V$LOCK B, DBA_OBJECTS C
+WHERE A.SID=B.SID AND B.ID1=C.OBJECT_ID AND B.TYPE='TM' AND C.OBJECT_NAME='members'
+
+ALTER TABLE members MODIFY(reco number(30));
 
 COMMIT;
 

@@ -25,7 +25,7 @@ crossorigin="anonymous">
               </div>
            </header>
       <!-- Section-->
-<script type="js/scripts.js">
+<script type="text/javascript">
   $(function() {
     $('#btn_create').on('click', create);
     $('#btn_loadDefault').on('click', loadDefault);

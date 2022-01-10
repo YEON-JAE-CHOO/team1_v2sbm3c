@@ -15,11 +15,19 @@
 				<li class="nav-item"><a class="nav-link" href='/cate/list.do'>카테고리 목록</a></li>
 
 
-			<li class="nav-item"><a class="nav-link" href="/menu/list.do?rno=12">메뉴</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="/members/login.do">Login</a></li>
+        <c:choose>
+                <c:when test="${sessionScope.id != null}"> <%-- 로그인 한 경우 --%>
+                ${sessionScope.id } <li class="nav-item"><a class="nav-link" href="/members/logout.do">Logout</a></li>
+                </c:when>
+                <c:otherwise>
+                <li class="nav-item"><a class="nav-link" href="/members/login.do">Login</a></li>
+                </c:otherwise>
+            </c:choose>    
+            <li class="nav-item"><a class="nav-link" href="/members/create.do">회원가입</a></li>
+			<li class="nav-item"><a class="nav-link" href="/menu/list.do">메뉴등록</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
+
 
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" href=""
