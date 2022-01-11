@@ -8,7 +8,7 @@ public class MenuVO {
 	public String toString() {
 		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title
 				+ ", explanation=" + explanation + ", spiciness=" + spiciness + ", file1=" + file1 + ", file1saved="
-				+ file1saved + ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
+				+ filesaved1 + ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
 	}
 
 	public int getMenuno() {
@@ -67,12 +67,12 @@ public class MenuVO {
 		this.file1 = file1;
 	}
 
-	public String getFile1saved() {
-		return file1saved;
+	public String getFilesaved1() {
+		return filesaved1;
 	}
 
-	public void setFile1saved(String file1saved) {
-		this.file1saved = file1saved;
+	public void setFilesaved1(String filesaved1) {
+		this.filesaved1 = filesaved1;
 	}
 
 	public String getThumb() {
@@ -119,7 +119,7 @@ public class MenuVO {
 	/** 메인 이미지 */
 	private String file1 = "";
 	/** 실제 저장된 메인 이미지 */
-	private String file1saved = "";
+	private String filesaved1 = "";
 	/** 메인 이미지 preview */
 	private String thumb = "";
 	/** 메인 이미지 크기 */

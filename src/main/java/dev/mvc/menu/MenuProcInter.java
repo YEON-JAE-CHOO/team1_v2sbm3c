@@ -20,11 +20,27 @@ public interface MenuProcInter {
 	public int insert(MenuVO menuvo);
 
 	/**
-	 * 등록
+	 * 삭제
 	 * 
 	 * @param int menuno
 	 * @return
 	 */
 	public int delete(int menuno);
+
+	/**
+	 * 수정
+	 * 
+	 * @param MenuVO menuvo
+	 * @return
+	 */
+	public int update(MenuVO menuvo);
+
+	/**
+	 * menuVO 읽기
+	 * 
+	 * @param int menuno
+	 * @return
+	 */
+	public MenuVO read(int menuno);
 
 }

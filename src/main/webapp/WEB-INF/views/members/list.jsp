@@ -28,7 +28,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
                         style="background-color: #ef9578;">
                 <div class="text-center text-white">
                         <h1 class="display-4 fw-bolder">회원 목록</h1>
-                        <p class="lead fw-normal text-white-50 mb-0"> </p>
+                        <p class="lead fw-normal text-white-50 mb-0">관리자 전용 페이지 </p>
                </div>
               </div>
            </header>
@@ -43,10 +43,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head> 
  
 <body>
- 
-  <DIV class='title_line'>
-    회원(관리자 전용)
-  </DIV>
 
   <DIV class='content_body'>
 
@@ -121,8 +117,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <button type='button' onclick="location.reload();" class="btn btn-primary">새로 고침</button>
   </DIV>
 </DIV>
- 
-<jsp:include page="../menu/bottom.jsp" flush='false' />
 </body>
  
 </html>

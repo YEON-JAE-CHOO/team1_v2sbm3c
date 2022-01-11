@@ -14,7 +14,79 @@ import lombok.ToString;
   */
 @Getter @Setter @ToString
 public class CateVO {
-    private int cateno;
+    public int getCateno() {
+		return cateno;
+	}
+
+	public void setCateno(int cateno) {
+		this.cateno = cateno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getSeq() {
+		return seq;
+	}
+
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+
+	public String getFile1() {
+		return file1;
+	}
+
+	public void setFile1(String file1) {
+		this.file1 = file1;
+	}
+
+	public String getFile1saved() {
+		return file1saved;
+	}
+
+	public void setFile1saved(String file1saved) {
+		this.file1saved = file1saved;
+	}
+
+	public String getThumb1() {
+		return thumb1;
+	}
+
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
+
+	public long getSize1() {
+		return size1;
+	}
+
+	public void setSize1(long size1) {
+		this.size1 = size1;
+	}
+
+	public MultipartFile getFile1MF() {
+		return file1MF;
+	}
+
+	public void setFile1MF(MultipartFile file1mf) {
+		file1MF = file1mf;
+	}
+
+	public String getSize1_label() {
+		return size1_label;
+	}
+
+	public void setSize1_label(String size1_label) {
+		this.size1_label = size1_label;
+	}
+
+	private int cateno;
     
     private String name;
     

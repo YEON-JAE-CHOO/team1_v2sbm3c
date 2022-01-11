@@ -34,7 +34,52 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function recom_ajax(rno, status_count) {
+    console.log("-> recom_" + status_count + ": " + $('#recom_' + status_count).html());  // A tag body      
+    var params = "";
+    // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+    params = 'rno=' + rno; // 공백이 값으로 있으면 안됨.
+    $.ajax(
+      {
+        url: '/restaurant/update_recom_ajax.do',
+        type: 'post',  // get, post
+        cache: false, // 응답 결과 임시 저장 취소
+        async: true,  // true: 비동기 통신
+        dataType: 'json', // 응답 형식: json, html, xml...
+        data: params,      // 데이터
+        success: function(rdata) { // 응답이 온경우
+          var str = '';
+          if (rdata.cnt == 1) {
+            // $('#span_animation_' + status_count).hide();   // SPAN 태그에 animation 출력
+            console.log("rdata -> "+rdata.cnt);
+            $('#recom_' + status_count).html('♥('+rdata.recom+')');     // A 태그에 animation 출력
+          } else {
+            // $('#span_animation_' + status_count).html("X");
+            $('#recom_' + status_count).html('♥(X)');
+          }
+        },
+        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+        error: function(request, status, error) { // callback 함수
+          console.log(error);
+        }
+      }
+    );  //  $.ajax END
+
+    // $('#recom_' + status_count).html("<img src='/contents/images/ani04.gif' style='width: 10%;'>");
+    // $('#span_animation_' + status_count).css('text-align', 'center');
+    // $('#span_animation_' + status_count).html("<img src='/contents/images/ani04.gif' style='width: 10%;'>");
+    // $('#span_animation_' + status_count).show(); // 숨겨진 태그의 출력
+      
+  }  
+
+</script>
 </head>
+
 
 <body>
 	<!-- Navigation-->
@@ -53,10 +98,12 @@
 					<div class="small mb-1">${restaurantVO.type}</div>
 					<h1 class="display-5 fw-bolder">${restaurantVO.name}</h1>
 					<div class="fs-5 mb-2">
-						<span class="text-decoration-line-through">배달 팁 - </span> <span>${restaurantVO.deliverytip} 원</span>
+						<span class="text-decoration-line-through">배달 팁 - </span> <span>${restaurantVO.deliverytip}
+							원</span>
 					</div>
 					<div class="fs-5 mb-2">
-						<span class="text-decoration-line-through">최소 주문 금액 - </span> <span>${restaurantVO.leastprice} 원</span>
+						<span class="text-decoration-line-through">최소 주문 금액 - </span> <span>${restaurantVO.leastprice}
+							원</span>
 					</div>
 					<div class="fs-5 mb-2">
 						<span class="text-decoration-line-through">가게 번호 - </span> <span>${restaurantVO.call}</span>
@@ -66,10 +113,13 @@
 						${restaurantVO.address2}</p>
 					<p class="lead">${restaurantVO.explanation}</p>
 					<div class="d-flex">
-						<button class="btn btn-outline-dark flex-shrink-0" type="button" 
-						onclick="location.href='/restaurant/modification.do?rno=${rno }'">
-							수정 
-						</button>
+						<button class="btn btn-outline-dark flex-shrink-0" type="button"
+							onclick="location.href='/restaurant/modification.do?rno=${rno }'">
+							수정</button>
+						<button class="btn btn-outline-dark flex-shrink-0" type="button"
+							id="recom_${restaurantVO.recocnt }"
+							onclick="javascript:recom_ajax(${rno }, ${restaurantVO.recocnt })">
+							♥(${restaurantVO.recocnt })</button>
 					</div>
 				</div>
 			</div>
@@ -119,7 +169,7 @@
 						<c:set var="menuno" value="${menuVO.menuno }" />
 						<c:set var="menutype" value="${menuVO.menutype }" />
 						<c:set var="title" value="${menuVO.title }" />
-						<c:set var="thumb" value="${menuVO.file1saved }" />
+						<c:set var="thumb" value="${menuVO.thumb }" />
 						<c:set var="spiciness" value="${menuVO.spiciness }" />
 						<c:set var="price" value="${menuVO.price }" />
 						<c:set var="explanation" value="${menuVO.explanation }" />

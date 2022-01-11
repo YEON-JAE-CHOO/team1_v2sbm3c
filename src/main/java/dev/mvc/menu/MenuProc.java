@@ -35,4 +35,18 @@ public class MenuProc implements MenuProcInter {
 		int cnt = this.menuDAO.delete(menuno);
 		return cnt;
 	}
+
+	@Override
+	public int update(MenuVO menuvo) {
+		int cnt = this.menuDAO.update(menuvo);
+		
+		return cnt;
+	}
+
+	@Override
+	public MenuVO read(int menuno) {
+
+		MenuVO menuvo = this.menuDAO.read(menuno);
+		return menuvo;
+	}
 }

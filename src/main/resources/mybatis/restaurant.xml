@@ -63,11 +63,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="cate_list"
 		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
-		SELECT name, code, address1, rno,
+		SELECT
+		name, code, address1, rno,
 		explanation, type, leastprice, call, cateno
 		FROM
 		restaurant
 		WHERE cateno=#{cateno}
+	</select>
+	<!-- 추천 -->
+	<update id="update_recom" parameterType="int">
+		UPDATE restaurant
+		SET
+		recocnt = recocnt + 1
+		WHERE rno = #{rno}
+	</update>
+
+	<!-- 추천 삽입 -->
+	<insert id="create_reco"
+		parameterType="dev.mvc.restaurant.RecommendationVO">
+		insert into
+		recommendation (recono,rno, mno, rdate)
+		values
+		(recommendation_seq.nextval,#{rno },#{mno },sysdate)
+	</insert>
+
+	<select id="read_reco" parameterType="HashMap" resultType="int">
+		select count(recono)
+		from recommendation
+		where mno=#{mno } and rno
+		=#{rno }
 	</select>
 
 </mapper>

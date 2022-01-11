@@ -16,7 +16,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>메뉴 등록</title>
+<title>메뉴 등록33</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -44,17 +44,14 @@
     
     
 <%-- 장바구니 추가 모달 --%>
-	
-
 
 	function cart_ajax_add(rno,menuno){
 		var mno = 10;
-		
 		var params = "";
 		params += 'rno=' + rno;
 		params += '&menuno=' + menuno;
 
-		<%-- alert("-> params: " + params); --%>
+	    alert("-> params: " + params); 
 
 		// return;
 
@@ -72,8 +69,8 @@
 					var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
 					if (sw == true) {
 						// 쇼핑카트로 이동
-						// location.href='/cart/list.do';
-					}
+						 location.href='/shoppingcart/openshoppingcart.do?mno=10'};
+					
 				} else {
 					alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
 				}
@@ -165,7 +162,7 @@
 						<c:set var="menuno" value="${menuVO.menuno }" />
 						<c:set var="menutype" value="${menuVO.menutype }" />
 						<c:set var="title" value="${menuVO.title }" />
-						<c:set var="thumb" value="${menuVO.file1saved }" />
+						<c:set var="thumb" value="${menuVO.filesaved1 }" />
 						<c:set var="spiciness" value="${menuVO.spiciness }" />
 						<c:set var="price" value="${menuVO.price }" />
 						<c:set var="explanation" value="${menuVO.explanation }" />

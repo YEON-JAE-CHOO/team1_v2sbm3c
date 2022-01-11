@@ -1,5 +1,6 @@
 package dev.mvc.restaurant;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,24 +9,22 @@ import org.springframework.stereotype.Component;
 import dev.mvc.members.MembersDAOInter;
 import dev.mvc.menu.MenuVO;
 
-
 @Component("dev.mvc.restaurant.RestaurantProc")
 public class RestaurantProc implements RestaurantProcInter {
 
-    
-    @Autowired
-    private RestaurantDAOInter restaurantDAO;
-    
-    public RestaurantProc() {
-        System.out.println("-> restaurantProc created.");
-    }
-    
-    @Override
-    public int create(RestaurantVO restaurantVO) {
+	@Autowired
+	private RestaurantDAOInter restaurantDAO;
 
-        int cnt = this.restaurantDAO.create(restaurantVO);
-        return cnt;
-    }
+	public RestaurantProc() {
+		System.out.println("-> restaurantProc created.");
+	}
+
+	@Override
+	public int create(RestaurantVO restaurantVO) {
+
+		int cnt = this.restaurantDAO.create(restaurantVO);
+		return cnt;
+	}
 
 	@Override
 	public List<RestaurantVO> getlist() {
@@ -35,18 +34,24 @@ public class RestaurantProc implements RestaurantProcInter {
 
 	@Override
 	public RestaurantVO create_shop(int rno) {
-		
+
 		RestaurantVO restaurantVO = this.restaurantDAO.create_shop(rno);
-		
+
 		return restaurantVO;
 	}
 
 	@Override
 	public int update(RestaurantVO restaurantVO) {
-		
 
-        int cnt = this.restaurantDAO.update(restaurantVO);
-        
+		int cnt = this.restaurantDAO.update(restaurantVO);
+
+		return cnt;
+	}
+
+	@Override
+	public int update_recom(int rno) {
+		int cnt = this.restaurantDAO.update_recom(rno);
+
 		return cnt;
 	}
 
@@ -55,7 +60,18 @@ public class RestaurantProc implements RestaurantProcInter {
 		List<RestaurantVO> list = this.restaurantDAO.cate_list(cateno);
 		return list;
 	}
-	
-	
+
+	@Override
+	public int create_reco(RecommendationVO recommendationVO) {
+		int cnt = this.restaurantDAO.create_reco(recommendationVO);
+		return cnt;
+	}
+
+	@Override
+	public int read_reco(HashMap<String, Object> hashMap) {
+		int cnt = this.restaurantDAO.read_reco(hashMap);
+
+		return cnt;
+	}
 
 }
