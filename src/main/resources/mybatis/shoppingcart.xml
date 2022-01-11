@@ -16,33 +16,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="show_cart" parameterType="int"
 		resultType="dev.mvc.shoppingcart.Menu_Memeber_Shoppingcart_VO">
-
-		select n.rno, n.menuno, n.title, n.explanation,
-		n.spiciness, n.file1, n.thumb,
+		select t.scno, n.rno, n.menuno, n.title, n.explanation,
+		n.spiciness, n.file1, n.thumb, t.count,
 		n.price, t.rdate , t.mno
-		from menu n, shoppingcart
-		t, members m
-		where n.rno = t.rno and m.mno = t.mno and t.menuno =
-		n.menuno and m.mno =#{mno }
+		from
+		menu n,
+		shoppingcart t
+		where n.rno = t.rno and t.menuno =
+		n.menuno and
+		t.mno
+		=#{mno }
 	</select>
 
 	<select id="cart_count" parameterType="int" resultType="int">
 		select
 		count(n.menuno)
-		from menu n, shoppingcart t, members m
-		where
-		n.rno =
-		t.rno and m.mno = t.mno and t.menuno = n.menuno and m.mno =#{mno }
+		from menu n, shoppingcart t
+		where n.rno = t.rno and
+		t.menuno = n.menuno and t.mno = #{mno }
 	</select>
 
 	<select id="cart_sum" parameterType="int" resultType="int">
 		select
 		sum(n.price)
-		from menu n, shoppingcart t, members m
-		where
-		n.rno = t.rno
-		and m.mno = t.mno and t.menuno = n.menuno and m.mno =#{mno }
+		from menu n, shoppingcart t
+		where n.rno = t.rno and
+		t.menuno = n.menuno and t.mno =#{mno }
 	</select>
+
+	<delete id="shoppingcart_delete" parameterType="int">
+		delete from
+		shoppingcart where scno = #{scno }
+	</delete>
+
+	<delete id="delete_all" parameterType="int">
+		delete from shoppingcart where mno = #{mno };
+	</delete>
 
 
 

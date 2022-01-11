@@ -8,6 +8,11 @@
 <c:set var="rno" value="${rno }" />
 <c:set var="leastprice" value="${leastprice }" />
 <c:set var="deliverytip" value="${deliverytip }" />
+<c:set var="cart_sum" value="${cart_sum }" />
+<c:set var="total_sum" value="${cart_sum + deliverytip}" />
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +23,8 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>장바구니</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Favicon-->
 <style type="text/css">
 .footer {
@@ -34,8 +41,28 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+
+<script type="text/javascript">
+	function delete_func(scno) { // GET -> POST 전송, 상품 삭제
+		var frm = $('#frm_post');
+		frm.attr('action', '/shoppingcart/delete.do');
+		$('#scno', frm).val(scno);
+
+		frm.submit();
+	}
+
+	function delete_all() {
+
+	}
+</script>
 </head>
 <body>
+	<form name='frm_post' id='frm_post' action='' method='post'>
+		<input type='hidden' name='scno' id='scno'> <input
+			type='hidden' name='cnt' id='cnt'> <input type="hidden"
+			name="${ _csrf.parameterName }" value="${ _csrf.token }">
+	</form>
+
 	<!-- Navigation-->
 	<jsp:include page="../menu/top.jsp" flush='false' />
 	<!-- Header-->
@@ -46,17 +73,26 @@
 
 	<div class="contents" style="text-align: center;">
 		<h3>주문 목록</h3>
+		<button type="button" class="btn btn-secondary" id="btn_delete_all"
+			name="btn_delete_all" onclick="location.href='/delete_all.do' "
+			style="">장바구니 비우기</button>
+		<br>
 
-		<table class="table table-striped" style='width: 100%;'>
+
+
+		<table class="table table-striped"
+			style='width: 60%; margin-left: auto; margin-right: auto;'>
 			<colgroup>
+				<%-- scno --%>
 				<col style="width: 10%;"></col>
-				<col style="width: 40%;"></col>
+				<%-- 사진 --%>
+				<col style="width: 30%;"></col>
+				<%-- 이름 --%>
 				<col style="width: 20%;"></col>
+				<%-- 가격 --%>
 				<col style="width: 10%;"></col>
-				<%-- 수량 --%>
-				<col style="width: 10%;"></col>
-				<%-- 합계 --%>
-				<col style="width: 10%;"></col>
+				<%-- 기타 --%>
+				<col style="width: 20%;"></col>
 			</colgroup>
 			<%-- table 컬럼 --%>
 
@@ -71,6 +107,7 @@
 							<c:set var="title" value="${Menu_Memeber_Shoppingcart_VO.title }" />
 							<c:set var="spiciness"
 								value="${Menu_Memeber_Shoppingcart_VO.spiciness }" />
+							<c:set var="scno" value="${Menu_Memeber_Shoppingcart_VO.scno }" />
 							<c:set var="file1" value="${Menu_Memeber_Shoppingcart_VO.file1 }" />
 							<c:set var="thumb" value="${Menu_Memeber_Shoppingcart_VO.thumb }" />
 							<c:set var="price" value="${Menu_Memeber_Shoppingcart_VO.price }" />
@@ -78,6 +115,9 @@
 
 
 							<tr>
+								<td style='vertical-align: middle; text-align: center;'>
+									${scno }</td>
+
 								<td style='vertical-align: middle; text-align: center;'><c:choose>
 										<c:when
 											test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
@@ -95,20 +135,12 @@
 								<td style='vertical-align: middle;'><a
 									href="/contents/read.do?contentsno=${contentsno}"><strong>${title}</strong></a>
 								</td>
-								<td style='vertical-align: middle; text-align: center;'><del>
-										<fmt:formatNumber value="${price }" pattern="#,###" />
-									</del><br>
-								<br> </td>
-								<td style='vertical-align: middle; text-align: center;'><input
-									type='number' id='${menuno }' min='1' max='100' step='1'
-									value="${menuno }" style='width: 52px;'><br>
-									<button type='button' onclick="update_cnt(${cartno})"
-										class='btn' style='margin-top: 5px;'>변경</button></td>
 								<td style='vertical-align: middle; text-align: center;'><fmt:formatNumber
-										value="${tot}" pattern="#,###" /></td>
+										value="${price }" pattern="#,###" />원 <br> <br></td>
+
 								<td style='vertical-align: middle; text-align: center;'><A
-									href="javascript: delete_func(${cartno })"><IMG
-										src="/storage/images/rice.jpg"></A></td>
+									href="javascript: delete_func(${scno })"><IMG
+										src="/storage/images/delete3.png"></A></td>
 							</tr>
 						</c:forEach>
 
@@ -133,7 +165,7 @@
 					<td style='width: 50%;'><br>
 						<div class='cart_label'>상품 금액</div>
 						<div class='cart_price'>
-							<fmt:formatNumber value="" pattern="#,###" />
+							<fmt:formatNumber value="${cart_sum }" pattern="#,###" />
 							원
 						</div> <br>
 						<div class='cart_label'>배송비</div>
@@ -144,7 +176,7 @@
 					<td style='width: 50%;'>
 						<div class='cart_label' style='font-size: 2.0em;'>전체 주문 금액</div>
 						<div class='cart_price' style='font-size: 2.0em; color: #FF0000;'>
-							<fmt:formatNumber value="" pattern="#,###" />
+							<fmt:formatNumber value="${total_sum }" pattern="#,###" />
 							원
 						</div>
 
@@ -168,8 +200,11 @@
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+		
+	</script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+
 </body>
 </html>

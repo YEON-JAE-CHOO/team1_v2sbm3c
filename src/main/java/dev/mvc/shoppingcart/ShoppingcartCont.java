@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,16 +49,18 @@ public class ShoppingcartCont {
 		List<Menu_Memeber_Shoppingcart_VO> list = this.shoppingcartProc.show_cart(mno);
 		int cart_cnt = this.shoppingcartProc.cart_count(mno);
 		RestaurantVO restaurantvo = this.restaurantProc.create_shop(12);
-		// int cart_sum = this.shoppingcartProc.cart_sum(mno);
+		int cart_sum = this.shoppingcartProc.cart_sum(mno);
 
+		System.out.println("list--->"+list);
 		System.out.println("cart_cnt -> " + cart_cnt);
 		System.out.println("cart_list size -> " + list.size());
 		System.out.println("restaurantvo 12 -> " + restaurantvo.toString());
-		// System.out.println("cart_sum -> " + cart_sum);
+		System.out.println("cart_sum -> " + cart_sum);
 
 		mav.addObject("list", list);
 		mav.addObject("leastprcie", restaurantvo.getLeastprice());
 		mav.addObject("deliverytip", restaurantvo.getDeliverytip());
+		mav.addObject("cart_sum", cart_sum);
 		mav.setViewName("/order/shoppingcart"); // webapp/members/list.jsp
 
 		return mav; // forward
@@ -88,6 +91,23 @@ public class ShoppingcartCont {
 		System.out.println("-> shoppingcartCont add: " + json.toString());
 
 		return json.toString();
+	}
+
+	/**
+	 * 상품 삭제 http://localhost:9091/cart/delete.do
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/shoppingcart/delete.do", method = RequestMethod.POST)
+	public ModelAndView delete(HttpSession session, @RequestParam(value = "scno", defaultValue = "0") int scno) {
+		ModelAndView mav = new ModelAndView();
+
+		int cnt = this.shoppingcartProc.shoppingcart_delete(scno);
+		System.out.println("삭제 성공 cnt ->>"+cnt);
+		
+		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do");
+
+		return mav;
 	}
 
 }

@@ -16,4 +16,10 @@ public interface ShoppingcartProcInter {
 	/** 장바구니 금액합 **/
 	public int cart_sum(int mno);
 
+	/** 장바구니 개별 삭제 **/
+	public int shoppingcart_delete(int scno);
+
+	/** 장바구니 모두 삭제 **/
+	public int delete_all(int mno);
+
 }

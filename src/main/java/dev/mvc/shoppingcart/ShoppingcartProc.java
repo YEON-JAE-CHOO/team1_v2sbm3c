@@ -25,7 +25,7 @@ public class ShoppingcartProc implements ShoppingcartProcInter {
 
 	@Override
 	public List<Menu_Memeber_Shoppingcart_VO> show_cart(int mno) {
-		
+
 		List<Menu_Memeber_Shoppingcart_VO> list = this.shoppingcartDAO.show_cart(mno);
 		return list;
 	}
@@ -42,6 +42,16 @@ public class ShoppingcartProc implements ShoppingcartProcInter {
 		return sum;
 	}
 
+	@Override
+	public int shoppingcart_delete(int scno) {
+		int cnt = this.shoppingcartDAO.shoppingcart_delete(scno);
+		return cnt;
+	}
 
+	@Override
+	public int delete_all(int mno) {
+		int cnt = this.shoppingcartDAO.delete_all(mno);
+		return cnt;
+	}
 
 }
