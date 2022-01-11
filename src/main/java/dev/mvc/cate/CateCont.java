@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.restaurant.RestaurantProcInter;
+import dev.mvc.restaurant.RestaurantVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -22,6 +24,10 @@ public class CateCont {
     @Qualifier("dev.mvc.cate.CateProc")
     private CateProcInter cateProc;
 
+    @Autowired
+    @Qualifier("dev.mvc.restaurant.RestaurantProc")
+    private RestaurantProcInter restaurantProc;
+    
     public CateCont() {
         System.out.println("-> CateCont created.");
     }
@@ -321,5 +327,7 @@ public class CateCont {
 
         return mav; // forward
     }
+    
+
 
 }

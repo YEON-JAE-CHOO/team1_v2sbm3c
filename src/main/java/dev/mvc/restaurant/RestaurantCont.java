@@ -1,5 +1,6 @@
 package dev.mvc.restaurant;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.cate.CateProcInter;
+import dev.mvc.cate.CateVO;
 import dev.mvc.menu.MenuProcInter;
 import dev.mvc.menu.MenuVO;
 
@@ -22,6 +25,9 @@ public class RestaurantCont {
 	@Qualifier("dev.mvc.menu.MenuProc")
 	private MenuProcInter menuProc = null;
 
+	@Autowired
+	@Qualifier("dev.mvc.cate.CateProc")
+	private CateProcInter cateProc;
 	
 	public RestaurantCont() {
 		System.out.println("-> RestaurantCont created.");
@@ -36,6 +42,8 @@ public class RestaurantCont {
 	@RequestMapping(value = "/restaurant/create.do", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mav = new ModelAndView();
+		List<CateVO> list = this.cateProc.list_catename();
+		mav.addObject("list", list);
 		mav.setViewName("/restaurant/create"); // webapp/WEB-INF/views/cate/create.jsp
 
 		return mav; // forward
@@ -52,7 +60,8 @@ public class RestaurantCont {
 	public ModelAndView create(RestaurantVO restaurantVO) {
 
 		ModelAndView mav = new ModelAndView();
-
+		
+		System.out.println(restaurantVO.toString());
 		int cnt = this.restaurantProc.create(restaurantVO); // 등록 처리
 		// cnt = 0; // error test
 
@@ -61,11 +70,6 @@ public class RestaurantCont {
 		if (cnt == 1) {
 			System.out.println("등록 성공");
 
-			// mav.addObject("code", "create_success"); // request에 저장,
-			// request.setAttribute("code", "create_success")
-			// mav.setViewName("/categrp/msg"); // /WEB-INF/views/categrp/msg.jsp
-
-			// response.sendRedirect("/categrp/list.do");
 			mav.setViewName("redirect:/index.do");
 		} else {
 			mav.addObject("code", "create_fail"); // request에 저장, request.setAttribute("code", "create_fail")
@@ -116,26 +120,44 @@ public class RestaurantCont {
 
 	
 	@RequestMapping(value = "/restaurant/modification.do", method = RequestMethod.GET)
-	public ModelAndView modification() {
+	public ModelAndView modification(int rno) {
+
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/restaurant/modification"); // webapp/WEB-INF/views/cate/create.jsp
+
+		RestaurantVO restaurantVO = this.restaurantProc.create_shop(rno); // 등록 처리
+		mav.addObject("restaurantVO", restaurantVO);
+		System.out.println(restaurantVO.toString());
+		mav.setViewName("/restaurant/modification");
 
 		return mav; // forward
 	}
 	
 	@RequestMapping(value = "/restaurant/update.do", method = RequestMethod.POST)
-	public ModelAndView shop_update(RestaurantVO restaurantVO) {
+	public ModelAndView update(RestaurantVO restaurantVO) {
 
 		ModelAndView mav = new ModelAndView();
-
-		int cnt = this.restaurantProc.create(restaurantVO); // 등록 처리
-		// cnt = 0; // error test
+		System.out.println(restaurantVO.toString());
+		int cnt = this.restaurantProc.update(restaurantVO);
 
 		mav.addObject("cnt", cnt);
-
+		mav.setViewName("/restaurant/list");
 
 		return mav; // forward
 	}
-
+	
+    @RequestMapping(value = "/restaurant/cate_list.do", method = RequestMethod.GET)
+    public ModelAndView cate_list(int cateno) {
+        ModelAndView mav = new ModelAndView();
+        System.out.println("cateno ="+cateno);
+        List<RestaurantVO> list = this.restaurantProc.cate_list(cateno);
+        mav.addObject("list", list);
+        for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+        mav.setViewName("/restaurant/list");
+    	
+		return mav;
+    
+    }
 
 }

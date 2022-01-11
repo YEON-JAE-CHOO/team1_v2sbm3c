@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
 
-<c:set var="rno" value="${rno }" />
+<c:set var="restaurantVO" value="${restaurantVO }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,14 +64,15 @@
 				<div>
 					<p>&nbsp;</p>
 
-					<form class="form-horizontal" action="./create.do"
+					<form class="form-horizontal" action="./update.do"
 						method="post">
 						<div class="form-group">
+						
 							<div class="col-sm-2 control-label">
 								<label for="id">가게 이름</label>
 							</div>
 							<div class="col-sm-6 text-left">
-								<input type="text" class="form-control" name="name" id="name">
+								<input type="text" class="form-control" name="name" id="name" value="${restaurantVO.name}">
 							</div>
 						</div>
 
@@ -82,7 +83,7 @@
 							</div>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" name="explanation"
-									id="explanation">
+									id="explanation" value="${restaurantVO.explanation}">
 							</div>
 						</div>
 
@@ -91,7 +92,8 @@
 								<label id="name">최소 주문 금액</label>
 							</div>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="leastprice" id="leastprice">
+								<input type="text" class="form-control" name="leastprice" 
+								id="leastprice" value="${restaurantVO.leastprice}">
 							</div>
 						</div>
 
@@ -101,7 +103,7 @@
 							</div>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" name="call" id="call"
-									placeholder="ex) 010-0000-0000">
+									placeholder="ex) 010-0000-0000" value="${restaurantVO.call}">
 							</div>
 						</div>
 
@@ -114,7 +116,7 @@
 							</div>
 							<div class="col-sm-3">
 								<input type="text" id="code" placeholder="우편번호"
-									name="code" class="form-control" value="">
+									name="code" class="form-control" value="${restaurantVO.code}">
 							</div>
 							<div class="col-sm-3">
 								<input type="button" onclick="sample6_execDaumPostcode()"
@@ -130,7 +132,7 @@
 							<div class="col-sm-6">
 								<input type="text" id="address1" placeholder="주소"
 									name="address1" class="form-control"
-									value="">
+									value="${restaurantVO.address1}">
 							</div>
 						</div>
 
@@ -140,16 +142,15 @@
 							</div>
 							<div class="col-sm-6">
 								<input type="text" id="address2" placeholder="상세주소"
-									name="address2" class="form-control" value="256-32">
+									name="address2" class="form-control" value="${restaurantVO.address2}">
 							</div>
 						</div>
 
-
-
+						<input type="hidden" name="rno" id="rno" value="${restaurantVO.rno }">
 						<input type="hidden" value="${GetIpAddress.getIp()}">
 						<div class="form-group">
 							<div class="col-sm-12 text-center">
-								<input type="submit" value="가게 등록" class="btn btn-success">
+								<input type="submit" value="수정하기" class="btn btn-success">
 								<input type="reset" value="취소" class="btn btn-warning">
 							</div>
 						</div>
@@ -172,3 +173,4 @@
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
 </Body>
+</html>

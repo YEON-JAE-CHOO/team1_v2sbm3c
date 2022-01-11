@@ -41,4 +41,21 @@ public class RestaurantProc implements RestaurantProcInter {
 		return restaurantVO;
 	}
 
+	@Override
+	public int update(RestaurantVO restaurantVO) {
+		
+
+        int cnt = this.restaurantDAO.update(restaurantVO);
+        
+		return cnt;
+	}
+
+	@Override
+	public List<RestaurantVO> cate_list(int cateno) {
+		List<RestaurantVO> list = this.restaurantDAO.cate_list(cateno);
+		return list;
+	}
+	
+	
+
 }

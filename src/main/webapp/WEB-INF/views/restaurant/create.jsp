@@ -3,6 +3,7 @@
 <%@ page import="java.util.List"%>
 
 <c:set var="rno" value="${rno }" />
+<c:set var="list" value="${list }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,17 +38,17 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<jsp:include page="./../menu/top.jsp" flush='false' />
 	</nav>
-    <!-- Header-->
-    <header class="py-4" style="background-color: #ef9578;">
-         <div class="container px-4 px-lg-5 my-5"
-                 style="background-color: #ef9578;">
-         <div class="text-center text-white">
-                 <h1 class="display-4 fw-bolder">Shop in style</h1>
-                 <p class="lead fw-normal text-white-50 mb-0">With this shop
-                 hompeage template</p>
-        </div>
-       </div>
-    </header>
+	<!-- Header-->
+	<header class="py-4" style="background-color: #ef9578;">
+		<div class="container px-4 px-lg-5 my-5"
+			style="background-color: #ef9578;">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Shop in style</h1>
+				<p class="lead fw-normal text-white-50 mb-0">With this shop
+					hompeage template</p>
+			</div>
+		</div>
+	</header>
 	<!-- Section-->
 	<section class="py-5">
 
@@ -64,8 +65,7 @@
 				<div>
 					<p>&nbsp;</p>
 
-					<form class="form-horizontal" action="./create.do"
-						method="post">
+					<form class="form-horizontal" action="./create.do" method="post">
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<label for="id">가게 이름</label>
@@ -75,7 +75,21 @@
 							</div>
 						</div>
 
-	
+						<div class="form-group">
+							<div class="col-sm-2 control-label">
+								<label id="name">카테고리</label>
+							</div>
+							<div class="col-sm-2">
+								<select class="form-control input-lg" id="cateno" name="cateno">
+									<c:forEach var="cateVO" items="${list }">
+										<c:set var="name" value="${cateVO.name }" />
+										<c:set var="cateno" value="${cateVO.cateno }" />
+										<option value="${cateno }">${name }</option>			
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<label id="text">가게 소개</label>
@@ -91,9 +105,11 @@
 								<label id="name">최소 주문 금액</label>
 							</div>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" name="leastprice" id="leastprice">
+								<input type="text" class="form-control" name="leastprice"
+									id="leastprice">
 							</div>
 						</div>
+
 
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
@@ -110,11 +126,10 @@
 							<div class="col-sm-2 control-label">
 								<label id="zip_num">우편번호</label>
 							</div>
-							<div>
-							</div>
+							<div></div>
 							<div class="col-sm-3">
-								<input type="text" id="code" placeholder="우편번호"
-									name="code" class="form-control" value="06267">
+								<input type="text" id="code" placeholder="우편번호" name="code"
+									class="form-control" value="">
 							</div>
 							<div class="col-sm-3">
 								<input type="button" onclick="sample6_execDaumPostcode()"
@@ -130,7 +145,7 @@
 							<div class="col-sm-6">
 								<input type="text" id="address1" placeholder="주소"
 									name="address1" class="form-control"
-									value="서울 강남구 강남대로 238 (도곡동, 스카이쏠라빌딩)">
+									value="">
 							</div>
 						</div>
 
@@ -140,7 +155,7 @@
 							</div>
 							<div class="col-sm-6">
 								<input type="text" id="address2" placeholder="상세주소"
-									name="address2" class="form-control" value="256-32">
+									name="address2" class="form-control" value="">
 							</div>
 						</div>
 
@@ -160,7 +175,7 @@
 			</div>
 
 		</div>
-		
+
 	</section>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">

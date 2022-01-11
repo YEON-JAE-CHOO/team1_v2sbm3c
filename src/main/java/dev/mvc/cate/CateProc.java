@@ -59,5 +59,12 @@ public class CateProc implements CateProcInter {
       int cnt = this.cateDAOInter.delete(cateno);
       return cnt;
     }
+
+	@Override
+	public List<CateVO> list_catename() {
+	      List<CateVO> list = this.cateDAOInter.list_catename();
+	      return list;
+	}
+    
     
 }

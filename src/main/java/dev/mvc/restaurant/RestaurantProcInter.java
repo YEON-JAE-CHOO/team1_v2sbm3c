@@ -10,4 +10,8 @@ public interface RestaurantProcInter {
 	
 	public RestaurantVO create_shop(int rno);
     
+    public int update(RestaurantVO restaurantVO);
+
+	public List<RestaurantVO> cate_list(int cateno);
+
 }
