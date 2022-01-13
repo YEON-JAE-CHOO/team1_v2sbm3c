@@ -43,6 +43,21 @@
 	crossorigin="anonymous">
 
 <script type="text/javascript">
+	$(function() {
+		$('#btn_delete_all').on('click', function() {
+		$('#btn_cart_test').on('click', function() {delete_check(scno)});
+		});
+		//delete_all(10);
+	});
+
+	function delete_check(scno) {
+		var sw = confirm('선택한 상품을 장바구니에서 지우시겠습니까?');
+		if (sw == true) {
+			delete_func(scno);
+		}
+
+	}
+
 	function delete_func(scno) { // GET -> POST 전송, 상품 삭제
 		var frm = $('#frm_post');
 		frm.attr('action', '/shoppingcart/delete.do');
@@ -51,12 +66,41 @@
 		frm.submit();
 	}
 
-	function delete_all() {
+	function delete_all(mid) {
+		var params = "";
+		params += 'mid=' + mid;
+
+		alert("-> params: " + params);
+
+		$
+				.ajax({
+					url : '/shoppingcart/cart_delete_all.do',
+					type : 'post', // get, post
+					cache : false, // 응답 결과 임시 저장 취소
+					async : true, // true: 비동기 통신
+					dataType : 'json', // 응답 형식: json, html, xml 
+					data : params, // 데이터
+					success : function(rdata) { // 응답이 온경우
+						var str = '';
+						console.log('-> delete_all cnt: ' + rdata.cnt); // 1: 쇼핑카트 등록 성공
+						if (rdata.check == "success") {
+							location.href = '/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}';
+						} else {
+							alert('전체 삭제하지 못 했습니다.');
+						}
+					},
+					// Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+					error : function(request, status, error) { // callback 함수
+						console.log(error);
+					}
+				}); //  $.ajax END
 
 	}
 </script>
 </head>
 <body>
+
+
 	<form name='frm_post' id='frm_post' action='' method='post'>
 		<input type='hidden' name='scno' id='scno'> <input
 			type='hidden' name='cnt' id='cnt'> <input type="hidden"
@@ -74,7 +118,7 @@
 	<div class="contents" style="text-align: center;">
 		<h3>주문 목록</h3>
 		<button type="button" class="btn btn-secondary" id="btn_delete_all"
-			name="btn_delete_all" onclick="location.href='/delete_all.do' "
+			name="btn_delete_all" onclick="delete_all('${sessionScope.id }')"
 			style="">장바구니 비우기</button>
 		<br>
 
@@ -139,7 +183,7 @@
 										value="${price }" pattern="#,###" />원 <br> <br></td>
 
 								<td style='vertical-align: middle; text-align: center;'><A
-									href="javascript: delete_func(${scno })"><IMG
+									href="javascript: delete_check(${scno })"><IMG
 										src="/storage/images/delete3.png"></A></td>
 							</tr>
 						</c:forEach>

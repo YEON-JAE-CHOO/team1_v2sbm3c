@@ -132,6 +132,11 @@ public class MenuVO {
 	 */
 	private MultipartFile file1MF;
 
+	/**
+	 * 파일 크기 단위 출력
+	 */
+	private String size1_label;
+
 	public MultipartFile getFile1MF() {
 		return file1MF;
 	}
@@ -147,10 +152,5 @@ public class MenuVO {
 	public void setSize1_label(String size1_label) {
 		this.size1_label = size1_label;
 	}
-
-	/**
-	 * 파일 크기 단위 출력
-	 */
-	private String size1_label;
 
 }

@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<delete id="delete_all" parameterType="int">
-		delete from shoppingcart where mno = #{mno };
+		delete from shoppingcart where mno = #{mno }
 	</delete>
 
 

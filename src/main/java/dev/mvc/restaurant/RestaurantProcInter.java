@@ -9,7 +9,7 @@ public interface RestaurantProcInter {
 
 	public List<RestaurantVO> getlist();
 	
-	public RestaurantVO create_shop(int rno);
+	public RestaurantVO read_restaurant(int rno);
 	
     public int update_recom(int rno);
     

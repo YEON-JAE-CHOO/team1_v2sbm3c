@@ -7,6 +7,7 @@
 <c:set var="list" value="${list }" />
 <c:set var="rno" value="${rno }" />
 <c:set var="restaurantVO" value="${restaurantVO }" />
+<c:set var="thumb" value="${restaurantVO.thumb }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +39,59 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+$(function() {
+	$('#add_shoppingcart').on('click', function() {cart_ajax_add(rno,menuno,mid)});
+	$('#btn_cart_test').on('click', function() {cart_test(rno,menuno,mid)});
+	//cart_ajax_add(12,39,"${sessionScope.id }");
+});
+<%-- 장바구니 추가 모달 --%>
+function cart_test(rno,menuno,mid){
+	if(mid!=""){
+		 cart_ajax_add(rno,menuno,mid)
+	}else{
+		 alert("로그인이 필요합니다. "); 
+	}
+}
+
+function cart_ajax_add(rno,menuno,mid){
+    var mno = 10;
+    var params = "";
+    params += 'rno=' + rno;
+    params += '&menuno=' + menuno;
+    params += '&mid=' + mid;
+
+    alert("-> params: " + params); 
+
+    // return;
+
+    $.ajax({
+       url : '/shoppingcart/add.do',
+       type : 'post', // get, post
+       cache : false, // 응답 결과 임시 저장 취소
+       async : true, // true: 비동기 통신
+       dataType : 'json', // 응답 형식: json, html, xml 
+       data : params, // 데이터
+       success : function(rdata) { // 응답이 온경우
+          var str = '';
+          console.log('-> cart_ajax_add cnt: ' + rdata.cnt); // 1: 쇼핑카트 등록 성공
+          if (rdata.cnt == 1) {
+             var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
+             if (sw == true) {
+                // 쇼핑카트로 이동
+                 location.href='/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}';
+             }
+          } else {
+             alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
+          }
+       },
+       // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+       error : function(request, status, error) { // callback 함수
+          console.log(error);
+       }
+    }); //  $.ajax END
+
+}
 
 function recom_ajax(rno, status_count) {
     console.log("-> recom_" + status_count + ": " + $('#recom_' + status_count).html());  // A tag body      
@@ -87,12 +141,25 @@ function recom_ajax(rno, status_count) {
 	<!-- Header-->
 	<header class="py-4" style="background-color: #ef9578;"> </header>
 
+
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 my-5">
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-4">
-					<img class="card-img-top mb-5 mb-md-0"
-						src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+					<c:choose>
+						<c:when
+							test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+							<IMG src="/team1/storage/${thumb }"
+								class="card-img-top mb-5 mb-md-0"">
+
+						</c:when>
+						<c:otherwise>
+							<!-- 기본 이미지 출력 -->
+							<IMG src="/storage/images/rice.jpg"
+								style="width: 120px; height: 80px;">
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 				<div class="col-md-6">
 					<div class="small mb-1">${restaurantVO.type}</div>
@@ -196,15 +263,14 @@ function recom_ajax(rno, status_count) {
 						<TD class="td_bs">${spiciness }</TD>
 						<TD class="td_bs">${explanation }</TD>
 						<TD class="td_bs"><A
-							href="./read_update.do?cateno=${categrpno }" title="수정"><span
+							href="/menu/update.do?menuno=${menuno }&rno=${rno }" title="수정"><span
 								class="glyphicon glyphicon-pencil"></span>수정</A> <A
-							href="./menu/delete.do?menuno=${menuno }" title="삭제"><span
+							href="/menu/delete.do?menuno=${menuno }&rno=${rno }" title="삭제"><span
 								class="glyphicon glyphicon-trash"></span>삭제</A>
-							<button class="btn btn-outline-dark" type="submit"
-								id="addshoppingcart" name="addshoppingcart">
-								<i class="bi-cart-fill me-1"></i> 추가 <span
-									class="badge bg-dark text-white ms-1 rounded-pill"></span>
-							</button></TD>
+
+							<button class="btn btn-outline-dark" type="button"
+								id="add_shoppingcart" name="add_shoppingcart"
+								onclick="cart_test(${rno },${menuno },'${sessionScope.id }')">장바구니</button></TD>
 						</TR>
 					</c:forEach>
 				</tbody>

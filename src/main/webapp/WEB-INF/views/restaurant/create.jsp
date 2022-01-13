@@ -65,7 +65,8 @@
 				<div>
 					<p>&nbsp;</p>
 
-					<form class="form-horizontal" action="./create.do" method="post">
+					<form class="form-horizontal" action="./create.do" method="post"
+						enctype="multipart/form-data">
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<label for="id">가게 이름</label>
@@ -84,9 +85,17 @@
 									<c:forEach var="cateVO" items="${list }">
 										<c:set var="name" value="${cateVO.name }" />
 										<c:set var="cateno" value="${cateVO.cateno }" />
-										<option value="${cateno }">${name }</option>			
+										<option value="${cateno }">${name }</option>
 									</c:forEach>
 								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2">이미지</label>
+							<div class="col-md-10">
+								<input type='file' class="form-control" name='file1MF'
+									id='file1MF' value='' placeholder="파일 선택">
 							</div>
 						</div>
 
@@ -144,8 +153,7 @@
 							</div>
 							<div class="col-sm-6">
 								<input type="text" id="address1" placeholder="주소"
-									name="address1" class="form-control"
-									value="">
+									name="address1" class="form-control" value="">
 							</div>
 						</div>
 

@@ -29,7 +29,7 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/members/create.do">회원가입</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="/menu/list.do?rno=12">메뉴등록</a></li>
+				href="/menu/list.do?rno=12">식당/메뉴</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
 
@@ -45,9 +45,15 @@
 							리스트</a></li>
 				</ul></li>
 		</ul>
-		<a href="/shoppingcart/openshoppingcart.do" class="bi-cart-fill me-1">
-			Cart <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-		</a>
+		<c:choose>
+			<c:when test="${sessionScope.id != null}">
+				<a href="/shoppingcart/openshoppingcart.do?mid=${sessionScope.id }"
+					class="bi-cart-fill me-1"> Cart <span
+					class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+				</a>
+			</c:when>
+		</c:choose>
+
 
 	</div>
 

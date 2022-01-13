@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.members.MembersProc;
+import dev.mvc.members.MembersProcInter;
 import dev.mvc.menu.MenuProcInter;
 import dev.mvc.menu.MenuVO;
 import dev.mvc.restaurant.RestaurantProcInter;
@@ -34,33 +36,63 @@ public class ShoppingcartCont {
 	@Qualifier("dev.mvc.menu.MenuProc")
 	private MenuProcInter menuproc = null;
 
+	@Autowired
+	@Qualifier("dev.mvc.members.MembersProc")
+	private MembersProcInter membersproc = null;
+
 	public ShoppingcartCont() {
 		System.out.println("-> ShoppingcartCont created.");
 	}
 
-	/** 장바구니 페이지 오픈 */
+	/** 장바구니 페이지 오픈
+	 * d
+	 * d
+	 * d
+	 * d
+	 * d
+	 * d
+	 * d
+	 * d
+	 * 
+	 *  d
+	 *  d
+	 *  d
+	 *  
+	 *  d
+	 *  d
+	 *  d이거 rno 받아야됨 !!!*/
 	// http://localhost:9091/shoppingcart/openshoppingcart.do
 	@RequestMapping(value = "/shoppingcart/openshoppingcart.do", method = RequestMethod.GET)
-	public ModelAndView openshoppingcart() {
+	public ModelAndView openshoppingcart(String mid) {
 		ModelAndView mav = new ModelAndView();
 
-		int mno = 10;
+		System.out.println("mid -? " +mid);
+		//int mno = 10;
+		
+		int mno = this.membersproc.select_mno(mid);
 
 		List<Menu_Memeber_Shoppingcart_VO> list = this.shoppingcartProc.show_cart(mno);
-		int cart_cnt = this.shoppingcartProc.cart_count(mno);
-		RestaurantVO restaurantvo = this.restaurantProc.create_shop(12);
-		int cart_sum = this.shoppingcartProc.cart_sum(mno);
 
-		System.out.println("list--->"+list);
-		System.out.println("cart_cnt -> " + cart_cnt);
+		System.out.println("list--->" + list);
 		System.out.println("cart_list size -> " + list.size());
-		System.out.println("restaurantvo 12 -> " + restaurantvo.toString());
-		System.out.println("cart_sum -> " + cart_sum);
 
-		mav.addObject("list", list);
-		mav.addObject("leastprcie", restaurantvo.getLeastprice());
-		mav.addObject("deliverytip", restaurantvo.getDeliverytip());
-		mav.addObject("cart_sum", cart_sum);
+		if (list.size() >= 1) {
+			int cart_cnt = this.shoppingcartProc.cart_count(mno);
+			RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(12);
+			int cart_sum = this.shoppingcartProc.cart_sum(mno);
+
+			System.out.println("cart_cnt -> " + cart_cnt);
+			System.out.println("restaurantvo 12 -> " + restaurantvo.toString());
+			System.out.println("cart_sum -> " + cart_sum);
+
+			mav.addObject("list", list);
+			mav.addObject("leastprcie", restaurantvo.getLeastprice());
+			mav.addObject("deliverytip", restaurantvo.getDeliverytip());
+			mav.addObject("cart_sum", cart_sum);
+		} else {
+			System.out.println("카테고리 없어서 이동 못 함");
+		}
+
 		mav.setViewName("/order/shoppingcart"); // webapp/members/list.jsp
 
 		return mav; // forward
@@ -72,14 +104,19 @@ public class ShoppingcartCont {
 	/**/
 	@RequestMapping(value = "/shoppingcart/add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String cart_add(HttpSession session, int rno, int menuno) {
+	public String cart_add(HttpSession session, int rno, int menuno, String mid) {
 		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
 
 		System.out.println("cart_add 메서드 진행");
+		System.out.println("mid -> " + mid);
+		
+		int mno = this.membersproc.select_mno(mid);
+		System.out.println("selected mno -> " + mno);
+
 
 		/** 초기 수량 **/
 		shoppingcartVO.setCount(1);
-		shoppingcartVO.setMno(10);
+		shoppingcartVO.setMno(mno);
 		shoppingcartVO.setRno(rno);
 		shoppingcartVO.setMenuno(menuno);
 
@@ -87,8 +124,36 @@ public class ShoppingcartCont {
 
 		JSONObject json = new JSONObject();
 		json.put("cnt", cnt);
+		json.put("mno", mno);
 
 		System.out.println("-> shoppingcartCont add: " + json.toString());
+
+		return json.toString();
+	}
+
+	/** 쇼핑카트 모두 지우기 */
+	/**/
+	/**/
+	@RequestMapping(value = "/shoppingcart/cart_delete_all.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String cart_delete_all(HttpSession session, String mid) {
+		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
+
+		int mno = this.membersproc.select_mno(mid);
+		System.out.println("selected mno -> " + mno);
+		
+		System.out.println("cart_delete_all 메서드 진행  mno ->" + mno);
+		int cnt = this.shoppingcartProc.delete_all(mno);
+		System.out.println("delete_all    cnt->" + cnt);
+
+		JSONObject json = new JSONObject();
+		if (cnt >= 1) {
+			String check = "success";
+			json.put("check", check);
+			json.put("mno", mno);
+		}
+
+		json.put("cnt", cnt);
 
 		return json.toString();
 	}
@@ -102,10 +167,12 @@ public class ShoppingcartCont {
 	public ModelAndView delete(HttpSession session, @RequestParam(value = "scno", defaultValue = "0") int scno) {
 		ModelAndView mav = new ModelAndView();
 
+		String mid = (String) session.getAttribute("id");
+		System.out.println("delete/  mid ->"+mid);
 		int cnt = this.shoppingcartProc.shoppingcart_delete(scno);
-		System.out.println("삭제 성공 cnt ->>"+cnt);
-		
-		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do");
+		System.out.println("삭제 성공 cnt ->>" + cnt);
+
+		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do?mid="+mid);
 
 		return mav;
 	}
