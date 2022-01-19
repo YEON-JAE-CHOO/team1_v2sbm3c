@@ -90,7 +90,8 @@
 				<div>
 					<p>&nbsp;</p>
 
-					<form class="form-horizontal" action="./create.do" method="post">
+					<form class="form-horizontal" action="./create.do" method="post"
+						enctype="multipart/form-data">
 						<div class="form-group">
 							<div class="col-sm-2 control-label">
 								<label for="id">가게 이름</label>
@@ -301,4 +302,4 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
-</Body>
+</Body>	
