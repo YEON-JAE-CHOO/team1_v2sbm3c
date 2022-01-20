@@ -13,9 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.restaurant.RestaurantProcInter;
-import dev.mvc.restaurant.RestaurantVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
+
 
 @Controller
 public class MenuCont {
@@ -23,7 +23,7 @@ public class MenuCont {
 	@Autowired
 	@Qualifier("dev.mvc.menu.MenuProc")
 	private MenuProcInter menuProc = null;
-
+	
 	@Autowired
 	@Qualifier("dev.mvc.restaurant.RestaurantProc")
 	private RestaurantProcInter restaurantProc;
@@ -38,7 +38,7 @@ public class MenuCont {
 	/** 페이지 오픈 & 메뉴 리스트 출력 */
 	/**/
 	/**/
-
+	
 	// http://localhost:9091/menu/list.do?rno=12
 	@RequestMapping(value = "/menu/list.do", method = RequestMethod.GET)
 	public ModelAndView testlist(int rno) {
@@ -46,7 +46,7 @@ public class MenuCont {
 
 		System.out.println("rno ->" + rno);
 		List<MenuVO> list = this.menuProc.testlist(rno);
-		RestaurantVO restaurant = this.restaurantProc.read_restaurant(rno);
+	//	RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(rno);
 		System.out.println("list -->" + list);
 		mav.addObject("list", list);
 		mav.addObject("rno", rno);
@@ -54,6 +54,8 @@ public class MenuCont {
 
 		return mav; // forward
 	}
+
+
 
 	/** 메뉴 삭제 */
 	/**/
@@ -79,7 +81,8 @@ public class MenuCont {
 
 		return mav;
 	}
-
+	
+	
 	/** 메뉴 수정 열기 */
 	/**/
 	/**/
@@ -87,11 +90,11 @@ public class MenuCont {
 	public ModelAndView update(int menuno, int rno) {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("menuno _> " + menuno + "rno -> " + rno);
-
+		
 		MenuVO menuvo = this.menuProc.read(menuno);
-
-		System.out.println("menuvo ->" + menuvo.toString());
-
+		
+		System.out.println("menuvo ->"+menuvo.toString());
+		
 		mav.addObject("menuvo", menuvo);
 		mav.setViewName("/restaurant/update_menu");
 
@@ -102,13 +105,9 @@ public class MenuCont {
 	public ModelAndView insert(int rno) {
 		ModelAndView mav = new ModelAndView();
 
-		RestaurantVO restaurantVO = this.restaurantProc.read_restaurant(rno);
-
 		System.out.println("rno -->" + rno);
 
 		mav.addObject("rno", rno);
-		mav.addObject("restaurantVO", restaurantVO);
-
 		mav.setViewName("/restaurant/addmenu");
 
 		return mav;
@@ -154,7 +153,7 @@ public class MenuCont {
 		menuvo.setThumb(thumb1);
 		menuvo.setImagesize(size1);
 
-		//menuvo.setRno(12);
+		menuvo.setRno(12);
 		System.out.println("menuvo의 rno ->" + menuvo.getRno());
 		// ------------------------------------------------------------------------------
 		// 파일 전송 코드 종료
@@ -175,7 +174,8 @@ public class MenuCont {
 		mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 		return mav;
 	}
-
+	
+	
 	/** 메뉴 등록 */
 	/**/
 	/**/
@@ -200,10 +200,10 @@ public class MenuCont {
 		// System.out.println("-> file1: " + file1);
 
 		long size1 = mf.getSize(); // 파일 크기
-
-		System.out.println("menuno ->" + menuvo.getMenuno());
-		System.out.println("menu title ->" + menuvo.getTitle());
-		System.out.println("menu price ->" + menuvo.getPrice());
+		
+		System.out.println("menuno ->"+menuvo.getMenuno());
+		System.out.println("menu title ->"+menuvo.getTitle());
+		System.out.println("menu price ->"+menuvo.getPrice());
 
 		if (size1 > 0) { // 파일 크기 체크
 			// 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
@@ -219,9 +219,9 @@ public class MenuCont {
 		menuvo.setFilesaved1(filesaved1);
 		menuvo.setThumb(thumb1);
 		menuvo.setImagesize(size1);
-
+		
 		menuvo.setRno(12);
-		System.out.println("333333" + menuvo.toString());
+		System.out.println("333333"+menuvo.toString());
 		System.out.println("menuvo의 rno2 ->" + menuvo.getRno());
 		// ------------------------------------------------------------------------------
 		// 파일 전송 코드 종료
@@ -242,5 +242,6 @@ public class MenuCont {
 		mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 		return mav;
 	}
+
 
 }

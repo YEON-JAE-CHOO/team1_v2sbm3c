@@ -156,12 +156,12 @@ function recom_ajax(rno, status_count) {
 						<c:otherwise>
 							<!-- 기본 이미지 출력 -->
 							<IMG src="/storage/images/rice.jpg"
-								style="width: 120px; height: 80px;">
+								style="width: 300px; height: 200px;">
 						</c:otherwise>
 					</c:choose>
 
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="small mb-1">${restaurantVO.type}</div>
 					<h1 class="display-5 fw-bolder">${restaurantVO.name}</h1>
 					<div class="fs-5 mb-2">
@@ -189,8 +189,11 @@ function recom_ajax(rno, status_count) {
 							♥(${restaurantVO.recocnt })</button>
 					</div>
 				</div>
+				<div class="col-md-4" id="map" style='width: 640px; height: 380px; margin: 0px auto;'></div>
 			</div>
 		</div>
+
+
 	</section>
 
 	<div style="text-align: center;">
@@ -288,6 +291,46 @@ function recom_ajax(rno, status_count) {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
 	<script src="js/scripts.js"></script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=36e8c607903bf248b39eabfa9d81368a&libraries=services"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${restaurantVO.address1	}', function(result, status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${restaurantVO.name}</div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+	</script>
 </body>
 
 </html>

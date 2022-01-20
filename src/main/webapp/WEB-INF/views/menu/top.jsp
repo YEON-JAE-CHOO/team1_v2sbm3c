@@ -33,6 +33,13 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
 
+             
+                <li class="nav-item"><a class="nav-link"
+                href="/tensorflow/chatbot.do">챗봇</a></li>
+
+			<li class="nav-item"><a class="nav-link"
+				href="daum_map.jsp">쇼핑카트</a></li>
+
 
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" href=""
