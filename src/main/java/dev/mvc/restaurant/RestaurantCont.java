@@ -79,7 +79,7 @@ public class RestaurantCont {
 		String filesaved1 = ""; // 저장된 파일명, image
 		String thumb1 = ""; // preview image
 		String uploadDir = this.uploadDir; // 파일 업로드 경로
-
+		
 		// 전송 파일이 없어도 file1MF 객체가 생성됨.
 		// <input type='file' class="form-control" name='file1MF' id='file1MF'
 		// value='' placeholder="파일 선택">
