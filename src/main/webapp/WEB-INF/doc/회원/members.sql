@@ -64,7 +64,16 @@ VALUES (members_seq.nextval, 'qnaadmin', '1234', '질문답변관리자', '000-0
 
 -- 개인 회원 테스트 계정
 INSERT INTO members(mno, id, pw, name, phone, housecode, address1, address2, rdate, reco)
-VALUES (members_seq.nextval, 'user1', '1234', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 15);
+VALUES (members_seq.nextval, 'user1', '1234', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 30);
+
+INSERT INTO members(mno, id, pw, name, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user2', '1234', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 40);
+
+INSERT INTO members(mno, id, pw, name, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user3', '1234', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 99);
+
+INSERT INTO members(mno, id, pw, name, phone, housecode, address1, address2, rdate, reco)
+VALUES (members_seq.nextval, 'user4', '1234', '우아한형제들', '000-0000-0000', '12345', '서울특별시 송파구', '위례성대로', sysdate, 20);
 
 COMMIT;
 
