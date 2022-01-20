@@ -166,7 +166,7 @@ public class MenuCont {
 			// mav.addObject("code", "create_success");
 			// cateProc.increaseCnt(contentsVO.getCateno()); // 글수 증가
 			System.out.println("success ////cnt->" + cnt);
-			mav.setViewName("redirect:/restaurant?rno"+menuvo.getRno());
+			mav.setViewName("redirect:/restaurant/shop.do?rno="+menuvo.getRno());
 		} else {
 			// mav.addObject("code", "create_fail");
 			System.out.println("faile /////cnt->" + cnt);

@@ -82,7 +82,7 @@ function cart_ajax_add(rno,menuno,mid){
                  location.href='/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}';
              }
           } else {
-             alert('선택한 상품을 장바구니에 담지못했습니다.<br>잠시후 다시 시도해주세요.');
+             alert('이미 쇼핑카트에 담긴 식당이 있습니다.<br>장바구니를 비우고 다시 시도해주세요.');
           }
        },
        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
@@ -249,13 +249,13 @@ function recom_ajax(rno, status_count) {
 						<TD style='vertical-align: middle; text-align: center;'><c:choose>
 								<c:when
 									test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-									<IMG src="/storage/images/${thumb }"
+									<IMG src="/team1/storage/${thumb }"
 										style="width: 120px; height: 80px;">
 									</a>
 								</c:when>
 								<c:otherwise>
 									<!-- 기본 이미지 출력 -->
-									<IMG src="/storage/images/rice.jpg"
+									<IMG src="/team1/storage/rice.jpg"
 										style="width: 120px; height: 80px;">
 								</c:otherwise>
 							</c:choose></TD>
