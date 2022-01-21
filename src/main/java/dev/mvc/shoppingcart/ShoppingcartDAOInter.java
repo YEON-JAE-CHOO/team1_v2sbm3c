@@ -1,5 +1,6 @@
 package dev.mvc.shoppingcart;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ShoppingcartDAOInter {
@@ -21,5 +22,18 @@ public interface ShoppingcartDAOInter {
 
 	/** 장바구니 모두 삭제 **/
 	public int delete_all(int mno);
+
+	/** 장바구니로 식당 번호 출력 **/
+	public int select_rno(HashMap<String, Object> hashMap);
+	
+	/** 장바구니로 식당 번호 출력 **/
+	public int select_rno_by_mno(int mno);
+
+
+	/** 장바구니 식당 카운트 **/
+	public int distinct_count_rno(int mno);
+	
+	
+	
 
 }

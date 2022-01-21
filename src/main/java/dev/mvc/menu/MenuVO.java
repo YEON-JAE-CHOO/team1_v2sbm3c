@@ -4,13 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MenuVO {
 
-	@Override
-	public String toString() {
-		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title
-				+ ", explanation=" + explanation + ", spiciness=" + spiciness + ", file1=" + file1 + ", file1saved="
-				+ filesaved1 + ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
-	}
-
 	public int getMenuno() {
 		return menuno;
 	}
@@ -25,6 +18,14 @@ public class MenuVO {
 
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+
+	public String getMenutype() {
+		return menutype;
+	}
+
+	public void setMenutype(String menutype) {
+		this.menutype = menutype;
 	}
 
 	public String getTitle() {
@@ -43,20 +44,20 @@ public class MenuVO {
 		this.explanation = explanation;
 	}
 
-	public String getMenutype() {
-		return menutype;
-	}
-
-	public void setMenutype(String menutype) {
-		this.menutype = menutype;
-	}
-
 	public String getSpiciness() {
 		return spiciness;
 	}
 
 	public void setSpiciness(String spiciness) {
 		this.spiciness = spiciness;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public String getFile1() {
@@ -91,12 +92,20 @@ public class MenuVO {
 		this.imagesize = imagesize;
 	}
 
-	public int getPrice() {
-		return price;
+	public MultipartFile getFile1MF() {
+		return file1MF;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setFile1MF(MultipartFile file1mf) {
+		file1MF = file1mf;
+	}
+
+	public String getSize1_label() {
+		return size1_label;
+	}
+
+	public void setSize1_label(String size1_label) {
+		this.size1_label = size1_label;
 	}
 
 	/** 메뉴 번호 */
@@ -137,20 +146,12 @@ public class MenuVO {
 	 */
 	private String size1_label;
 
-	public MultipartFile getFile1MF() {
-		return file1MF;
-	}
-
-	public void setFile1MF(MultipartFile file1mf) {
-		file1MF = file1mf;
-	}
-
-	public String getSize1_label() {
-		return size1_label;
-	}
-
-	public void setSize1_label(String size1_label) {
-		this.size1_label = size1_label;
+	@Override
+	public String toString() {
+		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title
+				+ ", explanation=" + explanation + ", spiciness=" + spiciness + ", price=" + price + ", file1=" + file1
+				+ ", filesaved1=" + filesaved1 + ", thumb=" + thumb + ", imagesize=" + imagesize + ", file1MF="
+				+ file1MF + ", size1_label=" + size1_label + "]";
 	}
 
 }

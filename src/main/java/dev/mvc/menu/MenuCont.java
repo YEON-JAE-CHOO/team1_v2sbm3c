@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.restaurant.RestaurantProcInter;
-import dev.mvc.restaurant.RestaurantVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -47,7 +46,7 @@ public class MenuCont {
 
 		System.out.println("rno ->" + rno);
 		List<MenuVO> list = this.menuProc.testlist(rno);
-		RestaurantVO restaurant = this.restaurantProc.read_restaurant(rno);
+	//	RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(rno);
 		System.out.println("list -->" + list);
 		mav.addObject("list", list);
 		mav.addObject("rno", rno);
@@ -166,7 +165,7 @@ public class MenuCont {
 			// mav.addObject("code", "create_success");
 			// cateProc.increaseCnt(contentsVO.getCateno()); // 글수 증가
 			System.out.println("success ////cnt->" + cnt);
-			mav.setViewName("/menutest");
+			mav.setViewName("redirect:/restaurant/shop.do?rno="+menuvo.getRno());
 		} else {
 			// mav.addObject("code", "create_fail");
 			System.out.println("faile /////cnt->" + cnt);
