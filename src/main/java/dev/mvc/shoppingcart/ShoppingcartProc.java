@@ -1,5 +1,6 @@
 package dev.mvc.shoppingcart;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,24 @@ public class ShoppingcartProc implements ShoppingcartProcInter {
 	public int delete_all(int mno) {
 		int cnt = this.shoppingcartDAO.delete_all(mno);
 		return cnt;
+	}
+
+	@Override
+	public int distinct_count_rno(int mno) {
+		int cnt = this.shoppingcartDAO.distinct_count_rno(mno);
+		return cnt;
+	}
+
+	@Override
+	public int select_rno(HashMap<String, Object> hashMap) {
+		int rno = this.shoppingcartDAO.select_rno(hashMap);
+		return rno;
+	}
+
+	@Override
+	public int select_rno_by_mno(int mno) {
+		int rno = this.shoppingcartDAO.select_rno_by_mno(mno);
+		return rno;
 	}
 
 }

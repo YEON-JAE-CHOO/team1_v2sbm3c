@@ -58,10 +58,10 @@
 				action="/restaurant/updatemenu.do" enctype="multipart/form-data">
 
 				<input type="hidden" class="form-control onlyAlphabetAndNumber"
-					value=12 id="rno" data-rule-required="true" name="rno"
+					value='${rno }' id="rno" data-rule-required="true" name="rno"
 					maxlength="15"> <input type="hidden"
 					class="form-control onlyAlphabetAndNumber"
-					value='${menuvo.menuno }' id="menuno" data-rule-required="true"
+					value='${menuvo.rno }' id="menuno" data-rule-required="true"
 					name="menuno" maxlength="15">
 
 

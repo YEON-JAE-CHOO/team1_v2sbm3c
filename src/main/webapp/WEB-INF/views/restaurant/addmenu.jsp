@@ -55,8 +55,10 @@
 				action="/restaurant/addmenu.do" enctype="multipart/form-data">
 
 				<div class="form-group" id="divId">
-					<label for="inputId" class="col-lg-2 control-label" name="rno"
-						id="rno" value="${rno }">식당 번호 ${rno }</label>
+
+					<input type="hidden" class="col-lg-2 control-label" id="rno"
+						name="rno" maxlength="15" value="${rno }">
+
 					<div class="col-lg-10"></div>
 				</div>
 				<div class="form-group" id="divId">
@@ -88,7 +90,7 @@
 					<label for="inputId" class="col-lg-2 control-label">음식 종류</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id="" menutype"" data-rule-required="true" name="menutype"
+							id="menutype" data-rule-required="true" name="menutype"
 							maxlength="15">
 					</div>
 				</div>
@@ -105,8 +107,9 @@
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">가격</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyAlphabetAndNumber" width="20%"
-							id="price" data-rule-required="true" name=""price"" maxlength="15">원
+						<input type="text" class="form-control onlyAlphabetAndNumber"
+							width="20%" id="price" data-rule-required="true" name="price"
+							id="price" maxlength="15">원
 					</div>
 				</div>
 
@@ -114,9 +117,10 @@
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" class="btn btn-success">둥록</button>
+						<button type="submit" class="btn btn-success">등록</button>
 					</div>
 				</div>
+			</form>
 		</div>
 
 

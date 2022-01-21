@@ -30,11 +30,22 @@
 .footer {
 	width: 100%;
 	height: 100px;
-	position: relative;
+	position: pixed;
 	bottom: 0;
 	background: #5eaeff;
 	text-align: center;
 	bottom: 0;
+}
+
+.title_line {
+	text-align: left;
+	border-bottom: solid 3px #555555;
+	width: 90%;
+	top: 50%;
+	left: 50%;
+	margin: 20px auto;
+	font-size: 25px;
+	margin: 20px auto;
 }
 </style>
 <link rel="stylesheet"
@@ -45,7 +56,9 @@
 <script type="text/javascript">
 	$(function() {
 		$('#btn_delete_all').on('click', function() {
-		$('#btn_cart_test').on('click', function() {delete_check(scno)});
+			$('#btn_cart_test').on('click', function() {
+				delete_check(scno)
+			});
 		});
 		//delete_all(10);
 	});
@@ -114,15 +127,14 @@
 
 	<!-- Section-->
 	<section class="py-5"></section>
-
-	<div class="contents" style="text-align: center;">
-		<h3>주문 목록</h3>
+	<DIV class='title_line'>
+		주문 결재
 		<button type="button" class="btn btn-secondary" id="btn_delete_all"
 			name="btn_delete_all" onclick="delete_all('${sessionScope.id }')"
-			style="">장바구니 비우기</button>
+			style="float: right;">장바구니 비우기</button>
 		<br>
-
-
+	</DIV>
+	<div class="contents" style="text-align: center;">
 
 		<table class="table table-striped"
 			style='width: 60%; margin-left: auto; margin-right: auto;'>
@@ -166,7 +178,7 @@
 										<c:when
 											test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
 											<%-- /static/contents/storage/ --%>
-											<IMG src="/storage/images/${thumb }"
+											<IMG src="/team1/storage/${thumb }"
 												style="width: 120px; height: 80px;">
 
 										</c:when>
@@ -228,9 +240,11 @@
 							action="/order_pay/create.do" method='get'>
 							<input type="hidden" name="${ _csrf.parameterName }"
 								value="${ _csrf.token }">
-							<button type='submit' id='btn_order' class='btn btn-info'
-								style='font-size: 1.5em;'>주문하기</button>
+
 						</form>
+						<button type='submit' id='btn_order' class='btn btn-info'
+							onclick="location.href='/order/openorder.do?mid=${sessionScope.id }'"
+							style='font-size: 1.5em;'>주문하기</button>
 					<td>
 				</tr>
 			</tbody>
