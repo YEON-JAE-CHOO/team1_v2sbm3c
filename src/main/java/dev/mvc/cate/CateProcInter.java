@@ -17,4 +17,5 @@ public interface CateProcInter {
     public int delete(int cateno);
     
     
+    public List<CateVO> list_catename();
 }

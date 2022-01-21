@@ -24,12 +24,6 @@ public class MenuProc implements MenuProcInter {
 		return cnt;
 	}
 	
-    @Override
-    public MenuVO read(int menuno) {
-        MenuVO menuVO = this.menuDAO.read(menuno);
-      
-      return menuVO;
-    }
 
 	@Override
 	public List<MenuVO> testlist(int rno) {
@@ -42,5 +36,19 @@ public class MenuProc implements MenuProcInter {
 	public int delete(int menuno) {
 		int cnt = this.menuDAO.delete(menuno);
 		return cnt;
+	}
+
+	@Override
+	public int update(MenuVO menuvo) {
+		int cnt = this.menuDAO.update(menuvo);
+		
+		return cnt;
+	}
+
+	@Override
+	public MenuVO read(int menuno) {
+
+		MenuVO menuvo = this.menuDAO.read(menuno);
+		return menuvo;
 	}
 }

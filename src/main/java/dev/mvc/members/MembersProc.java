@@ -121,6 +121,12 @@ public class MembersProc implements MembersProcInter {
 	    }
 	    
 	    return sw;
-	  }  
+	  }
+
+	@Override
+	public int select_mno(String id) {
+		int mno = this.membersDAO.select_mno(id);
+		return mno;
+	}  
 	  
 }

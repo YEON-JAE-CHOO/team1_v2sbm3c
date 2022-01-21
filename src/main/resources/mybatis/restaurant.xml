@@ -6,39 +6,99 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dev.mvc.restaurant.RestaurantDAOInter">
 
+	<!-- 식당 등록 -->
+	<insert id="create"
+		parameterType="dev.mvc.restaurant.RestaurantVO">
+		insert into restaurant (rno, rono, name, code ,address1
+		,address2,
+		explanation, type, leastprice, call,
+		cateno,file1,filesaved1,thumb,imagesize)
+		values(restaurant_seq.nextval, 4, #{name},
+		#{code}, #{address1},
+		#{address2}, #{explanation}, '치킨',
+		#{leastprice}, #{call}, #{cateno},
+		#{file1},#{filesaved1}, #{thumb}, #{imagesize})
+	</insert>
 
-  <!-- 식당 등록 -->
-  <insert id="create"
-    parameterType="dev.mvc.restaurant.RestaurantVO">
-    insert into restaurant (rno, rono, name, code ,address1
-    ,address2,
-    explanation, type, leastprice, call, cateno)
-    values(restaurant_seq.nextval, 4, #{name},
-    #{code}, #{address1},
-    #{address2}, #{explanation}, '치킨',
-    #{leastprice}, #{call}, 3)
-  </insert>
+	<select id="getlist"
+		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+		SELECT
+		name, code, address1, rno,
+		explanation, type, leastprice,
+		call,file1,filesaved1,thumb,imagesize
+		FROM
+		restaurant
+	</select>
 
-  <select id="getlist"
-    resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
-    SELECT
-    name, code, address1, rno,
-    explanation, type, leastprice, call
-    FROM
-    restaurant
-  </select>
+	<select id="read_restaurant"
+		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+		SELECT
+		rno,
+		rono, name, address1, address2, explanation,
+		type, leastprice,
+		deliverytip, call, score,
+		reviewcount, recocnt, ordercnt,
+		cateno,file1,filesaved1,thumb,imagesize
+		FROM
+		restaurant WHERE rno =
+		#{rno}
+	</select>
 
-  <select id="create_shop"
-    resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
-    SELECT
-    rno, rono, name, address1, address2, explanation,
-    type, leastprice, deliverytip, call, score,
-    reviewcount, recocnt, ordercnt, cateno
-    FROM
-    restaurant WHERE rno = #{rno}
-  </select>
+	<select id="modification"
+		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+		SELECT
+		rno,
+		rono, name, address1, address2, explanation,
+		type, leastprice,
+		deliverytip, call, score,
+		reviewcount, recocnt, ordercnt, cateno
+		FROM
+		restaurant WHERE rno = #{rno}
+	</select>
 
-  <select id="list_by_cateno"
+	<update id="update"
+		parameterType="dev.mvc.restaurant.RestaurantVO">
+		UPDATE restaurant
+		SET name=#{name}, code=#{code},
+		address1=#{address1}, address2=#{address2},
+		explanation=#{explanation}, leastprice=#{leastprice}, call=#{call}
+		WHERE rno=#{rno}
+	</update>
+
+	<select id="cate_list"
+		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+		SELECT
+		name, code, address1, rno,
+		explanation, type, leastprice, call, cateno
+		FROM
+		restaurant
+		WHERE cateno=#{cateno}
+	</select>
+	<!-- 추천 -->
+	<update id="update_recom" parameterType="int">
+		UPDATE restaurant
+		SET
+		recocnt = recocnt + 1
+		WHERE rno = #{rno}
+	</update>
+
+	<!-- 추천 삽입 -->
+	<insert id="create_reco"
+		parameterType="dev.mvc.restaurant.RecommendationVO">
+		insert into
+		recommendation (recono,rno, mno, rdate)
+		values
+		(recommendation_seq.nextval,#{rno },#{mno },sysdate)
+	</insert>
+
+	<select id="read_reco" parameterType="HashMap" resultType="int">
+		select count(recono)
+		from recommendation
+		where mno=#{mno } and rno
+		=#{rno }
+	</select>
+  
+    <select id="list_by_cateno"
     resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
     SELECT
     rno, rono, name, address1, address2, explanation,
@@ -49,6 +109,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cateno = #{cateno}
     ORDER BY rno ASC
   </select>
-
 
 </mapper>

@@ -9,7 +9,6 @@ public interface ReviewDAOInter {
     
     public int create(ReviewVO reviewVO);
     
-
     public List<ReviewVO> list_mno_asc(int mno);
     
     public List<ReviewVO> list_rno_asc(int rno);

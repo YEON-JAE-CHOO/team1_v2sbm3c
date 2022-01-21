@@ -76,4 +76,10 @@ public interface MembersDAOInter {
 	  public int login(Map<String, Object> map);
 	  
 
+	  /**
+	   * SELECT MNO
+	   */
+	  public int select_mno(String id);
+	  
+
 }

@@ -15,4 +15,7 @@ public interface CateDAOInter {
     public int update_file(CateVO cateVO);
 
     public int delete(int cateno);
+    
+    
+    public List<CateVO> list_catename();
 }

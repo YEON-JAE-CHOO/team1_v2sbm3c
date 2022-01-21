@@ -99,7 +99,7 @@ public class ReviewCont {
     public ModelAndView list_rno_asc(int rno) {
         ModelAndView mav = new ModelAndView();
 
-        RestaurantVO restaurantVO = this.RestuarantProc.create_shop(rno);
+        RestaurantVO restaurantVO = this.RestuarantProc.read_restaurant(rno);
 
         mav.addObject("restaurantVO", restaurantVO);
 

@@ -3,6 +3,7 @@
 <%@ page import="java.util.List"%>
 
 <c:set var="rno" value="${rno }" />
+<c:set var="menuno" value="${menuno }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>메뉴 등록</title>
+<title>메뉴 수정</title>
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -41,10 +42,9 @@
 	<DIV class='container'>
 
 		<br> <br>
-		<H3>메뉴 등록</H3>
+		<H3>메뉴 수정</H3>
 		<h2>${rno }</h2>
 		<div style="height: 100px; background-color: #ef9578;"text-align:center; display:flex;>
-
 
 			<H2>김밥프렌즈</H2>
 		</div>
@@ -55,8 +55,10 @@
 				action="/restaurant/addmenu.do" enctype="multipart/form-data">
 
 				<div class="form-group" id="divId">
-					<label for="inputId" class="col-lg-2 control-label" name="rno"
-						id="rno" value="${rno }">식당 번호 ${rno }</label>
+
+					<input type="hidden" class="col-lg-2 control-label" id="rno"
+						name="rno" maxlength="15" value="${rno }">
+
 					<div class="col-lg-10"></div>
 				</div>
 				<div class="form-group" id="divId">
@@ -88,7 +90,7 @@
 					<label for="inputId" class="col-lg-2 control-label">음식 종류</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control onlyAlphabetAndNumber"
-							id="" menutype"" data-rule-required="true" name="menutype"
+							id="menutype" data-rule-required="true" name="menutype"
 							maxlength="15">
 					</div>
 				</div>
@@ -105,8 +107,9 @@
 				<div class="form-group" id="divId">
 					<label for="inputId" class="col-lg-2 control-label">가격</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control onlyAlphabetAndNumber" width="20%"
-							id="price" data-rule-required="true" name=""price"" maxlength="15">원
+						<input type="text" class="form-control onlyAlphabetAndNumber"
+							width="20%" id="price" data-rule-required="true" name="price"
+							id="price" maxlength="15">원
 					</div>
 				</div>
 
@@ -114,9 +117,10 @@
 
 				<div class="form-group">
 					<div class="col-lg-offset-2 col-lg-10">
-						<button type="submit" class="btn btn-success">둥록</button>
+						<button type="submit" class="btn btn-success">등록</button>
 					</div>
 				</div>
+			</form>
 		</div>
 
 

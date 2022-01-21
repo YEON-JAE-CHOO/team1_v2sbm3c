@@ -9,35 +9,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="testlist" resultType="dev.mvc.menu.MenuVO"
 		parameterType="int">
 		SELECT rno, menuno, title,menutype,
-		explanation, spiciness, price,
+		explanation,
+		spiciness, price,
 		file1,filesaved1, thumb, imagesize
 		FROM
-		menu where rno = #{ rno}
+		menu where rno
+		= #{ rno}
 	</select>
   
-    <select id="read" resultType="dev.mvc.menu.MenuVO" parameterType="int">
-        SELECT rno, menuno, title,menutype,
-        explanation, spiciness, price,
-        file1,filesaved1, thumb, imagesize
-        FROM
-        menu where rno = #{ rno}
-</select>
+
 
 
 
 	<insert id="insert" parameterType="dev.mvc.menu.MenuVO">
 		insert into
-		menu(rno, menuno, menutype, title, explanation, spiciness, price,  file1, filesaved1, thumb, imagesize)
-		values(#{rno}, menu_seq.nextval, #{menutype}, #{title}, #{explanation}, #{spiciness}, #{price}, #{file1}, #{file1saved}, #{thumb}, #{imagesize} )
+		menu(rno, menuno,
+		menutype, title, explanation, spiciness, price, file1, filesaved1,
+		thumb, imagesize)
+		values(#{rno}, menu_seq.nextval, #{menutype},
+		#{title}, #{explanation}, #{spiciness}, #{price}, #{file1},
+		#{filesaved1}, #{thumb}, #{imagesize} )
 	</insert>
 
-	<update id="update" parameterType="int">
+	<update id="update" parameterType="dev.mvc.menu.MenuVO">
 		update menu set title = #{
 		title},
-		explanation = #{ explanation}, menutype = #{ menutype}, spiciness = #{
-		spiciness}, price = #{ price},  file1 = #{ file1},
+		explanation = #{ explanation}, menutype = #{ menutype},
+		spiciness = #{
+		spiciness}, price = #{ price}, file1 = #{ file1},
 		filesaved1 = #{ filesaved1},
-		thumb = #{thumb}, imagesize = #{ imagesize}
+		thumb = #{thumb}, imagesize = #{
+		imagesize}
 		where menuno = #{ menuno}
 	</update>
 
@@ -45,7 +47,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from menu where menuno
 		= #{ menuno}
 	</delete>
+
+	<select id="read" parameterType="int"
+		resultType="dev.mvc.menu.MenuVO">
+		SELECT rno, menuno, title,menutype,
+		explanation, spiciness, price,
+		file1,filesaved1, thumb, imagesize
+		FROM
+		menu where menuno = #{menuno }
+	</select>
   
+
 
 
 </mapper>

@@ -4,13 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MenuVO {
 
-	@Override
-	public String toString() {
-		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title
-				+ ", explanation=" + explanation + ", spiciness=" + spiciness + ", file1=" + file1 + ", file1saved="
-				+ file1saved + ", thumb=" + thumb + ", imagesize=" + imagesize + "]";
-	}
-
 	public int getMenuno() {
 		return menuno;
 	}
@@ -25,6 +18,14 @@ public class MenuVO {
 
 	public void setRno(int rno) {
 		this.rno = rno;
+	}
+
+	public String getMenutype() {
+		return menutype;
+	}
+
+	public void setMenutype(String menutype) {
+		this.menutype = menutype;
 	}
 
 	public String getTitle() {
@@ -43,20 +44,20 @@ public class MenuVO {
 		this.explanation = explanation;
 	}
 
-	public String getMenutype() {
-		return menutype;
-	}
-
-	public void setMenutype(String menutype) {
-		this.menutype = menutype;
-	}
-
 	public String getSpiciness() {
 		return spiciness;
 	}
 
 	public void setSpiciness(String spiciness) {
 		this.spiciness = spiciness;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public String getFile1() {
@@ -67,12 +68,12 @@ public class MenuVO {
 		this.file1 = file1;
 	}
 
-	public String getFile1saved() {
-		return file1saved;
+	public String getFilesaved1() {
+		return filesaved1;
 	}
 
-	public void setFile1saved(String file1saved) {
-		this.file1saved = file1saved;
+	public void setFilesaved1(String filesaved1) {
+		this.filesaved1 = filesaved1;
 	}
 
 	public String getThumb() {
@@ -91,12 +92,20 @@ public class MenuVO {
 		this.imagesize = imagesize;
 	}
 
-	public int getPrice() {
-		return price;
+	public MultipartFile getFile1MF() {
+		return file1MF;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public void setFile1MF(MultipartFile file1mf) {
+		file1MF = file1mf;
+	}
+
+	public String getSize1_label() {
+		return size1_label;
+	}
+
+	public void setSize1_label(String size1_label) {
+		this.size1_label = size1_label;
 	}
 
 	/** 메뉴 번호 */
@@ -119,7 +128,7 @@ public class MenuVO {
 	/** 메인 이미지 */
 	private String file1 = "";
 	/** 실제 저장된 메인 이미지 */
-	private String file1saved = "";
+	private String filesaved1 = "";
 	/** 메인 이미지 preview */
 	private String thumb = "";
 	/** 메인 이미지 크기 */
@@ -132,25 +141,17 @@ public class MenuVO {
 	 */
 	private MultipartFile file1MF;
 
-	public MultipartFile getFile1MF() {
-		return file1MF;
-	}
-
-	public void setFile1MF(MultipartFile file1mf) {
-		file1MF = file1mf;
-	}
-
-	public String getSize1_label() {
-		return size1_label;
-	}
-
-	public void setSize1_label(String size1_label) {
-		this.size1_label = size1_label;
-	}
-
 	/**
 	 * 파일 크기 단위 출력
 	 */
 	private String size1_label;
+
+	@Override
+	public String toString() {
+		return "MenuVO [menuno=" + menuno + ", rno=" + rno + ", menutype=" + menutype + ", title=" + title
+				+ ", explanation=" + explanation + ", spiciness=" + spiciness + ", price=" + price + ", file1=" + file1
+				+ ", filesaved1=" + filesaved1 + ", thumb=" + thumb + ", imagesize=" + imagesize + ", file1MF="
+				+ file1MF + ", size1_label=" + size1_label + "]";
+	}
 
 }

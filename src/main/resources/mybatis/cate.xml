@@ -6,44 +6,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dev.mvc.cate.CateDAOInter">
 
-  <insert id="create" parameterType="dev.mvc.cate.CateVO">
-    INSERT INTO cate(cateno,
-    name, seq , file1,file1saved,thumb1,size1)
-    VALUES(cate_seq.nextval,
-    #{name}, #{seq} , #{file1}, #{file1saved}, #{thumb1}, #{size1} )
-  </insert>
+	<insert id="create" parameterType="dev.mvc.cate.CateVO">
+		INSERT INTO cate(cateno, name, seq , file1,file1saved,thumb1,size1)
+		VALUES(cate_seq.nextval, #{name}, #{seq} , #{file1}, #{file1saved},
+		#{thumb1}, #{size1} )
+	</insert>
 
-  <select id="list_cateno_asc" resultType="dev.mvc.cate.CateVO">
-    select cateno,name,seq,file1,file1saved,thumb1,size1
-    from cate
-    ORDER BY cateno asc
-  </select>
+	<select id="list_cateno_asc" resultType="dev.mvc.cate.CateVO">
+		select cateno,name,seq,file1,file1saved,thumb1,size1
+		from cate
+		ORDER BY cateno asc
+	</select>
 
-  <select id="read" resultType="dev.mvc.cate.CateVO"
-    parameterType="int">
-    select cateno,name,seq,file1,file1saved,thumb1,size1
-    from cate
-    WHERE cateno=#{cateno}
-  </select>
+	<select id="read" resultType="dev.mvc.cate.CateVO"
+		parameterType="int">
+		select cateno,name,seq,file1,file1saved,thumb1,size1
+		from cate
+		WHERE cateno=#{cateno}
+	</select>
 
-  <update id="update_text" parameterType="dev.mvc.cate.CateVO">
-    UPDATE cate
-    SET name=#{name} , seq = #{seq}
-    WHERE cateno = #{cateno}
-  </update>
+	<update id="update_text" parameterType="dev.mvc.cate.CateVO">
+		UPDATE cate
+		SET name=#{name} , seq = #{seq}
+		WHERE cateno = #{cateno}
+	</update>
 
-  <update id="update_file" parameterType="dev.mvc.cate.CateVO">
-    UPDATE cate
-    SET
-    file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1},
-    size1=#{size1}
-    WHERE cateno = #{cateno}
-  </update>
+	<update id="update_file" parameterType="dev.mvc.cate.CateVO">
+		UPDATE cate
+		SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1},
+		size1=#{size1}
+		WHERE cateno = #{cateno}
+	</update>
 
-  <delete id="delete" parameterType="int">
-    delete
-    from cate
-    where cateno = #{cateno}
-  </delete>
+	<delete id="delete" parameterType="int">
+		delete
+		from cate
+		where cateno = #{cateno}
+	</delete>
 
+	<select id="list_catename" resultType="dev.mvc.cate.CateVO">
+		SELECT cateno,name
+		FROM cate
+	</select>
 </mapper> 
