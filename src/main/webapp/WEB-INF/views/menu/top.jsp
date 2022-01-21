@@ -1,6 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>http://localhost:9091</title>
+<script type="text/javascript">
+	function recommend_food() {
+		var url = './recommend_food/start.do';
+		var win = window.open(url, 'AI 서비스', 'width=1500px, height=1060px');
+
+		var x = (screen.width - 700) / 2;
+		var y = (screen.height - 560) / 2;
+
+		win.moveTo(x, y); // 화면 중앙으로 이동
+	}
+</script>
+</head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 		data-bs-target="#navbarSupportedContent"
@@ -26,14 +45,14 @@
 						href="/members/login.do">Login</a></li>
 				</c:otherwise>
 			</c:choose>
+
 			<li class="nav-item"><a class="nav-link"
 				href="/members/create.do">회원가입</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/menu/list.do?rno=12">식당/메뉴</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="daum_map.jsp">쇼핑카트</a></li>
+			<li class="nav-item"><a class="nav-link" href="daum_map.jsp">쇼핑카트</a></li>
 
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" href=""
@@ -44,6 +63,8 @@
 					<li><hr class="dropdown-divider" /></li>
 					<li><a class="dropdown-item" href="/restaurant/list.do">가게
 							리스트</a></li>
+					<li><a class="dropdown-item"
+						href="javascript: recommend_food()">카테고리 추천</a></li>
 				</ul></li>
 		</ul>
 		<c:choose>
@@ -59,3 +80,5 @@
 	</div>
 
 </nav>
+</body>
+</html>
