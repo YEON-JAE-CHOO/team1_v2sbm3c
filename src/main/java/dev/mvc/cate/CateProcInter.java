@@ -14,5 +14,7 @@ public interface CateProcInter {
     
     public int update_file(CateVO cateVO);
     
-    public int delete(int contentsno);
+    public int delete(int cateno);
+    
+    
 }

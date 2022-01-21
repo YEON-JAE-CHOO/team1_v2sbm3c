@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dev.mvc.review.ReviewDAOInter"> 
+
+  <insert id="create" parameterType="dev.mvc.review.ReviewVO">
+    INSERT INTO review(reviewno, rno, mno , title, content, rdate, score)
+    VALUES(review_seq.nextval, #{rno}, #{mno} , #{title}, #{content}, sysdate, #{score})
+  </insert>
+  
+      <select id="list_mno_asc" resultType="dev.mvc.review.ReviewVO" parameterType="int">
+    select reviewno, rno, mno , title, content, rdate, score 
+    from review
+    where mno=#{mno}
+    order by reviewno asc
+</select>
+
+      <select id="list_rno_asc" resultType="dev.mvc.review.ReviewVO" parameterType="int">
+    select reviewno, rno, mno , title, content, rdate, score 
+    from review
+    where rno=#{rno}
+    order by reviewno asc
+</select>
+
+      <select id="read" resultType="dev.mvc.review.ReviewVO" parameterType="int">
+    select reviewno, rno, mno , title, content, rdate, score 
+    from review
+    where reviewno=#{reviewno}
+</select>
+
+
+      <update id="update"  parameterType="dev.mvc.review.ReviewVO">
+    update review
+    set title=#{title},content=#{content},rdate = #{rdate},score=#{score}
+    where reviewno=#{reviewno}
+</update>
+
+  <delete id="delete" parameterType="int">
+  delete
+from review
+where reviewno=#{reviewno}
+  </delete>
+  
+  </mapper> 
+  

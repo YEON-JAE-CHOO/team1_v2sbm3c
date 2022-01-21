@@ -14,6 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 		menu where rno = #{ rno}
 	</select>
+  
+    <select id="read" resultType="dev.mvc.menu.MenuVO" parameterType="int">
+        SELECT rno, menuno, title,menutype,
+        explanation, spiciness, price,
+        file1,filesaved1, thumb, imagesize
+        FROM
+        menu where rno = #{ rno}
+</select>
+
+
 
 	<insert id="insert" parameterType="dev.mvc.menu.MenuVO">
 		insert into
@@ -35,5 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from menu where menuno
 		= #{ menuno}
 	</delete>
+  
+
 
 </mapper>

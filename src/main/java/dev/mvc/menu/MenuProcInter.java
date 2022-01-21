@@ -11,6 +11,10 @@ public interface MenuProcInter {
 	 */
 	public List<MenuVO> testlist(int rno);
 
+	
+	  public MenuVO read(int menuno);
+	  
+	  
 	/**
 	 * 등록
 	 * 

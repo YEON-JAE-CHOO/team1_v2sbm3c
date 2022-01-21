@@ -3,42 +3,47 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
 <mapper namespace="dev.mvc.cate.CateDAOInter">
 
-<insert id="create"  parameterType="dev.mvc.cate.CateVO">
-    INSERT INTO cate(cateno, name, seq , file1,file1saved,thumb1,size1)
-    VALUES(cate_seq.nextval, #{name}, #{seq} , #{file1}, #{file1saved}, #{thumb1}, #{size1} )
+  <insert id="create" parameterType="dev.mvc.cate.CateVO">
+    INSERT INTO cate(cateno,
+    name, seq , file1,file1saved,thumb1,size1)
+    VALUES(cate_seq.nextval,
+    #{name}, #{seq} , #{file1}, #{file1saved}, #{thumb1}, #{size1} )
   </insert>
-  
-   <select id="list_cateno_asc" resultType="dev.mvc.cate.CateVO">
+
+  <select id="list_cateno_asc" resultType="dev.mvc.cate.CateVO">
     select cateno,name,seq,file1,file1saved,thumb1,size1
-    from cate 
+    from cate
     ORDER BY cateno asc
   </select>
-  
-  <select id="read" resultType="dev.mvc.cate.CateVO" parameterType="int">
-  select cateno,name,seq,file1,file1saved,thumb1,size1
-  from cate 
-  WHERE cateno=#{cateno}
-</select>
+
+  <select id="read" resultType="dev.mvc.cate.CateVO"
+    parameterType="int">
+    select cateno,name,seq,file1,file1saved,thumb1,size1
+    from cate
+    WHERE cateno=#{cateno}
+  </select>
 
   <update id="update_text" parameterType="dev.mvc.cate.CateVO">
-UPDATE cate
-SET name=#{name} , seq = #{seq}
-WHERE cateno = #{cateno}
-</update>
+    UPDATE cate
+    SET name=#{name} , seq = #{seq}
+    WHERE cateno = #{cateno}
+  </update>
 
   <update id="update_file" parameterType="dev.mvc.cate.CateVO">
     UPDATE cate
-    SET file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1}, size1=#{size1}
+    SET
+    file1=#{file1}, file1saved=#{file1saved}, thumb1=#{thumb1},
+    size1=#{size1}
     WHERE cateno = #{cateno}
-</update>
+  </update>
 
   <delete id="delete" parameterType="int">
-    delete 
+    delete
     from cate
     where cateno = #{cateno}
   </delete>
-   
+
 </mapper> 

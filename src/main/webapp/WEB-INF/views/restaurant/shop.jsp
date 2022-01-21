@@ -61,9 +61,15 @@
 					<div class="fs-5 mb-2">
 						<span class="text-decoration-line-through">가게 번호 - </span> <span>${restaurantVO.call}</span>
 					</div>
+                    
 
 					<p class="fs-5 mb-5">주소 - ${restaurantVO.address1}
 						${restaurantVO.address2}</p>
+                       
+                       <div class="fs-5 mb-2">
+                       <a class="text-decoration-line-through" href='../review/list_rno_asc.do?rno=${restaurantVO.rno }'>리뷰 보러 가기</a>
+                    </div>
+                        
 					<p class="lead">${restaurantVO.explanation}</p>
 					<div class="d-flex">
 						<input class="form-control text-center me-3" id="inputQuantity"

@@ -58,12 +58,12 @@
                         <!-- Product image-->
                         <c:choose>
                         <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                        <img class="card-img-top"
-                            src="/cate/storage/${file1}" alt="..." />
+                        <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img class="card-img-top"
+                            src="/cate/storage/${file1}" alt="..." /></a>
                          </c:when>
                          <c:otherwise>
-                         <img class="card-img-top"
-                            src="/main/전체보기.jpg" alt="..." />
+                         <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img class="card-img-top"
+                            src="/main/전체보기.jpg" alt="..." /></a>
                           </c:otherwise>
                           </c:choose>
                              
@@ -71,7 +71,7 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">${name}</h5>
+                                <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><h5 class="fw-bolder">${name}</h5></a>
                             </div>
                         </div>
                         <!-- Product actions-->

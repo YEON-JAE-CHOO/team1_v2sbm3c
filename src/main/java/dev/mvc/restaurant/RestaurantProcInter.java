@@ -9,5 +9,8 @@ public interface RestaurantProcInter {
 	public List<RestaurantVO> getlist();
 	
 	public RestaurantVO create_shop(int rno);
+	
+    public List<RestaurantVO> list_by_cateno(int cateno);   
+	
     
 }

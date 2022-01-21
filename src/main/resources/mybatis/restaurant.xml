@@ -7,35 +7,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.restaurant.RestaurantDAOInter">
 
 
-	<!-- 식당 등록 -->
-	<insert id="create"
-		parameterType="dev.mvc.restaurant.RestaurantVO">
-		insert into restaurant (rno, rono, name, code ,address1
-		,address2,
-		explanation, type, leastprice, call, cateno)
-		values(restaurant_seq.nextval, 4, #{name},
-		#{code}, #{address1},
-		#{address2}, #{explanation}, '치킨',
-		#{leastprice}, #{call}, 3)
-	</insert>
+  <!-- 식당 등록 -->
+  <insert id="create"
+    parameterType="dev.mvc.restaurant.RestaurantVO">
+    insert into restaurant (rno, rono, name, code ,address1
+    ,address2,
+    explanation, type, leastprice, call, cateno)
+    values(restaurant_seq.nextval, 4, #{name},
+    #{code}, #{address1},
+    #{address2}, #{explanation}, '치킨',
+    #{leastprice}, #{call}, 3)
+  </insert>
 
-	<select id="getlist"
-		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
-		SELECT
-		name, code, address1, rno,
-		explanation, type, leastprice, call
-		FROM
-		restaurant
-	</select>
+  <select id="getlist"
+    resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+    SELECT
+    name, code, address1, rno,
+    explanation, type, leastprice, call
+    FROM
+    restaurant
+  </select>
 
-	<select id="create_shop"
-		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
-		SELECT 
-		rno, rono, name, address1, address2, explanation, 
-		type, leastprice, deliverytip, call, score, 
-		reviewcount, recocnt, ordercnt, cateno
-		FROM
-		restaurant WHERE rno = #{rno}
-	</select>
-	
+  <select id="create_shop"
+    resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+    SELECT
+    rno, rono, name, address1, address2, explanation,
+    type, leastprice, deliverytip, call, score,
+    reviewcount, recocnt, ordercnt, cateno
+    FROM
+    restaurant WHERE rno = #{rno}
+  </select>
+
+  <select id="list_by_cateno"
+    resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+    SELECT
+    rno, rono, name, address1, address2, explanation,
+    type, leastprice, deliverytip, call, score,
+    reviewcount, recocnt, ordercnt, cateno
+    FROM
+    restaurant
+    WHERE cateno = #{cateno}
+    ORDER BY rno ASC
+  </select>
+
+
 </mapper>
