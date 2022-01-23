@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <style>
-footer {
-	position: absolute;
-	left: 0;
-	bottom: 0;
+
+.footer {
 	width: 100%;
-	padding: 15px 0;
+	height: 100px;
+	position: relative;
+	bottom: 0;
+	background: #5eaeff;
 	text-align: center;
-	color: white;
-	background: blue;
+	bottom: 0;
 }
 </style>
 <!-- Footer-->

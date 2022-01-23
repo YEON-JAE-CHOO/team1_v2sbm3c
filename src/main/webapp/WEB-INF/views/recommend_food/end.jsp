@@ -11,6 +11,8 @@
 <script type="text/JavaScript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+
+
 <script type="text/javascript">
 	$(function() {
 		send(); // Django ajax 호출
@@ -18,7 +20,7 @@
 			history.back();
 		}); // 이전
 		$('#btn_close').on('click', function() {
-			window.close();
+			location.href = '/index.do';
 		}); // 윈도우 닫기
 	});
 
@@ -33,9 +35,13 @@
 			dataType : 'json', // 응답 형식: json, html, xml...
 			data : params, // 데이터
 			success : function(rdata) { // 응답이 온경우
+				
+				var mid = ${sessionScope.mno}
+			
 				alert(rdata.index);
 				console.log(rdata.index);
-				if (rdata.index == 0) { // 한식 추천 필요
+				ajax_update(mid, rdata.index);
+/* 				if (rdata.index == 0) { // 한식 추천 필요
 					$('#kor').css('display', '');
 				} else if (rdata.index == 1) { // 중식 추천 필요
 					$('#chn').css('display', '');
@@ -45,7 +51,7 @@
 					$('#wes').css('display', '');
 				} else { // 양식 추천 필요
 					$('#fod').css('display', '');
-				}
+				} */
 				//				$('#panel').html(""); // animation gif 삭제
 				//				$('#panel').css('display', 'none'); // 숨겨진 태그의 출력
 
@@ -59,9 +65,29 @@
 			}
 		});
 
-		// $('#panel').html('처리중입니다....');  // 텍스트를 출력하는 경우
-		//		$('#panel').html("<img src='/images/ani04.gif' style='width: 10%;'>");
-		//		$('#panel').show(); // 숨겨진 태그의 출력
+	function ajax_update(mid, index) {
+		console.log("mid-"+mid+" index-"+index)
+		$.ajax({
+			url : '/tensorflow/ajax_update.do',
+			type : 'post', // get, post
+			cache : false, // 응답 결과 임시 저장 취소
+			async : true, // true: 비동기 통신
+			dataType : 'json', // 응답 형식: json, html, xml 
+			data : params, // 데이터
+			success : function(rdata) { // 응답이 온경우
+				
+				if (rdata.cnt >= 1) {
+					alert('추천 음식 카테고리가 설정되었습니다.');
+				} else {
+					alert('추천 음식 카테고리 설정에 실패하였습니다.');
+				}
+			},
+			// Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+			error : function(request, status, error) { // callback 함수
+				console.log(error);
+			}
+		}); //  $.ajax END
+	}
 	}
 </script>
 <style>
@@ -74,6 +100,7 @@
 	padding: 5px;
 	cursor: pointer;
 }
+
 img {
 	width: 200px;
 }
@@ -234,7 +261,7 @@ img {
 			</DIV>
 		</form>
 	</DIV>
-		<!-- Footer-->
+	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<jsp:include page="./../menu/bottom.jsp" flush='false' />
 	</footer>

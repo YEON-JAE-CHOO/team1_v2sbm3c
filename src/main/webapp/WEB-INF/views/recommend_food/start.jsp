@@ -55,7 +55,7 @@
 	</DIV>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
-		<jsp:include page="./../menu/bottom.jsp" flush='false' />
+		<jsp:include page="../menu/bottom.jsp" flush='false' />
 	</footer>
 	<!-- Bootstrap core JS-->
 	<script

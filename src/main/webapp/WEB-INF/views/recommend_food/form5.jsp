@@ -47,7 +47,7 @@
 					}
 				});
 		$('#btn_close').on('click', function() {
-			window.close();
+			location.href = '/index.do';
 		}); // 윈도우 닫기
 	});
 </script>
@@ -70,6 +70,17 @@
 
 .td_radio_select {
 	cursor: pointer;
+}
+
+footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 0;
+	text-align: center;
+	color: white;
+	background: blue;
 }
 </style>
 

@@ -50,7 +50,7 @@
 					}
 				});
 		$('#btn_close').on('click', function() {
-			window.close();
+			location.href = '/index.do';
 		}); // 윈도우 닫기
 	});
 </script>

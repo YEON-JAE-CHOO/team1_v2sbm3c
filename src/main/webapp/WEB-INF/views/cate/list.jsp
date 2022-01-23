@@ -57,12 +57,12 @@
                     <div class="card h-100">
                         <!-- Product image-->
                         <c:choose>
-                        <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> 
-                        <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img class="card-img-top"
-                            src="/cate/storage/${file1}" alt="..." /></a>
+                        <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif') || thumb1.endsWith('jpeg')}"> 
+                        <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img class="card-img-top" height="200px"
+                            src="/main/${file1}" alt="..." /></a>
                          </c:when>
                          <c:otherwise>
-                         <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img class="card-img-top"
+                         <a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img class="card-img-top" height="200px"
                             src="/main/전체보기.jpg" alt="..." /></a>
                           </c:otherwise>
                           </c:choose>

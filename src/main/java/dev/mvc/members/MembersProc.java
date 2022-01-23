@@ -127,6 +127,12 @@ public class MembersProc implements MembersProcInter {
 	public int select_mno(String id) {
 		int mno = this.membersDAO.select_mno(id);
 		return mno;
+	}
+	
+	@Override
+	public int update_recommend(HashMap<Object, Object> map) {
+		int cnt = this.membersDAO.update_recommend(map);
+		return cnt;
 	}  
 	  
 }
