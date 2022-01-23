@@ -4,12 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>관심분야 등록</title>
-<link href="/css/style.css" rel="Stylesheet" type="text/css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <script type="text/JavaScript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 <script type="text/javascript">
 	$(function() {
@@ -35,15 +35,15 @@
 			success : function(rdata) { // 응답이 온경우
 				alert(rdata.index);
 				console.log(rdata.index);
-				if (rdata.index == 0) { // 개발 관련 도서 추천 필요
+				if (rdata.index == 0) { // 한식 추천 필요
 					$('#kor').css('display', '');
-				} else if (rdata.index == 1) { // 해외 여행 관련 도서 추천 필요
+				} else if (rdata.index == 1) { // 중식 추천 필요
 					$('#chn').css('display', '');
-				} else if (rdata.index == 2) { // 해외 여행 관련 도서 추천 필요
+				} else if (rdata.index == 2) { // 일식 추천 필요
 					$('#jpn').css('display', '');
-				} else if (rdata.index == 3) { // 해외 여행 관련 도서 추천 필요
+				} else if (rdata.index == 3) { // 분식 추천 필요
 					$('#wes').css('display', '');
-				} else { // 소설 관련 도서 추천 필요
+				} else { // 양식 추천 필요
 					$('#fod').css('display', '');
 				}
 				//				$('#panel').html(""); // animation gif 삭제
@@ -66,18 +66,37 @@
 </script>
 <style>
 * {
- text-align: center;
+	text-align: center;
 }
 
 .td_image {
- vertical-align: middle;
- padding: 5px;
- cursor: pointer;
+	vertical-align: middle;
+	padding: 5px;
+	cursor: pointer;
+}
+img {
+	width: 200px;
 }
 </style>
 
 </head>
 <body>
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<jsp:include page="./../menu/top.jsp" flush='false' />
+	</nav>
+	<!-- Header-->
+	<header class="py-4" style="background-color: #ef9578;">
+		<div class="container px-4 px-lg-5 my-5"
+			style="background-color: #ef9578;">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Shop in style</h1>
+				<p class="lead fw-normal text-white-50 mb-0">With this shop
+					hompeage template</p>
+			</div>
+		</div>
+	</header>
+	<br>
 	<DIV style='display: none;'>
 		<form name='frm' id='frm'>
 			<input type='hidden' name='step1' value='${param.step1 }'> <input
@@ -89,7 +108,7 @@
 	</DIV>
 
 	<DIV class="container">
-		<H2>참여해주셔서 감사합니다.</H2>
+		<H2>추천 음식이 등록 되었습니다.</H2>
 		<H2>추천 음식</H2>
 
 		<DIV id='panel' style='margin: 30px auto; width: 90%;'>
@@ -215,6 +234,15 @@
 			</DIV>
 		</form>
 	</DIV>
+		<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<jsp:include page="./../menu/bottom.jsp" flush='false' />
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
 </body>
 </html>
 
