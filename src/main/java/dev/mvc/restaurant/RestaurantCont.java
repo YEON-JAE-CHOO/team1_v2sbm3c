@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.cate.CateProc;
+import dev.mvc.cate.CateProcInter;
+import dev.mvc.cate.CateVO;
 import dev.mvc.cate.CateProcInter;
 import dev.mvc.cate.CateVO;
 import dev.mvc.menu.Menu;
@@ -35,10 +38,11 @@ public class RestaurantCont {
 	@Autowired
 	@Qualifier("dev.mvc.menu.MenuProc")
 	private MenuProcInter menuProc = null;
-
+	
 	@Autowired
 	@Qualifier("dev.mvc.cate.CateProc")
-	private CateProcInter cateProc;
+	private CateProcInter cateProc = null;
+
 
 	@Autowired
 	@Qualifier("dev.mvc.orders.OrdersProc")
@@ -168,6 +172,20 @@ public class RestaurantCont {
 		return mav; // forward
 	}
 
+    @RequestMapping(value="/restaurant/list_by_cateno.do", method=RequestMethod.GET )
+    public ModelAndView list_by_cateno(int cateno) {
+      ModelAndView mav = new ModelAndView();
+      
+      List<RestaurantVO> list = this.restaurantProc.list_by_cateno(cateno);
+      mav.addObject("list", list); // request.setAttribute("list", list);
+
+      CateVO  cateVO = cateProc.read(cateno);
+      mav.addObject("CateVO", cateVO); 
+      
+      mav.setViewName("/restaurant/list_by_cateno"); // /cate/list_by_categrpno.jsp
+      return mav;
+    }
+    
 	@RequestMapping(value = "/restaurant/modification.do", method = RequestMethod.GET)
 	public ModelAndView modification(int rno) {
 

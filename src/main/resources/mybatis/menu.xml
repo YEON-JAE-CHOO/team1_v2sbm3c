@@ -16,6 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		menu where rno
 		= #{ rno}
 	</select>
+  
+
+
+
 
 	<insert id="insert" parameterType="dev.mvc.menu.MenuVO">
 		insert into
@@ -52,5 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM
 		menu where menuno = #{menuno }
 	</select>
+  
+
+
 
 </mapper>

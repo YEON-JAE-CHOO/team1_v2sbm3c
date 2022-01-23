@@ -266,7 +266,7 @@ public class OrdersCont {
 		mav.addObject("list", list);
 		mav.addObject("restaurantVO", restaurantVO);
 
-		mav.setViewName("/restaurant/sales");
+		mav.setViewName("/order/orderList");
 
 		return mav;
 

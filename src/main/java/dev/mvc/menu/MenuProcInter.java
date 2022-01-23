@@ -10,7 +10,7 @@ public interface MenuProcInter {
 	 * @return
 	 */
 	public List<MenuVO> testlist(int rno);
-
+	  
 	/**
 	 * 등록
 	 * 

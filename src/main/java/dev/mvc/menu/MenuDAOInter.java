@@ -2,6 +2,8 @@ package dev.mvc.menu;
 
 import java.util.List;
 
+import dev.mvc.cate.CateVO;
+
 public interface MenuDAOInter {
 
 	public List<MenuVO> testlist(int rno);
@@ -13,6 +15,7 @@ public interface MenuDAOInter {
 	 * @return
 	 */
 	public int insert(MenuVO menuvo);
+	
 
 	/**
 	 * 삭제

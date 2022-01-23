@@ -20,6 +20,7 @@ import dev.mvc.tool.Upload;
 
 @Controller
 public class CateCont {
+    
     @Autowired
     @Qualifier("dev.mvc.cate.CateProc")
     private CateProcInter cateProc;
@@ -197,8 +198,8 @@ public class CateCont {
         // -------------------------------------------------------------------
         // 파일 삭제 시작
         // -------------------------------------------------------------------
-        //System.out.println("cateVO: " + vo.getContentsno());
-        //System.out.println("file1: " + vo.getFile1());
+        // System.out.println("cateVO: " + vo.getContentsno());
+        // System.out.println("file1: " + vo.getFile1());
 
         String file1saved = cateVO_old.getFile1saved();
         String thumb1 = cateVO_old.getThumb1();
@@ -299,8 +300,8 @@ public class CateCont {
         // -------------------------------------------------------------------
         // 삭제할 파일 정보를 읽어옴.
         CateVO vo = cateProc.read(cateno);
-         System.out.println("cateno: " + vo.getCateno());
-         System.out.println("file1: " + vo.getFile1());
+        System.out.println("cateno: " + vo.getCateno());
+        System.out.println("file1: " + vo.getFile1());
 
         String file1saved = vo.getFile1saved();
         String thumb1 = vo.getThumb1();

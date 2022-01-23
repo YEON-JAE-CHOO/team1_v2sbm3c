@@ -6,7 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dev.mvc.restaurant.RestaurantDAOInter">
 
-
 	<!-- 식당 등록 -->
 	<insert id="create"
 		parameterType="dev.mvc.restaurant.RestaurantVO">
@@ -98,6 +97,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mno=#{mno } and rno
 		=#{rno }
 	</select>
+  
+    <select id="list_by_cateno"
+    resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
+    SELECT
+    rno, rono, name, address1, address2, explanation,
+    type, leastprice, deliverytip, call, score,
+    reviewcount, recocnt, ordercnt, cateno
+    FROM
+    restaurant
+    WHERE cateno = #{cateno}
+    ORDER BY rno ASC
+  </select>
 
 
 

@@ -97,13 +97,12 @@ CREATE TABLE menu(
 /* Table Name: 리뷰 */
 /**********************************/
 CREATE TABLE review(
-		rno INTEGER NOT NULL PRIMARY KEY,
+        reviewno INTEGER NOT NULL PRIMARY KEY,
 		rno INTEGER NOT NULL,
 		mno INTEGER NOT NULL,
 		title VARCHAR(50) NOT NULL,
 		content VARCHAR(200) NOT NULL,
-		date DATE NOT NULL,
-		time TIME NOT NULL,
+		rdate DATE NOT NULL,
 		score INTEGER NOT NULL,
   FOREIGN KEY (rno) REFERENCES restaurant (rno),
   FOREIGN KEY (mno) REFERENCES members (mno)
@@ -158,6 +157,14 @@ CREATE TABLE delivery(
 		driver VARCHAR(10),
   FOREIGN KEY (ono) REFERENCES orders (ono)
 );
+
+DROP SEQUENCE cate_seq;
+CREATE SEQUENCE cate_seq
+  START WITH 1        
+  INCREMENT BY 1    
+  MAXVALUE 9999999999   
+  CACHE 2                  
+  NOCYCLE;  
 
 /**********************************/
 /* Table Name: 찜 */

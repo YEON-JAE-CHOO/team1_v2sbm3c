@@ -4,18 +4,18 @@ import java.util.List;
 
 public interface CateDAOInter {
 
-    
     public int create(CateVO cateVO);
-    
+
     public List<CateVO> list_cateno_asc();
-    
+
     public CateVO read(int cateno);
-    
+
     public int update_text(CateVO cateVO);
-    
+
     public int update_file(CateVO cateVO);
+
+    public int delete(int cateno);
     
-    public int delete(int contentsno);
     
     public List<CateVO> list_catename();
 }
