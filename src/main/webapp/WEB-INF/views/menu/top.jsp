@@ -33,12 +33,10 @@
 			<li class="nav-item"><a class="nav-link"
 				href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
 
-             
-                <li class="nav-item"><a class="nav-link"
-                href="/tensorflow/chatbot.do">챗봇</a></li>
 
 			<li class="nav-item"><a class="nav-link"
-				href="daum_map.jsp">쇼핑카트</a></li>
+				href="/tensorflow/chatbot.do">챗봇</a></li>
+
 
 
 			<li class="nav-item dropdown"><a
@@ -54,6 +52,8 @@
 		</ul>
 		<c:choose>
 			<c:when test="${sessionScope.id != null}">
+				<a href="/order/recent_order.do?mid=${sessionScope.id }"
+					class="bi-cart-fill me-1"> 최근 주문 내역 </a>
 				<a href="/shoppingcart/openshoppingcart.do?mid=${sessionScope.id }"
 					class="bi-cart-fill me-1"> Cart <span
 					class="badge bg-dark text-white ms-1 rounded-pill">0</span>

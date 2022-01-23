@@ -11,8 +11,8 @@ public class TensorflowCont {
         System.out.println("-> TensorflowCont created.");
         
     }
- // http://localhost:9091/tensorflow/chatbot.do
-    @RequestMapping(value = {"/tensorflow/chatbot.do"}, method = RequestMethod.GET)
+ // http://localhost:9091/tensorflow/chatbot.do/tensorflow/chatbot.do
+    @RequestMapping(value = {""}, method = RequestMethod.GET)
     public ModelAndView chatbot() {
       ModelAndView mav = new ModelAndView();
       mav.setViewName("/tensorflow/chatbot");  // /WEB-INF/views/tensorflow/chatbot.jsp

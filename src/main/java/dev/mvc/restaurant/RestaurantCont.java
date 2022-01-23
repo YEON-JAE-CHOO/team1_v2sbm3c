@@ -21,6 +21,8 @@ import dev.mvc.cate.CateVO;
 import dev.mvc.menu.Menu;
 import dev.mvc.menu.MenuProcInter;
 import dev.mvc.menu.MenuVO;
+import dev.mvc.orders.OrdersProcInter;
+import dev.mvc.orders.OrdersVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -37,6 +39,10 @@ public class RestaurantCont {
 	@Autowired
 	@Qualifier("dev.mvc.cate.CateProc")
 	private CateProcInter cateProc;
+
+	@Autowired
+	@Qualifier("dev.mvc.orders.OrdersProc")
+	private OrdersProcInter ordersProc;
 
 	public RestaurantCont() {
 		System.out.println("-> RestaurantCont created.");
@@ -79,7 +85,7 @@ public class RestaurantCont {
 		String filesaved1 = ""; // 저장된 파일명, image
 		String thumb1 = ""; // preview image
 		String uploadDir = this.uploadDir; // 파일 업로드 경로
-		
+
 		// 전송 파일이 없어도 file1MF 객체가 생성됨.
 		// <input type='file' class="form-control" name='file1MF' id='file1MF'
 		// value='' placeholder="파일 선택">
@@ -104,10 +110,10 @@ public class RestaurantCont {
 		restaurantVO.setFilesaved1(filesaved1);
 		restaurantVO.setThumb(thumb1);
 		restaurantVO.setImagesize(size1);
-		
+
 		ModelAndView mav = new ModelAndView();
 
-		System.out.println("식당 -------->"+restaurantVO.toString());
+		System.out.println("식당 -------->" + restaurantVO.toString());
 		int cnt = this.restaurantProc.create(restaurantVO); // 등록 처리
 		// cnt = 0; // error test
 
@@ -249,6 +255,34 @@ public class RestaurantCont {
 		}
 
 		return json.toString();
+	}
+
+	// http://localhost:9091/restaurant/open_sales.do?rno=25
+	@RequestMapping(value = "/restaurant/open_sales.do", method = RequestMethod.GET)
+	public ModelAndView open_sales(int rno) {
+		ModelAndView mav = new ModelAndView();
+
+		RestaurantVO restaurantVO = this.restaurantProc.read_restaurant(rno);
+		List<OrdersVO> ovoList = this.ordersProc.List_order_by_rno(rno);
+
+		String date = "20220123";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("date", date);
+		map.put("rno", rno);
+
+		Integer totalprice = this.ordersProc.select_totalprice_by_rno_date(map);
+		Integer totalprice_by_rno = this.ordersProc.select_totalprice_by_rno(rno);
+		System.out.println("totalprice_by_rno=>" + totalprice_by_rno);
+		System.out.println("totalprice=>" + totalprice);
+		System.out.println("rvoList=>" + ovoList.toString());
+
+		mav.addObject("totalprice_by_rno", totalprice_by_rno);
+		mav.addObject("ovoList", ovoList);
+		mav.addObject("restaurantVO", restaurantVO);
+		mav.setViewName("/restaurant/sales");
+
+		return mav;
+
 	}
 
 }

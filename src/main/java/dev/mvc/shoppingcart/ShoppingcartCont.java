@@ -45,19 +45,13 @@ public class ShoppingcartCont {
 		System.out.println("-> ShoppingcartCont created.");
 	}
 
-	/**
-	 * 장바구니 페이지 오픈 d d d d d d d d
-	 * 
-	 * d d d
-	 * 
-	 * d d d이거 rno 받아야됨 !!! 아닌가?
-	 */
 	// http://localhost:9091/shoppingcart/openshoppingcart.do
 	@RequestMapping(value = "/shoppingcart/openshoppingcart.do", method = RequestMethod.GET)
-	public ModelAndView openshoppingcart(String mid) {
+	public ModelAndView openshoppingcart(String mid, int rno) {
 		ModelAndView mav = new ModelAndView();
 
 		System.out.println("mid -? " + mid);
+		System.out.println("rno -? " + rno);
 
 		int mno = this.membersproc.select_mno(mid);
 
@@ -75,6 +69,7 @@ public class ShoppingcartCont {
 			System.out.println("restaurantvo 12 -> " + restaurantvo.toString());
 			System.out.println("cart_sum -> " + cart_sum);
 
+			mav.addObject("rno", rno);
 			mav.addObject("list", list);
 			mav.addObject("leastprcie", restaurantvo.getLeastprice());
 			mav.addObject("deliverytip", restaurantvo.getDeliverytip());
@@ -96,11 +91,14 @@ public class ShoppingcartCont {
 	@ResponseBody
 	public String cart_add(HttpSession session, int rno, int menuno, String mid) {
 		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
+		RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(rno);
+		int mno = this.membersproc.select_mno(mid);
+		Integer cart_sum = this.shoppingcartProc.cart_sum(mno);
 
+		System.out.println("주문 최소비용 :" + restaurantvo.getLeastprice());
+		System.out.println("카트 총 금액 :" + cart_sum);
 		System.out.println("cart_add 메서드 진행");
 		System.out.println("mid -> " + mid);
-
-		int mno = this.membersproc.select_mno(mid);
 		System.out.println("selected mno -> " + mno);
 
 		/** 초기 수량 **/
@@ -113,9 +111,7 @@ public class ShoppingcartCont {
 		map.put("mno", mno);
 
 		int distinct_rno_count = this.shoppingcartProc.distinct_count_rno(mno);
-		int selected_rno = this.shoppingcartProc.select_rno_by_mno(mno);
-		System.out.println("distinct_rno_count -> " + distinct_rno_count + "   selected_rno ->" + selected_rno);
-
+		Integer selected_rno = this.shoppingcartProc.select_rno_by_mno(mno);
 		JSONObject json = new JSONObject();
 
 		if (distinct_rno_count == 0) {
@@ -145,7 +141,7 @@ public class ShoppingcartCont {
 	/**/
 	@RequestMapping(value = "/shoppingcart/cart_delete_all.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String cart_delete_all(HttpSession session, String mid) {
+	public String cart_delete_all(HttpSession session, String mid, int rno) {
 		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
 
 		int mno = this.membersproc.select_mno(mid);
@@ -167,13 +163,37 @@ public class ShoppingcartCont {
 		return json.toString();
 	}
 
+	/** 쇼핑카트 확인 */
+	/**/
+	/**/
+	@RequestMapping(value = "/shoppingcart/check_order.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String check_order(HttpSession session, String mid) {
+		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
+
+		int mno = this.membersproc.select_mno(mid);
+		Integer cnt = this.shoppingcartProc.cart_count(mno);
+		System.out.println("cnt ==>" + cnt);
+
+		JSONObject json = new JSONObject();
+		if (cnt >= 1) {
+			json.put("cnt", cnt);
+			json.put("mno", mno);
+		}
+
+		json.put("cnt", cnt);
+
+		return json.toString();
+	}
+
 	/**
 	 * 상품 삭제 http://localhost:9091/cart/delete.do
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/shoppingcart/delete.do", method = RequestMethod.POST)
-	public ModelAndView delete(HttpSession session, @RequestParam(value = "scno", defaultValue = "0") int scno) {
+	public ModelAndView delete(HttpSession session, @RequestParam(value = "scno", defaultValue = "0") int scno,
+			int rno) {
 		ModelAndView mav = new ModelAndView();
 
 		String mid = (String) session.getAttribute("id");
@@ -181,7 +201,7 @@ public class ShoppingcartCont {
 		int cnt = this.shoppingcartProc.shoppingcart_delete(scno);
 		System.out.println("삭제 성공 cnt ->>" + cnt);
 
-		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do?mid=" + mid);
+		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do?mid=" + mid + "&rno=" + rno);
 
 		return mav;
 	}
