@@ -12,10 +12,10 @@ public interface ShoppingcartProcInter {
 	public List<Menu_Memeber_Shoppingcart_VO> show_cart(int mno);
 
 	/** 장바구니 개수 **/
-	public int cart_count(int mno);
+	public Integer cart_count(int mno);
 
 	/** 장바구니 금액합 **/
-	public int cart_sum(int mno);
+	public Integer cart_sum(int mno);
 
 	/** 장바구니 개별 삭제 **/
 	public int shoppingcart_delete(int scno);
@@ -30,6 +30,6 @@ public interface ShoppingcartProcInter {
 	public int distinct_count_rno(int mno);
 
 	/** 장바구니로 식당 번호 출력 **/
-	public int select_rno_by_mno(int mno);
+	public Integer select_rno_by_mno(int mno);
 
 }

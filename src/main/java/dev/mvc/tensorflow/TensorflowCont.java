@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.members.MembersProcInter;
 import dev.mvc.members.MembersVO;
-import dev.mvc.shoppingcart.ShoppingcartVO;
 
 @Controller
 public class TensorflowCont {
@@ -55,3 +54,7 @@ public class TensorflowCont {
 	}
 
 }
+
+
+
+

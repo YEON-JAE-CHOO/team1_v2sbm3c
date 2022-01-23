@@ -69,6 +69,8 @@
 
 			<c:choose>
 				<c:when test="${sessionScope.id != null}">
+					<a href="/order/recent_order.do?mid=${sessionScope.id }"
+						class="bi-cart-fill me-1"> 최근 주문 내역 </a>
 					<a href="/shoppingcart/openshoppingcart.do?mid=${sessionScope.id }"
 						class="bi-cart-fill me-1"> Cart <span
 						class="badge bg-dark text-white ms-1 rounded-pill">0</span>

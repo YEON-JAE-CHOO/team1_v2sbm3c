@@ -87,4 +87,6 @@ public class RestaurantProc implements RestaurantProcInter {
 		return cnt;
 	}
 
+
+
 }
