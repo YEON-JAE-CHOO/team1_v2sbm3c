@@ -33,6 +33,7 @@
             <li class="nav-item"><a class="nav-link"   href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
              
                      <li class="nav-item"><a class="nav-link"  href="/tensorflow/chatbot.do">챗봇</a></li>
+                     <li class="nav-item"><a class="nav-link"  href="/review/list_mno_asc.do?mno=${mno }">리뷰</a></li>
 
             </c:when> 
         </c:choose>
