@@ -68,6 +68,7 @@
 	           var str = '';
 	           if(rdata.cnt >= 1){
 	   			alert('주문을 접수하였습니다.');
+	   			$('#state_img_' + ono).attr('src', "/team1/storage/open.png");
 	           }else{
 	   			alert('주문 접수를 실패하였습니다.');
 	   			}
@@ -184,11 +185,11 @@
 						<TD class="td_bs">${address1 }${address1 }</TD>
 						<TD class="td_bs" id="state_img_${ono }"><c:choose>
 								<c:when test="${state == 0}">
-									<IMG id="state" src="/team1/storage/close.png"
+									<IMG id="state_img_${ono }" src="/team1/storage/close.png"
 										style='width: 18px;'>
 								</c:when>
 								<c:otherwise>
-									<IMG id="state" src="/team1/storage/open.png"
+									<IMG id="state_img_${ono }" src="/team1/storage/open.png"
 										style='width: 18px;'>
 								</c:otherwise>
 							</c:choose></TD>

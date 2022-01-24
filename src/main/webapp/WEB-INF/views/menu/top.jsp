@@ -37,8 +37,6 @@
 					<%-- 로그인 한 경우 (회원 - 쇼핑카트/주문결제/회원가입) --%>
 					<!--  로그인한 회원만 가능 (회원 ID: user1 PW: 1234) -->
 					<li class="nav-item"><a class="nav-link"
-						href="/menu/list.do?rno=12">식당/메뉴</a></li>
-					<li class="nav-item"><a class="nav-link"
 						href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
 
 					<li class="nav-item"><a class="nav-link"
@@ -69,7 +67,7 @@
 				<c:when test="${sessionScope.id != null}">
 					<a href="/order/recent_order.do?mid=${sessionScope.id }"
 						class="bi-cart-fill me-1"> 최근 주문 내역 </a>
-					<a href="/shoppingcart/openshoppingcart.do?mid=${sessionScope.id }"
+					<a href="/shoppingcart/openshoppingcart.do?mid=${sessionScope.id }&rno=25"
 						class="bi-cart-fill me-1"> Cart <span
 						class="badge bg-dark text-white ms-1 rounded-pill">0</span>
 					</a>

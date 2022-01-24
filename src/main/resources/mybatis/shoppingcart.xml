@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sysdate, #{menuno }, #{mno })
 
 	</insert>
-	
+
 	<select id="show_cart" parameterType="int"
 		resultType="dev.mvc.shoppingcart.Menu_Memeber_Shoppingcart_VO">
 		select t.scno, n.rno, n.menuno, n.title, n.explanation,

@@ -25,15 +25,11 @@ public interface ShoppingcartDAOInter {
 
 	/** 장바구니로 식당 번호 출력 **/
 	public int select_rno(HashMap<String, Object> hashMap);
-	
+
 	/** 장바구니로 식당 번호 출력 **/
 	public Integer select_rno_by_mno(int mno);
 
-
 	/** 장바구니 식당 카운트 **/
 	public int distinct_count_rno(int mno);
-	
-	
-	
 
 }

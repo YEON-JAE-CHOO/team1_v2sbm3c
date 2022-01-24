@@ -75,7 +75,6 @@
 			data : params, // 데이터
 			success : function(rdata) { // 응답이 온경우
 				var str = rdata.msg;
-				alert("state= " + rdata.state + "    str= " + str);
 				$('#order_state').html(str);
 			},
 			// Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 

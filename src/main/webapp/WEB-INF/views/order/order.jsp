@@ -140,6 +140,11 @@
 			return;
 		}
 
+		if (!$('input:radio[name=method]').is(':checked')) {
+			alert("결제 수단을 선택해주세요.");
+			return;
+		}
+
 		frm_post.submit();
 	}
 </script>
@@ -320,12 +325,13 @@
 					</div>
 				</div>
 
+
 				<div class="form-group">
 					<label for="orderer_request" class="col-md-2 control-label"
 						style='font-size: 0.9em;'>배달 요청사항</label>
 					<div class="col-md-10">
-						<textarea class="form-control" name='request' maxlength="100"
-							id='request' style='width: 80%;' placeholder="요청사항">
+						<textarea class="form-control" name='request' rows="3" cols="80"
+							id='request' style='width: 80%;'>
 							</textarea>
 					</div>
 				</div>
@@ -405,6 +411,7 @@
 					}
 				</script>
 				<!-- ------------------------------ DAUM 우편번호 API 종료 ------------------------------ -->
+
 
 			</DIV>
 
