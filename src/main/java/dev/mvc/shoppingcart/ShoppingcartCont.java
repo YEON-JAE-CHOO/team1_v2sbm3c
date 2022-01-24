@@ -47,13 +47,15 @@ public class ShoppingcartCont {
 
 	// http://localhost:9091/shoppingcart/openshoppingcart.do
 	@RequestMapping(value = "/shoppingcart/openshoppingcart.do", method = RequestMethod.GET)
-	public ModelAndView openshoppingcart(String mid, int rno) {
+	public ModelAndView openshoppingcart(String mid) {
 		ModelAndView mav = new ModelAndView();
 
 		System.out.println("mid -? " + mid);
-		System.out.println("rno -? " + rno);
 
 		int mno = this.membersproc.select_mno(mid);
+
+		Integer rno = this.shoppingcartProc.select_rno_by_mno(mno);
+		System.out.println("rno -? " + rno);
 
 		List<Menu_Memeber_Shoppingcart_VO> list = this.shoppingcartProc.show_cart(mno);
 
@@ -141,7 +143,7 @@ public class ShoppingcartCont {
 	/**/
 	@RequestMapping(value = "/shoppingcart/cart_delete_all.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String cart_delete_all(HttpSession session, String mid, int rno) {
+	public String cart_delete_all(HttpSession session, String mid) {
 		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
 
 		int mno = this.membersproc.select_mno(mid);
@@ -172,16 +174,24 @@ public class ShoppingcartCont {
 		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
 
 		int mno = this.membersproc.select_mno(mid);
+		Integer rno = this.shoppingcartProc.select_rno_by_mno(mno);
+		RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(rno);
+		Integer cart_sum = this.shoppingcartProc.cart_sum(mno);
 		Integer cnt = this.shoppingcartProc.cart_count(mno);
+
+		System.out.println("rno -? " + rno);
+		System.out.println("cart_sum -? " + cart_sum);
+		System.out.println("leastprice -? " + restaurantvo.getLeastprice());
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
 		System.out.println("cnt ==>" + cnt);
 
 		JSONObject json = new JSONObject();
-		if (cnt >= 1) {
-			json.put("cnt", cnt);
-			json.put("mno", mno);
-		}
-
+		json.put("mno", mno);
 		json.put("cnt", cnt);
+		json.put("cart_sum", cart_sum);
+		json.put("leastprice", restaurantvo.getLeastprice());
 
 		return json.toString();
 	}
@@ -192,8 +202,7 @@ public class ShoppingcartCont {
 	 * @return
 	 */
 	@RequestMapping(value = "/shoppingcart/delete.do", method = RequestMethod.POST)
-	public ModelAndView delete(HttpSession session, @RequestParam(value = "scno", defaultValue = "0") int scno,
-			int rno) {
+	public ModelAndView delete(HttpSession session, @RequestParam(value = "scno", defaultValue = "0") int scno) {
 		ModelAndView mav = new ModelAndView();
 
 		String mid = (String) session.getAttribute("id");
@@ -201,7 +210,7 @@ public class ShoppingcartCont {
 		int cnt = this.shoppingcartProc.shoppingcart_delete(scno);
 		System.out.println("삭제 성공 cnt ->>" + cnt);
 
-		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do?mid=" + mid + "&rno=" + rno);
+		mav.setViewName("redirect:/shoppingcart/openshoppingcart.do?mid=" + mid);
 
 		return mav;
 	}

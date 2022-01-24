@@ -79,7 +79,7 @@ function cart_ajax_add(rno,menuno,mid){
              var sw = confirm('선택한 상품이 장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?');
              if (sw == true) {
                 // 쇼핑카트로 이동
-                 location.href='/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}&rno=${rno }';
+                 location.href='/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}';
              }
           } else {
              alert('이미 쇼핑카트에 담긴 식당이 있습니다.<br>장바구니를 비우고 다시 시도해주세요.');

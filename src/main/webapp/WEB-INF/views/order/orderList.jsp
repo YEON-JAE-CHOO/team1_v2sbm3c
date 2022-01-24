@@ -57,7 +57,7 @@
 	function ajax_receipt(ono) {
 	    var params = "";
 	    params += 'ono=' + ono;
-	    $.ajax({
+	    $.ajax({	
 	        url : '/order/ajax_receipt.do',
 	        type : 'post', // get, post
 	        cache : false, // 응답 결과 임시 저장 취소

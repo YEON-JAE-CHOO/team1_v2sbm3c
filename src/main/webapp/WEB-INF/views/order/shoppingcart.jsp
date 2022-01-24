@@ -82,7 +82,12 @@
 					success : function(rdata) { // 응답이 온경우
 						var str = '';
 						if (rdata.cnt >= 1) {
-							location.href = '/order/openorder.do?mid=${sessionScope.id }';
+							if (rdata.leastprice <= rdata.cart_sum) {
+								location.href = '/order/openorder.do?mid=${sessionScope.id }';
+							} else {
+								alert(rdata.leastprice
+										+ "원 이상 구매하셔야 주문이 가능합니다.");
+							}
 						} else {
 							alert("-> 쇼핑카드 비어있음");
 						}
@@ -128,7 +133,7 @@
 						var str = '';
 						console.log('-> delete_all cnt: ' + rdata.cnt); // 1: 쇼핑카트 등록 성공
 						if (rdata.check == "success") {
-							location.href = '/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}&rno=${rno }';
+							location.href = '/shoppingcart/openshoppingcart.do?mid=${sessionScope.id}';
 						} else {
 							alert('전체 삭제하지 못 했습니다.');
 						}
