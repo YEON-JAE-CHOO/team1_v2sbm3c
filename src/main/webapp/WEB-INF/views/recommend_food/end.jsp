@@ -36,11 +36,10 @@
 			data : params, // 데이터
 			success : function(rdata) { // 응답이 온경우
 				
-				var mid = ${sessionScope.mno}
 			
 				alert(rdata.index);
 				console.log(rdata.index);
-				ajax_update(mid, rdata.index);
+				ajax_update(rdata.index);
 /* 				if (rdata.index == 0) { // 한식 추천 필요
 					$('#kor').css('display', '');
 				} else if (rdata.index == 1) { // 중식 추천 필요
@@ -65,8 +64,10 @@
 			}
 		});
 
-	function ajax_update(mid, index) {
-		console.log("mid-"+mid+" index-"+index)
+	function ajax_update(reco_num) {
+		console.log(" index-"+reco_num)
+		var params = "";
+		params += 'reco_num=' + reco_num;
 		$.ajax({
 			url : '/tensorflow/ajax_update.do',
 			type : 'post', // get, post

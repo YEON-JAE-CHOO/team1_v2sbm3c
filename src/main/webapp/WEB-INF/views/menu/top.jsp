@@ -61,8 +61,8 @@
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="/restaurant/list.do">가게
 									리스트</a></li>
-							<li><a class="dropdown-item" href="/recommend_food/start.do">음식 추천
-									</a></li>
+							<li><a class="dropdown-item" href="/recommend_food/start.do">음식
+									추천 </a></li>
 						</ul></li>
 				</c:when>
 			</c:choose>

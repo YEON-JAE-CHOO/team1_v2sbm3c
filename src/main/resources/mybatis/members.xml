@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select mno from members where id =#{id }
 	</select>
 
-	<update id="update" parameterType="HashMap">
+	<update id="update_recommend" parameterType="HashMap">
 		UPDATE members
 		SET recommend=#{recommend}
 		WHERE mno=#{mno}
