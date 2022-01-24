@@ -29,8 +29,6 @@
             <c:choose>
                         <c:when test="${sessionScope.id != null}"> <%-- 로그인 한 경우 (회원 - 쇼핑카트/주문결제/회원가입) --%>
                             <!--  로그인한 회원만 가능 (회원 ID: user1 PW: 1234) -->
-            <li class="nav-item"><a class="nav-link"   href="/menu/list.do?rno=12">식당/메뉴</a></li>
-            <li class="nav-item"><a class="nav-link"   href="/shoppingcart/openshoppingcart.do">쇼핑카트</a></li>
              
                      <li class="nav-item"><a class="nav-link"  href="/tensorflow/chatbot.do">챗봇</a></li>
                      <li class="nav-item"><a class="nav-link"  href="/review/list_mno_asc.do?mno=${mno }">리뷰</a></li>
