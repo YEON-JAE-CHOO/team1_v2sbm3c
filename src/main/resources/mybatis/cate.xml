@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="list_cateno_asc" resultType="dev.mvc.cate.CateVO">
 		select cateno,name,seq,file1,file1saved,thumb1,size1
 		from cate
-		ORDER BY cateno asc
+		ORDER BY seq asc
 	</select>
 
 	<select id="read" resultType="dev.mvc.cate.CateVO"

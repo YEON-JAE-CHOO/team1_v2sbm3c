@@ -41,7 +41,7 @@ public class ReviewCont {
     public ModelAndView create(int rno, int mno) {
         ModelAndView mav = new ModelAndView();
 
-        RestaurantVO restaurantVO = this.RestuarantProc.create_shop(rno);
+        RestaurantVO restaurantVO = this.RestuarantProc.read_restaurant(rno);
 
         MembersVO membersVO = this.membersProc.read(mno);
 
