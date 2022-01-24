@@ -4,13 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>관심분야 등록</title>
-<link href="/css/style.css" rel="Stylesheet"
-	type="text/css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <script type="text/JavaScript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
 <script type="text/javascript">
 	$(function() {
@@ -48,34 +47,61 @@
 					}
 				});
 		$('#btn_close').on('click', function() {
-			window.close();
+			location.href = '/index.do';
 		}); // 윈도우 닫기
 	});
 </script>
 
 <style>
 * {
- text-align: center;
+	text-align: center;
 }
 
 .td_image {
- vertical-align: middle;
- padding: 5px;
- cursor: pointer;
+	vertical-align: middle;
+	padding: 5px;
+	cursor: pointer;
 }
 
 .td_radio {
- vertical-align: middle;
- padding: 5px;
+	vertical-align: middle;
+	padding: 5px;
 }
 
 .td_radio_select {
- cursor: pointer;
+	cursor: pointer;
+}
+
+footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 15px 0;
+	text-align: center;
+	color: white;
+	background: blue;
 }
 </style>
 
 </head>
 <body>
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<jsp:include page="./../menu/top.jsp" flush='false' />
+	</nav>
+	<!-- Header-->
+	<header class="py-4" style="background-color: #ef9578;">
+		<div class="container px-4 px-lg-5 my-5"
+			style="background-color: #ef9578;">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder">Shop in style</h1>
+				<p class="lead fw-normal text-white-50 mb-0">With this shop
+					hompeage template</p>
+			</div>
+		</div>
+	</header>
+	<br>
 	<DIV class="container">
 		<H2>5/5 단계입니다. 마지막입니다.</H2>
 
@@ -90,19 +116,19 @@
 				<TR>
 					<TD class='td_image'><img id='img1'
 						src="/recommend_food/images/v15.jpeg"
-						style='float: left; height: 200px'></TD>
+						style='float: left; width: 200px; height: 200px'></TD>
 					<TD class='td_image'><img id='img2'
 						src="/recommend_food/images/v25.jpeg"
-						style='float: left; height: 200px'></TD>
+						style='float: left; width: 200px; height: 200px'></TD>
 					<TD class='td_image'><img id='img3'
 						src="/recommend_food/images/v35.jpeg"
-						style='float: left; height: 200px'></TD>
+						style='float: left; width: 200px; height: 200px'></TD>
 					<TD class='td_image'><img id='img4'
 						src="/recommend_food/images/v45.jpeg"
-						style='float: left; height: 200px'></TD>
+						style='float: left; width: 200px; height: 200px'></TD>
 					<TD class='td_image'><img id='img5'
 						src="/recommend_food/images/v55.jpeg"
-						style='float: left; height: 200px'></TD>
+						style='float: left; width: 200px; height: 200px'></TD>
 				</TR>
 				<TR>
 					<TD class='td_radio'><input type='radio' name='step5'
@@ -127,6 +153,15 @@
 			</DIV>
 		</form>
 	</DIV>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<jsp:include page="./../menu/bottom.jsp" flush='false' />
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
 </body>
 </html>
 

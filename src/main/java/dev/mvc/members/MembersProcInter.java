@@ -108,5 +108,7 @@ public interface MembersProcInter {
 	 * SELECT MNO
 	 */
 	public int select_mno(String id);
+	
+	public int update_recommend(HashMap<Object, Object> map);
 
 }

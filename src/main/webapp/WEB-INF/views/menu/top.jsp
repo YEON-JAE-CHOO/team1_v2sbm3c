@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 		data-bs-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -60,9 +59,12 @@
 							<li><hr class="dropdown-divider" /></li>
 							<li><a class="dropdown-item" href="/restaurant/list.do">가게
 									리스트</a></li>
+							<li><a class="dropdown-item" href="/recommend_food/start.do">음식
+									추천 </a></li>
 						</ul></li>
 				</c:when>
 			</c:choose>
+
 			<c:choose>
 				<c:when test="${sessionScope.id != null}">
 					<a href="/order/recent_order.do?mid=${sessionScope.id }"
