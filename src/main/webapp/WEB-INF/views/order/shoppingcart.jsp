@@ -59,9 +59,46 @@
 			$('#btn_cart_test').on('click', function() {
 				delete_check(scno)
 			});
+
 		});
 		//delete_all(10);
+		//	$('#btn_order').on('click', function() {
+		//		order_check(mid)
+		//	});
 	});
+
+	function order_check(mid) {
+		var params = "";
+		params += 'mid=' + mid;
+
+		$
+				.ajax({
+					url : '/shoppingcart/check_order.do',
+					type : 'post', // get, post
+					cache : false, // 응답 결과 임시 저장 취소
+					async : true, // true: 비동기 통신
+					dataType : 'json', // 응답 형식: json, html, xml 
+					data : params, // 데이터
+					success : function(rdata) { // 응답이 온경우
+						var str = '';
+						if (rdata.cnt >= 1) {
+							if (rdata.leastprice <= rdata.cart_sum) {
+								location.href = '/order/openorder.do?mid=${sessionScope.id }';
+							} else {
+								alert(rdata.leastprice
+										+ "원 이상 구매하셔야 주문이 가능합니다.");
+							}
+						} else {
+							alert("-> 쇼핑카드 비어있음");
+						}
+					},
+					// Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+					error : function(request, status, error) { // callback 함수
+						console.log(error);
+					}
+				}); //  $.ajax END
+
+	}
 
 	function delete_check(scno) {
 		var sw = confirm('선택한 상품을 장바구니에서 지우시겠습니까?');
@@ -82,8 +119,7 @@
 	function delete_all(mid) {
 		var params = "";
 		params += 'mid=' + mid;
-
-		alert("-> params: " + params);
+		params += '&rno=${rno}';
 
 		$
 				.ajax({
@@ -116,8 +152,10 @@
 
 	<form name='frm_post' id='frm_post' action='' method='post'>
 		<input type='hidden' name='scno' id='scno'> <input
+			type='hidden' name='rno' id='rno' value="${rno }"> <input
 			type='hidden' name='cnt' id='cnt'> <input type="hidden"
 			name="${ _csrf.parameterName }" value="${ _csrf.token }">
+
 	</form>
 
 	<!-- Navigation-->
@@ -243,7 +281,7 @@
 
 						</form>
 						<button type='submit' id='btn_order' class='btn btn-info'
-							onclick="location.href='/order/openorder.do?mid=${sessionScope.id }'"
+							name="btn_order" onclick="order_check('${sessionScope.id }')"
 							style='font-size: 1.5em;'>주문하기</button>
 					<td>
 				</tr>

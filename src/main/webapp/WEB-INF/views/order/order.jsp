@@ -12,8 +12,6 @@
 <c:set var="total_sum" value="${cart_sum + deliverytip}" />
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,24 +46,31 @@
 	margin: 20px auto;
 }
 </style>
+
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 
 <script type="text/javascript">
+	//$(function() {
+	//$('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
+	//$('#btn_order').on('click', send); // 다음 우편 번호
+	//$('#btn_bringaddress').on('click', function() {ajax_address(mid)});
+	//});
+
 	$(function() {
-		$('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
+		$('#btn_bringaddress').on('click', function() {
+			ajax_address(mid)
+		});
 		$('#btn_order').on('click', send); // 다음 우편 번호
+
 	});
 
 	function ajax_address(mid) {
 		var params = "";
 		params += 'mid=' + mid;
-
-		alert("-> params: " + params);
-
-
 
 		$.ajax({
 			url : '/order/members_address.do',
@@ -135,15 +140,15 @@
 			return;
 		}
 
-		if () {
-			alert('체크해주세연');
-			$('#method').focus();
+		if (!$('input:radio[name=method]').is(':checked')) {
+			alert("결제 수단을 선택해주세요.");
 			return;
 		}
 
 		frm_post.submit();
 	}
 </script>
+
 </head>
 <body>
 	<%-- 전체 주문 금액 --%>
@@ -162,6 +167,7 @@
 		<input type="hidden" name="${ _csrf.parameterName }"
 			value="${ _csrf.token }"> <input type="hidden" name="amount"
 			value="test">
+
 		<div class="content_body">
 			<DIV class='title_line' style="width: 80%">주문 상품</DIV>
 
@@ -319,13 +325,14 @@
 					</div>
 				</div>
 
+
 				<div class="form-group">
 					<label for="orderer_request" class="col-md-2 control-label"
 						style='font-size: 0.9em;'>배달 요청사항</label>
 					<div class="col-md-10">
-						<input type='textbox' class="form-control" name='request'
-							maxlength="100" id='request' value='' style='width: 80%;'
-							placeholder="요청사항">
+						<textarea class="form-control" name='request' rows="3" cols="80"
+							id='request' style='width: 80%;'>
+							</textarea>
 					</div>
 				</div>
 				<!-- ------------------------------ DAUM 우편번호 API 시작 ------------------------------ -->
@@ -404,6 +411,7 @@
 					}
 				</script>
 				<!-- ------------------------------ DAUM 우편번호 API 종료 ------------------------------ -->
+
 
 			</DIV>
 

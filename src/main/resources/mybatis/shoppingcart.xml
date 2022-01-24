@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		=#{mno }
 	</select>
 
-	<select id="cart_count" parameterType="int" resultType="int">
+	<select id="cart_count" parameterType="int" resultType="Integer">
 		select
 		count(n.menuno)
 		from menu n, shoppingcart t
@@ -45,14 +45,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="select_rno_by_mno" parameterType="int"
-		resultType="int">
+		resultType="Integer">
 		select
 		DISTINCT rno from shoppingcart where mno =
 		#{mno }
 	</select>
-	
-	
-	<select id="cart_sum" parameterType="int" resultType="int">
+
+
+	<select id="cart_sum" parameterType="int" resultType="Integer">
 		select
 		sum(n.price)
 		from menu n, shoppingcart t

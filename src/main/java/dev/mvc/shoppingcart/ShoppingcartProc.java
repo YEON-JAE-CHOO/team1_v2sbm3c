@@ -32,14 +32,14 @@ public class ShoppingcartProc implements ShoppingcartProcInter {
 	}
 
 	@Override
-	public int cart_count(int mno) {
-		int cnt = this.shoppingcartDAO.cart_count(mno);
+	public Integer cart_count(int mno) {
+		Integer cnt = this.shoppingcartDAO.cart_count(mno);
 		return cnt;
 	}
 
 	@Override
-	public int cart_sum(int mno) {
-		int sum = this.shoppingcartDAO.cart_sum(mno);
+	public Integer cart_sum(int mno) {
+		Integer sum = this.shoppingcartDAO.cart_sum(mno);
 		return sum;
 	}
 
@@ -68,8 +68,8 @@ public class ShoppingcartProc implements ShoppingcartProcInter {
 	}
 
 	@Override
-	public int select_rno_by_mno(int mno) {
-		int rno = this.shoppingcartDAO.select_rno_by_mno(mno);
+	public Integer select_rno_by_mno(int mno) {
+		Integer rno = this.shoppingcartDAO.select_rno_by_mno(mno);
 		return rno;
 	}
 

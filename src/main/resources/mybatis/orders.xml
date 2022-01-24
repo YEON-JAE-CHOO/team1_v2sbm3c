@@ -7,10 +7,158 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.orders.OrdersDAOInter">
 
 	<insert id="create" parameterType="dev.mvc.orders.OrdersVO">
-		INSERT INTO orders(ono, rdate , rtime, price, totalprice, housecode, address1, address2,
-		method, phone, request, state, mno)
+		INSERT INTO orders(ono,
+		rdate,rno
+		, rtime, price, totalprice,oname, housecode, address1,
+		address2,
+		method,
+		phone, request, state, mno)
 		values
-		(orders_seq.nextval ,sysdate , sysdate ,#{price } ,#{totalprice } ,#{housecode},#{address1},#{address2} ,#{method }, #{phone }, #{request }, #{state }, #{mno })
+		(orders_seq.nextval
+		,sysdate ,#{rno},
+		sysdate ,#{price } ,#{totalprice },#{oname}
+		,#{housecode},#{address1},#{address2} ,#{method }, #{phone },
+		#{request }, #{state }, #{mno })
 	</insert>
+
+	<select id="read_recent" resultType="dev.mvc.orders.OrdersVO"
+		parameterType="int">
+		select ono, rdate, rtime, price, totalprice, oname,
+		housecode,
+		address1,
+		address2,method,phone, request, state, mno
+		from
+		(select ono,
+		rdate,
+		rtime, price, totalprice, oname, housecode,
+		address1,
+		address2,method,phone, request, state, mno
+		from orders
+		where
+		mno = #{mno
+		}
+		order by ono desc)
+		where rownum = 1
+	</select>
+
+	<select id="read_recent_by_ono"
+		resultType="dev.mvc.orders.OrdersVO" parameterType="int">
+		select ono, rdate,
+		rno,
+		rtime, price, totalprice, oname,
+		housecode,
+		address1,
+		address2,method,phone, request, state, mno
+		from (select ono,
+		rdate, rno,
+		rtime, price, totalprice, oname, housecode, address1,
+		address2,method,phone, request, state, mno
+		from orders
+		where ono = #{ono
+		}
+		order by ono desc)
+		where rownum = 1
+	</select>
+
+	<insert id="create_detail"
+		parameterType="dev.mvc.orders.Orders_DetailVO">
+		insert into orders_detail(odno, ono, menuno)
+		values(orders_detail_seq.nextval,#{ono},#{menuno})
+	</insert>
+
+
+	<select id="read_order" parameterType="int"
+		resultType="dev.mvc.orders.OrdersListVO">
+		select o.ono, o.rdate, o.rtime , o.totalprice, o.housecode,
+		o.address1, o.address2, o.method, o.phone, o.request, o.state, o.mno
+		,m.menuno , m.price, m.title, m.spiciness, m.rno
+		from menu m, orders o,
+		orders_detail od
+		where od.menuno = m.menuno and od.ono = o.ono and
+		o.mno = #{mno }
+	</select>
+
+
+	<select id="recent_order_no" parameterType="int"
+		resultType="int">
+		select ono from (select ono from orders where mno =#{mno }
+		order by ono desc)
+		where rownum = 1
+	</select>
+
+	<select id="recent_order_detail" parameterType="int"
+		resultType="dev.mvc.orders.OrdersListVO">
+		select o.ono, o.rdate, o.rtime, o.price, o.totalprice,
+		o.mno ,m.menuno , m.price , m.title, m.explanation, m.spiciness,
+		m.file1, m.thumb
+		from menu m, orders o, orders_detail od
+		where od.menuno
+		= m.menuno and od.ono = o.ono and o.ono = #{ono }
+
+	</select>
+
+
+
+
+	<select id="read_order_state_no" parameterType="int"
+		resultType="dev.mvc.orders.OrdersListVO">
+		select o.ono, o.rdate, o.rtime , o.totalprice, o.housecode,
+		o.address1, o.address2, o.method, o.phone, o.request, o.state, o.mno
+		,m.menuno , m.price, m.title, m.spiciness, m.rno
+		from menu m, orders o,
+		orders_detail od
+		where od.menuno = m.menuno and od.ono = o.ono and
+		o.rno = #{rno}
+	</select>
+
+
+	<select id="read_order_recent" parameterType="int"
+		resultType="dev.mvc.orders.OrdersListVO">
+		select ono, rdate, rtime , totalprice, housecode, address1,
+		address2,method,
+		phone, request, state, mno ,menuno ,price, title,
+		spiciness, rno
+		from (select o.ono, o.rdate, o.rtime , o.totalprice,
+		o.housecode,o.address1, o.address2, o.method, o.phone, o.request,
+		o.state, o.mno ,m.menuno , m.price, m.title, m.spiciness, m.rno
+		from
+		menu m, orders o, orders_detail od
+		where od.menuno = m.menuno and
+		od.ono = o.ono and o.mno = #{mno }
+		order by o.ono desc)
+		where rownum =
+		1;
+	</select>
+
+	<select id="List_order_by_rno" parameterType="int"
+		resultType="dev.mvc.orders.OrdersVO">
+		select
+		ONO,RDATE,RTIME,PRICE,ADDRESS1,ADDRESS2,METHOD,PHONE,REQUEST,STATE,MNO,HOUSECODE,ONAME,RNO,TOTALPRICE
+		from orders
+		where rno = #{rno }
+		order by ono desc
+	</select>
+
+
+	<select id="select_totalprice_by_rno_date" parameterType="HashMap"
+		resultType="Integer">
+		select sum(totalprice)
+		from orders
+		where rno = #{rno } and TO_CHAR(RDATE,
+		'YYYYMMDD') = #{date }
+	</select>
+
+	<select id="select_totalprice_by_rno" parameterType="int"
+		resultType="Integer">
+		select sum(totalprice)
+		from orders
+		where rno = #{rno }
+	</select>
+
+
+	<update id="update_state_by_ono" parameterType="int">
+		update orders set
+		state = 1 where ono = #{ono }
+	</update>
 
 </mapper> 

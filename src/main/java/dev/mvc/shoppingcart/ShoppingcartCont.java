@@ -45,13 +45,6 @@ public class ShoppingcartCont {
 		System.out.println("-> ShoppingcartCont created.");
 	}
 
-	/**
-	 * 장바구니 페이지 오픈 d d d d d d d d
-	 * 
-	 * d d d
-	 * 
-	 * d d d이거 rno 받아야됨 !!! 아닌가?
-	 */
 	// http://localhost:9091/shoppingcart/openshoppingcart.do
 	@RequestMapping(value = "/shoppingcart/openshoppingcart.do", method = RequestMethod.GET)
 	public ModelAndView openshoppingcart(String mid) {
@@ -60,6 +53,9 @@ public class ShoppingcartCont {
 		System.out.println("mid -? " + mid);
 
 		int mno = this.membersproc.select_mno(mid);
+
+		Integer rno = this.shoppingcartProc.select_rno_by_mno(mno);
+		System.out.println("rno -? " + rno);
 
 		List<Menu_Memeber_Shoppingcart_VO> list = this.shoppingcartProc.show_cart(mno);
 
@@ -75,6 +71,7 @@ public class ShoppingcartCont {
 			System.out.println("restaurantvo 12 -> " + restaurantvo.toString());
 			System.out.println("cart_sum -> " + cart_sum);
 
+			mav.addObject("rno", rno);
 			mav.addObject("list", list);
 			mav.addObject("leastprcie", restaurantvo.getLeastprice());
 			mav.addObject("deliverytip", restaurantvo.getDeliverytip());
@@ -96,11 +93,14 @@ public class ShoppingcartCont {
 	@ResponseBody
 	public String cart_add(HttpSession session, int rno, int menuno, String mid) {
 		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
+		RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(rno);
+		int mno = this.membersproc.select_mno(mid);
+		Integer cart_sum = this.shoppingcartProc.cart_sum(mno);
 
+		System.out.println("주문 최소비용 :" + restaurantvo.getLeastprice());
+		System.out.println("카트 총 금액 :" + cart_sum);
 		System.out.println("cart_add 메서드 진행");
 		System.out.println("mid -> " + mid);
-
-		int mno = this.membersproc.select_mno(mid);
 		System.out.println("selected mno -> " + mno);
 
 		/** 초기 수량 **/
@@ -113,9 +113,7 @@ public class ShoppingcartCont {
 		map.put("mno", mno);
 
 		int distinct_rno_count = this.shoppingcartProc.distinct_count_rno(mno);
-		int selected_rno = this.shoppingcartProc.select_rno_by_mno(mno);
-		System.out.println("distinct_rno_count -> " + distinct_rno_count + "   selected_rno ->" + selected_rno);
-
+		Integer selected_rno = this.shoppingcartProc.select_rno_by_mno(mno);
 		JSONObject json = new JSONObject();
 
 		if (distinct_rno_count == 0) {
@@ -163,6 +161,37 @@ public class ShoppingcartCont {
 		}
 
 		json.put("cnt", cnt);
+
+		return json.toString();
+	}
+
+	/** 쇼핑카트 확인 */
+	/**/
+	/**/
+	@RequestMapping(value = "/shoppingcart/check_order.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String check_order(HttpSession session, String mid) {
+		ShoppingcartVO shoppingcartVO = new ShoppingcartVO();
+
+		int mno = this.membersproc.select_mno(mid);
+		Integer rno = this.shoppingcartProc.select_rno_by_mno(mno);
+		RestaurantVO restaurantvo = this.restaurantProc.read_restaurant(rno);
+		Integer cart_sum = this.shoppingcartProc.cart_sum(mno);
+		Integer cnt = this.shoppingcartProc.cart_count(mno);
+
+		System.out.println("rno -? " + rno);
+		System.out.println("cart_sum -? " + cart_sum);
+		System.out.println("leastprice -? " + restaurantvo.getLeastprice());
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("cnt ==>" + cnt);
+
+		JSONObject json = new JSONObject();
+		json.put("mno", mno);
+		json.put("cnt", cnt);
+		json.put("cart_sum", cart_sum);
+		json.put("leastprice", restaurantvo.getLeastprice());
 
 		return json.toString();
 	}
