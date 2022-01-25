@@ -44,8 +44,8 @@ public class OrdersProc implements OrdersProcInter {
 	}
 
 	@Override
-	public int recent_order_no(int mno) {
-		int ono = this.ordersDAOInter.recent_order_no(mno);
+	public Integer recent_order_no(int mno) {
+		Integer ono = this.ordersDAOInter.recent_order_no(mno);
 		return ono;
 	}
 

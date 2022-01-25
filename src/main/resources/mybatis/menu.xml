@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="dev.mvc.menu.MenuDAOInter">
 
+	<!-- 메뉴 출력 -->
 	<select id="testlist" resultType="dev.mvc.menu.MenuVO"
 		parameterType="int">
 		SELECT rno, menuno, title,menutype,
@@ -16,11 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		menu where rno
 		= #{ rno}
 	</select>
-  
 
-
-
-
+	<!-- 메뉴 등록 -->
 	<insert id="insert" parameterType="dev.mvc.menu.MenuVO">
 		insert into
 		menu(rno, menuno,
@@ -31,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{filesaved1}, #{thumb}, #{imagesize} )
 	</insert>
 
+	<!-- 메뉴 수정 -->
 	<update id="update" parameterType="dev.mvc.menu.MenuVO">
 		update menu set title = #{
 		title},
@@ -43,20 +42,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where menuno = #{ menuno}
 	</update>
 
+	<!-- 메뉴 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete from menu where menuno
 		= #{ menuno}
 	</delete>
 
+	<!-- 메뉴 읽기 -->
 	<select id="read" parameterType="int"
 		resultType="dev.mvc.menu.MenuVO">
 		SELECT rno, menuno, title,menutype,
-		explanation, spiciness, price,
+		explanation, spiciness,
+		price,
 		file1,filesaved1, thumb, imagesize
 		FROM
-		menu where menuno = #{menuno }
+		menu where menuno =
+		#{menuno }
 	</select>
-  
+
 
 
 

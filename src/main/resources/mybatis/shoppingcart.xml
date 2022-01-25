@@ -5,6 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dev.mvc.shoppingcart.ShoppingcartDAOInter">
+
+	<!-- 카테고리 등록 -->
 	<insert id="add_cart"
 		parameterType="dev.mvc.shoppingcart.ShoppingcartVO">
 		insert into shoppingcart (scno, rno, count, rdate,
@@ -14,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</insert>
 
+	<!-- 회원 번호를 받아 카테고리 출력 -->
 	<select id="show_cart" parameterType="int"
 		resultType="dev.mvc.shoppingcart.Menu_Memeber_Shoppingcart_VO">
 		select t.scno, n.rno, n.menuno, n.title, n.explanation,
@@ -27,7 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		t.mno
 		=#{mno }
 	</select>
-
+	
+	<!-- 카테고리 개수 출력 -->
 	<select id="cart_count" parameterType="int" resultType="Integer">
 		select
 		count(n.menuno)
@@ -37,13 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
+	<!-- 카테고리에 등록된 가게 번호 출력 -->
 	<select id="select_rno" parameterType="HashMap" resultType="int">
 		select
 		rno from shoppingcart where scno = #{scno } mno =
 		#{mno }
 	</select>
 
+	<!-- 카테고리 전 -->
 	<select id="select_rno_by_mno" parameterType="int"
 		resultType="Integer">
 		select
@@ -51,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{mno }
 	</select>
 
-
+	<!-- 카테고리에 담긴 가격 합 -->
 	<select id="cart_sum" parameterType="int" resultType="Integer">
 		select
 		sum(n.price)
@@ -60,17 +65,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		t.menuno = n.menuno and t.mno =#{mno }
 	</select>
 
+	<!-- 카테고리에 등록된 식당 개수 출력 -->
 	<select id="distinct_count_rno" parameterType="int"
 		resultType="int">
 		select count(DISTINCT rno) from shoppingcart where mno
 		=#{mno }
 	</select>
 
+	<!-- 카테고리 한 건 삭제 -->
 	<delete id="shoppingcart_delete" parameterType="int">
 		delete from
 		shoppingcart where scno = #{scno }
 	</delete>
 
+	<!-- 카테고리 전체 삭제 -->
 	<delete id="delete_all" parameterType="int">
 		delete from shoppingcart
 		where mno = #{mno }
