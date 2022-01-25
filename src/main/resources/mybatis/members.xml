@@ -83,5 +83,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE mno=#{mno}
 	</update>
 	
+		<!-- mno로 회원 정보 조회 -->
+	<select id="read_recommend" resultType="dev.mvc.members.MembersVO"
+		parameterType="String">
+		SELECT mno, id, name, recommend
+		FROM members
+		WHERE id = #{id}
+	</select>
+	
 </mapper> 
 

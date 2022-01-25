@@ -159,8 +159,8 @@
 							<label for="housecode" class="col-md-2 control-label"
 								style='font-size: 0.9em;'>우편번호</label>
 							<div class="col-md-10">
-								<input type='text' class="form-control" name='housecode'
-									id='housecode' value='' style='width: 30%;' placeholder="우편번호">
+								<input type='text' class="form-control" name='code'
+									id='code' value='' style='width: 30%;' placeholder="우편번호">
 								<button type="button" id="btn_DaumPostcode"
 									class="btn btn-info btn-md">우편번호 찾기</button>
 							</div>

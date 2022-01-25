@@ -446,12 +446,14 @@ public class MembersCont {
 	    
 	    int count = membersProc.login(map);
 	    if (count == 1) { // 로그인 성공
-	      // System.out.println(id + " 로그인 성공");
+//	      System.out.println(id + " 로그인 성공");
 	      MembersVO membersVO = membersProc.readById(id);
+//	      System.out.println(membersVO.toString());
 	      session.setAttribute("mno", membersVO.getMno()); // 서버의 메모리에 기록
 	      session.setAttribute("id", id);
 	      session.setAttribute("name", membersVO.getName());
 	      session.setAttribute("reco", membersVO.getReco());
+	      
 	      
 	      // -------------------------------------------------------------------
 	      // id 관련 쿠기 저장
