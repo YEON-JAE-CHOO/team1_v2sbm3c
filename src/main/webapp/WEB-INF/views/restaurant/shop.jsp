@@ -181,7 +181,6 @@ function recom_ajax(rno, status_count) {
 
 					<p class="fs-5 mb-5">주소 - ${restaurantVO.address1}
 						${restaurantVO.address2}</p>
-<<<<<<< HEAD
                        
                        <div class="fs-5 mb-2">
                        <a class="text-decoration-line-through" href='../review/list_rno_asc.do?rno=${restaurantVO.rno }'>리뷰 보러 가기</a>
@@ -196,22 +195,7 @@ function recom_ajax(rno, status_count) {
                      
                 </c:otherwise>
                 </c:choose>
-                  
-                        
-=======
-
-					<div class="fs-5 mb-2">
-						<a class="text-decoration-line-through"
-							href='../review/list_rno_asc.do?rno=${restaurantVO.rno }'>리뷰
-							보러 가기</a>
-					</div>
-					<div class="fs-5 mb-2">
-						<a class="text-decoration-line-through"
-							href='../review/create.do?rno=${restaurantVO.rno }&mno=${mno}'>리뷰
-							달러 가기</a>
-					</div>
-
->>>>>>> 17c17670d58e1e0d95009dc81863a0079d7f7a6c
+                 
 					<p class="lead">${restaurantVO.explanation}</p>
 					<div class="d-flex">
 						<c:choose>
