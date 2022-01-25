@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.cate.CateProc;
 import dev.mvc.cate.CateProcInter;
 import dev.mvc.cate.CateVO;
+import dev.mvc.members.MembersProcInter;
+import dev.mvc.members.MembersVO;
 import dev.mvc.cate.CateProcInter;
 import dev.mvc.cate.CateVO;
 import dev.mvc.menu.Menu;
@@ -43,6 +46,9 @@ public class RestaurantCont {
 	@Qualifier("dev.mvc.cate.CateProc")
 	private CateProcInter cateProc = null;
 
+	@Autowired
+	@Qualifier("dev.mvc.members.MembersProc")
+	private MembersProcInter membersProc;
 
 	@Autowired
 	@Qualifier("dev.mvc.orders.OrdersProc")
@@ -116,7 +122,11 @@ public class RestaurantCont {
 		restaurantVO.setImagesize(size1);
 
 		ModelAndView mav = new ModelAndView();
-
+		int cateno = restaurantVO.getCateno();
+		CateVO cateVO = cateProc.read(cateno);
+		String type = cateVO.getName();
+		restaurantVO.setType(type);
+		System.out.println("type"+type);
 		System.out.println("식당 -------->" + restaurantVO.toString());
 		int cnt = this.restaurantProc.create(restaurantVO); // 등록 처리
 		// cnt = 0; // error test
@@ -151,7 +161,7 @@ public class RestaurantCont {
 		return mav; // forward
 	}
 
-	/** 페이지 오픈 & 메뉴 리스트 출력 */
+	/** 페이지 오픈 & 메뉴 리스트 출력 HttpSession session */ 
 	/**/
 	/**/
 	@RequestMapping(value = "/restaurant/shop.do", method = RequestMethod.GET)
@@ -303,4 +313,20 @@ public class RestaurantCont {
 
 	}
 
+	
+    @RequestMapping(value="/restaurant/list_recommend.do", method=RequestMethod.GET )
+    public ModelAndView list_recommend(String id) {
+      ModelAndView mav = new ModelAndView();
+      MembersVO mem = this.membersProc.read_recommend(id);
+      String recommend = mem.getRecommend();
+      System.out.println("reco:"+recommend);
+      List<RestaurantVO> list = this.restaurantProc.list_recommend(recommend);
+      mav.addObject("list", list); // request.setAttribute("list", list);
+
+      
+      mav.setViewName("/restaurant/list_by_cateno"); // /cate/list_by_categrpno.jsp
+      return mav;
+    }
+	
+	
 }

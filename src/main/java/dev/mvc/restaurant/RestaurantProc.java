@@ -87,6 +87,11 @@ public class RestaurantProc implements RestaurantProcInter {
 		return cnt;
 	}
 
-
+    @Override
+    public List<RestaurantVO> list_recommend(String recommend) {
+        List<RestaurantVO> list = this.restaurantDAO.list_recommend(recommend);
+        return list;
+    }
+    
 
 }

@@ -13,9 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,address2,
 		explanation, type, leastprice, call,
 		cateno,file1,filesaved1,thumb,imagesize)
-		values(restaurant_seq.nextval, 4, #{name},
+		values(restaurant_seq.nextval, 1, #{name},
 		#{code}, #{address1},
-		#{address2}, #{explanation}, '치킨',
+		#{address2}, #{explanation}, #{type},
 		#{leastprice}, #{call}, #{cateno},
 		#{file1},#{filesaved1}, #{thumb}, #{imagesize})
 	</insert>
@@ -109,6 +109,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE cateno = #{cateno}
     ORDER BY rno ASC
   </select>
+  
+  	<select id="list_recommend"
+		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="String">
+		SELECT
+		name, code, address1, rno,
+		explanation, type, leastprice,
+		call,file1,filesaved1,thumb,imagesize
+		FROM
+		restaurant
+		WHERE type = #{recommend }
+	</select>
 
 
 

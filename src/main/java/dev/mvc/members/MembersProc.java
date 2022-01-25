@@ -134,5 +134,11 @@ public class MembersProc implements MembersProcInter {
 		int cnt = this.membersDAO.update_recommend(map);
 		return cnt;
 	}  
+	
+	@Override
+	  public MembersVO read_recommend(String id) {
+	    MembersVO membersVO = this.membersDAO.read_recommend(id);
+	    return membersVO;
+	  }
 	  
 }

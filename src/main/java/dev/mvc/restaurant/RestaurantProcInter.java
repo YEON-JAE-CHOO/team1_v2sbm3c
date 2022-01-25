@@ -25,4 +25,5 @@ public interface RestaurantProcInter {
 
 	public int read_reco(HashMap<String, Object> hashMap);
 
+	public List<RestaurantVO> list_recommend(String recommend);
 }

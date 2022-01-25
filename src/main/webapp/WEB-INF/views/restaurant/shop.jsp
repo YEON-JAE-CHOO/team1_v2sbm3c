@@ -92,6 +92,9 @@ function cart_ajax_add(rno,menuno,mid){
 
 }
 
+
+
+
 function recom_ajax(rno, status_count) {
     console.log("-> recom_" + status_count + ": " + $('#recom_' + status_count).html());  // A tag body      
     var params = "";
@@ -174,10 +177,11 @@ function recom_ajax(rno, status_count) {
 					<div class="fs-5 mb-2">
 						<span class="text-decoration-line-through">가게 번호 - </span> <span>${restaurantVO.call}</span>
 					</div>
-                    
+
 
 					<p class="fs-5 mb-5">주소 - ${restaurantVO.address1}
 						${restaurantVO.address2}</p>
+<<<<<<< HEAD
                        
                        <div class="fs-5 mb-2">
                        <a class="text-decoration-line-through" href='../review/list_rno_asc.do?rno=${restaurantVO.rno }'>리뷰 보러 가기</a>
@@ -194,21 +198,45 @@ function recom_ajax(rno, status_count) {
                 </c:choose>
                   
                         
+=======
+
+					<div class="fs-5 mb-2">
+						<a class="text-decoration-line-through"
+							href='../review/list_rno_asc.do?rno=${restaurantVO.rno }'>리뷰
+							보러 가기</a>
+					</div>
+					<div class="fs-5 mb-2">
+						<a class="text-decoration-line-through"
+							href='../review/create.do?rno=${restaurantVO.rno }&mno=${mno}'>리뷰
+							달러 가기</a>
+					</div>
+
+>>>>>>> 17c17670d58e1e0d95009dc81863a0079d7f7a6c
 					<p class="lead">${restaurantVO.explanation}</p>
 					<div class="d-flex">
-						<button class="btn btn-outline-dark flex-shrink-0" type="button"
-							onclick="location.href='/restaurant/modification.do?rno=${rno }'">
-							수정</button>
+						<c:choose>
+							<c:when test="${sessionScope.id != null}">
+								<c:set var="name" value="qnaadmin" />
+								<c:if test="${name eq 'qnaadmin'}">
+									<button class="btn btn-outline-dark flex-shrink-0"
+										type="button"
+										onclick="location.href='/restaurant/modification.do?rno=${rno }'">
+										수정</button>
+									<button class="btn btn-outline-dark flex-shrink-0"
+										type="button"
+										onclick="location.href='/restaurant/order_request.do?rno=${rno }'">
+										주문 목록</button>
+									<button class="btn btn-outline-dark flex-shrink-0"
+										type="button"
+										onclick="location.href='/restaurant/open_sales.do?rno=${rno }'">
+										가게 매출</button>
+								</c:if>
+							</c:when>
+						</c:choose>
 						<button class="btn btn-outline-dark flex-shrink-0" type="button"
 							id="recom_${restaurantVO.recocnt }"
 							onclick="javascript:recom_ajax(${rno }, ${restaurantVO.recocnt })">
 							♥(${restaurantVO.recocnt })</button>
-						<button class="btn btn-outline-dark flex-shrink-0" type="button"
-							onclick="location.href='/restaurant/order_request.do?rno=${rno }'">
-							주문 목록</button>
-						<button class="btn btn-outline-dark flex-shrink-0" type="button"
-							onclick="location.href='/restaurant/open_sales.do?rno=${rno }'">
-							가게 매출</button>
 					</div>
 				</div>
 				<div class="col-md-4" id="map"
@@ -226,7 +254,7 @@ function recom_ajax(rno, status_count) {
 				onclick="location.href='/restaurant/openaddmenupage.do?rno=${rno }'">메뉴
 				추가하기</button>
 		</DIV>
-		ud
+
 		<div style="align-content: right:;">
 
 			<TABLE class='table table-striped'
@@ -288,12 +316,17 @@ function recom_ajax(rno, status_count) {
 						<TD class="td_bs">${price }</TD>
 						<TD class="td_bs">${spiciness }</TD>
 						<TD class="td_bs">${explanation }</TD>
-						<TD class="td_bs"><A
-							href="/menu/update.do?menuno=${menuno }&rno=${rno }" title="수정"><span
-								class="glyphicon glyphicon-pencil"></span>수정</A> <A
-							href="/menu/delete.do?menuno=${menuno }&rno=${rno }" title="삭제"><span
-								class="glyphicon glyphicon-trash"></span>삭제</A>
-
+						<TD class="td_bs"><c:choose>
+								<c:when test="${sessionScope.id != null}">
+									<c:set var="name" value="qnaadmin" />
+									<c:if test="${name eq 'qnaadmin'}">
+										<A href="/menu/update.do?menuno=${menuno }&rno=${rno }"
+											title="수정"><span class="glyphicon glyphicon-pencil"></span>수정</A>
+										<A href="/menu/delete.do?menuno=${menuno }&rno=${rno }"
+											title="삭제"><span class="glyphicon glyphicon-trash"></span>삭제</A>
+									</c:if>
+								</c:when>
+							</c:choose>
 							<button class="btn btn-outline-dark" type="button"
 								id="add_shoppingcart" name="add_shoppingcart"
 								onclick="cart_test(${rno },${menuno },'${sessionScope.id }')">장바구니</button></TD>

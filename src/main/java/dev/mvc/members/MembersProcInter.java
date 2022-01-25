@@ -110,5 +110,7 @@ public interface MembersProcInter {
 	public int select_mno(String id);
 	
 	public int update_recommend(HashMap<Object, Object> map);
+	
+	public MembersVO read_recommend(String id); 
 
 }

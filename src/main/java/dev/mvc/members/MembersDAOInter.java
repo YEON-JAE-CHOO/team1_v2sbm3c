@@ -83,4 +83,6 @@ public interface MembersDAOInter {
 	  
 	  public int update_recommend(HashMap<Object, Object> map);
 
+	  public MembersVO read_recommend(String id); 
+
 }

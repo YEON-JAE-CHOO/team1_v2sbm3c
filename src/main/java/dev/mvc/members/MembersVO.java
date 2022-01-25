@@ -25,6 +25,8 @@ public class MembersVO {
 	/** 등급 */
 	private int reco;
 
+	private String recommend = "";
+	
 	public int getMno() {
 		return mno;
 	}
@@ -113,10 +115,20 @@ public class MembersVO {
 		this.reco = reco;
 	}
 
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+	
 	@Override
 	public String toString() {
 		return "MembersVO [mno=" + mno + ", id=" + id + ", pw=" + pw + ", name=" + name + ", nickname=" + nickname
 				+ ", phone=" + phone + ", housecode=" + housecode + ", address1=" + address1 + ", address2=" + address2
 				+ ", rdate=" + rdate + ", reco=" + reco + "]";
 	}
+	
 }
