@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,7 +160,7 @@ public class RestaurantCont {
 		return mav; // forward
 	}
 
-	/** 페이지 오픈 & 메뉴 리스트 출력 HttpSession session */ 
+	/** 페이지 오픈 & 메뉴 리스트 출력 */
 	/**/
 	/**/
 	@RequestMapping(value = "/restaurant/shop.do", method = RequestMethod.GET)

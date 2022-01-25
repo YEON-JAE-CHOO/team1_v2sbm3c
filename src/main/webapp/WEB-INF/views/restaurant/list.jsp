@@ -75,10 +75,26 @@
 							<c:set var="address1" value="${restaurantVO.address1 }" />
 							<c:set var="explanation" value="${restaurantVO.explanation }" />
 							<c:set var="leastprice" value="${restaurantVO.leastprice }" />
+							<c:set var="thumb" value="${restaurantVO.thumb }" />
+
 
 							<TD class="td_bs"><a href="/restaurant/shop.do?rno=${rno }">${name }
 							</a></TD>
-							<TD class="td_bs"></TD>
+
+
+							<TD class="td_bs"><c:choose>
+									<c:when
+										test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+										<IMG src="/team1/storage/${thumb }"
+											class="card-img-top mb-5 mb-md-0" style="width: 150px; height: 100px;">
+
+									</c:when>
+									<c:otherwise>
+										<!-- 기본 이미지 출력 -->
+										<IMG src="/storage/images/rice.jpg"
+											style="width: 150px; height: 100px;">
+									</c:otherwise>
+								</c:choose></TD>
 							<TD class="td_bs">${type }</TD>
 							<TD class="td_bs">${address1 }</TD>
 							<TD class="td_bs">${explanation }</TD>

@@ -112,7 +112,7 @@
 								<c:when
 									test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif') || thumb1.endsWith('jpeg')}">
 									<a href="/restaurant/list_by_cateno.do?cateno=${cateno}"><img
-										class="card-img-top" height="200px" src="/main/${file1}"
+										class="card-img-top" height="200px" src="/cate/storage/${file1}"
 										alt="..." /></a>
 								</c:when>
 								<c:otherwise>

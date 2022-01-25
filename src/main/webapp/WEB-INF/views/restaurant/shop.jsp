@@ -151,7 +151,7 @@ function recom_ajax(rno, status_count) {
 				<div class="col-md-4">
 					<c:choose>
 						<c:when
-							test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
+							test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif') || thumb.endsWith('jpeg')}">
 							<IMG src="/team1/storage/${thumb }"
 								class="card-img-top mb-5 mb-md-0"">
 

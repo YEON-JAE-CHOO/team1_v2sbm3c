@@ -21,8 +21,8 @@ public class Menu {
 			// System.out.println("Windows 10: " + path);
 
 		} else {
-			// System.out.println("Linux");
-			path = "/home/ubuntu/deploy/team1_v2sbm3c/menu/storage/";
+			 System.out.println("Linux");
+			path = "/Users/parkjoochang/Desktop/kd1/ws_java1/team1_v2sbm3c/src/main/resources/static/team1/storage/";
 		}
 
 		return path;

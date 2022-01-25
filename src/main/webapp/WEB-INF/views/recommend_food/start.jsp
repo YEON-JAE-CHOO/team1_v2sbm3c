@@ -23,22 +23,6 @@
 </script>
 </head>
 <body>
-	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<jsp:include page="./../menu/top.jsp" flush='false' />
-	</nav>
-	<!-- Header-->
-	<header class="py-4" style="background-color: #ef9578;">
-		<div class="container px-4 px-lg-5 my-5"
-			style="background-color: #ef9578;">
-			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">Shop in style</h1>
-				<p class="lead fw-normal text-white-50 mb-0">With this shop
-					hompeage template</p>
-			</div>
-		</div>
-	</header>
-	<br>
 	<DIV class="container">
 		<H1 style="text-align: center; font-size: 30px;">관심분야 등록</H1>
 
@@ -53,11 +37,6 @@
 		</DIV>
 
 	</DIV>
-	<!-- Footer-->
-	<footer class="py-5 bg-dark">
-		<jsp:include page="../menu/bottom.jsp" flush='false' />
-	</footer>
-	<!-- Bootstrap core JS-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->

@@ -55,22 +55,22 @@
 
 <style>
 * {
- text-align: center;
+	text-align: center;
 }
 
 .td_image {
- vertical-align: middle;
- padding: 5px;
- cursor: pointer;
+	vertical-align: middle;
+	padding: 5px;
+	cursor: pointer;
 }
 
 .td_radio {
- vertical-align: middle;
- padding: 5px;
+	vertical-align: middle;
+	padding: 5px;
 }
 
 .td_radio_select {
- cursor: pointer;
+	cursor: pointer;
 }
 
 footer {
@@ -92,23 +92,23 @@ footer {
 		<jsp:include page="./../menu/top.jsp" flush='false' />
 	</nav>
 	<!-- Header-->
+
 	<header class="py-4" style="background-color: #ef9578;">
 		<div class="container px-4 px-lg-5 my-5"
 			style="background-color: #ef9578;">
 			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">Shop in style</h1>
-				<p class="lead fw-normal text-white-50 mb-0">With this shop
-					hompeage template</p>
+				<h1 class="display-4 fw-bolder">4/5 단계입니다.</h1>
+				<p class="lead fw-normal text-white-50 mb-0">거의 다 왔습니다!</p>
 			</div>
 		</div>
 	</header>
 	<br>
 	<DIV class="container">
-		<H2>4/5 단계입니다. 거의 다 왔습니다.</H2>
 
 		<DIV id='panel' style='display: none; margin: 10px auto; width: 90%;'></DIV>
 
-		<form id='frm' name='frm' action='/recommend_food/form5.do' method='GET'>
+		<form id='frm' name='frm' action='/recommend_food/form5.do'
+			method='GET'>
 			<input type='hidden' name='step1' value='${param.step1 }'> <input
 				type='hidden' name='step2' value='${param.step2 }'> <input
 				type='hidden' name='step3' value='${param.step3 }'> <br>
@@ -153,7 +153,7 @@ footer {
 			</DIV>
 		</form>
 	</DIV>
-		<!-- Footer-->
+	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<jsp:include page="./../menu/bottom.jsp" flush='false' />
 	</footer>

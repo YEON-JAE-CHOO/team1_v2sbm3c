@@ -103,15 +103,12 @@ footer {
 		<div class="container px-4 px-lg-5 my-5"
 			style="background-color: #ef9578;">
 			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">Shop in style</h1>
-				<p class="lead fw-normal text-white-50 mb-0">With this shop
-					hompeage template</p>
+				<h1 class="display-4 fw-bolder">1/5 단계입니다.</h1>
 			</div>
 		</div>
 	</header>
 	<br>
 	<DIV class="container">
-		<H2>1/5 단계입니다.</H2>
 
 		<DIV id='panel' style='display: none; margin: 10px auto; width: 90%;'></DIV>
 

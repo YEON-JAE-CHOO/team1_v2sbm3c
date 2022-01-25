@@ -156,7 +156,7 @@
 
 
 						<div class="form-group">
-							<label for="housecode" class="col-md-2 control-label"
+							<label for="code" class="col-md-2 control-label"
 								style='font-size: 0.9em;'>우편번호</label>
 							<div class="col-md-10">
 								<input type='text' class="form-control" name='code'
@@ -244,7 +244,7 @@
 														}
 
 														// 우편번호와 주소 정보를 해당 필드에 넣는다.
-														$('#housecode').val(
+														$('#code').val(
 																data.zonecode); // 5자리 새우편번호 사용 ★
 														$('#address1').val(
 																fullAddr); // 주소 ★

@@ -4,21 +4,27 @@
 <head>
 <meta charset="UTF-8">
 <title>관심분야 등록</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+
 <script type="text/JavaScript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
 <script type="text/javascript">
 	$(function() {
 		send(); // Django ajax 호출
-		$('#btn_previous').on('click', function() {
-			history.back();
-		}); // 이전
+
 		$('#btn_close').on('click', function() {
 			location.href = '/index.do';
 		}); // 윈도우 닫기
@@ -35,12 +41,9 @@
 			dataType : 'json', // 응답 형식: json, html, xml...
 			data : params, // 데이터
 			success : function(rdata) { // 응답이 온경우
-				
 			
-				alert(rdata.index);
-				console.log(rdata.index);
 				ajax_update(rdata.index);
-/* 				if (rdata.index == 0) { // 한식 추천 필요
+ 				if (rdata.index == 0) { // 한식 추천 필요
 					$('#kor').css('display', '');
 				} else if (rdata.index == 1) { // 중식 추천 필요
 					$('#chn').css('display', '');
@@ -118,9 +121,9 @@ img {
 		<div class="container px-4 px-lg-5 my-5"
 			style="background-color: #ef9578;">
 			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder">Shop in style</h1>
-				<p class="lead fw-normal text-white-50 mb-0">With this shop
-					hompeage template</p>
+				<h1 class="display-4 fw-bolder">추천 음식이 등록 되었습니다.</h1>
+				<p class="lead fw-normal text-white-50 mb-0">추천 음식점 카테고리에서 추천
+					음식점을 확인하세요!</p>
 			</div>
 		</div>
 	</header>
@@ -135,11 +138,8 @@ img {
 		</form>
 	</DIV>
 
-	<DIV class="container">
-		<H2>추천 음식이 등록 되었습니다.</H2>
-		<H2>추천 음식</H2>
 
-		<DIV id='panel' style='margin: 30px auto; width: 90%;'>
+		<!-- 		<DIV id='panel' style='margin: 30px auto; width: 90%;'>
 			<DIV id='kor' style='display: none;'>
 				<TABLE style='margin: 0px auto;'>
 					<TR>
@@ -252,16 +252,9 @@ img {
 					</TR>
 				</TABLE>
 			</DIV>
-		</DIV>
+		</DIV> -->
 
-		<form id='frm' name='frm' action='' method='GET'>
-			<br>
-			<DIV style="text-align: center;">
-				<button type='button' id='btn_previous' class="btn btn-primary">이전</button>
-				<button type='button' id='btn_close' class="btn btn-primary">종료</button>
-			</DIV>
-		</form>
-	</DIV>
+		<br> <br>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<jsp:include page="./../menu/bottom.jsp" flush='false' />
