@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
 
@@ -183,9 +182,17 @@ function recom_ajax(rno, status_count) {
                        <div class="fs-5 mb-2">
                        <a class="text-decoration-line-through" href='../review/list_rno_asc.do?rno=${restaurantVO.rno }'>리뷰 보러 가기</a>
                     </div>
-                    <div class="fs-5 mb-2">
+                    <c:choose>
+                <c:when test="${sessionScope.id != null}"><%-- 비회원 메뉴 목록 --%>
+                <div class="fs-5 mb-2">
                        <a class="text-decoration-line-through" href='../review/create.do?rno=${restaurantVO.rno }&mno=${mno}'>리뷰 달러 가기</a>
                     </div>
+                </c:when>
+                <c:otherwise>
+                     
+                </c:otherwise>
+                </c:choose>
+                  
                         
 					<p class="lead">${restaurantVO.explanation}</p>
 					<div class="d-flex">
