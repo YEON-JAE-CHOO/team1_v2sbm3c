@@ -36,10 +36,19 @@
 	<!-- Section-->
 	<section class="py-5">
 		<ASIDE class="aside_right">
-			<A href="./create.do?">등록</A> <span class='menu_divide'>│</span> <A
-				href="javascript:location.reload();">새로고침</A> <span
-				class='menu_divide'>│</span> <A href="./list_update.do">수정/삭제하기</A>
-			<span class='menu_divide'>│</span>
+			<c:choose>
+				<c:when test="${sessionScope.id != null}">
+					<c:set var="name" value="qnaadmin" />
+					<c:if test="${name eq 'qnaadmin'}">
+						<A href="./create.do?">등록</A>
+						<span class='menu_divide'>│</span>
+						<A href="javascript:location.reload();">새로고침</A>
+						<span class='menu_divide'>│</span>
+						<A href="./list_update.do">수정/삭제하기</A>
+						<span class='menu_divide'>│</span>
+					</c:if>
+				</c:when>
+			</c:choose>
 		</ASIDE>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div

@@ -24,7 +24,7 @@ public interface OrdersProcInter {
 	public List<OrdersListVO> read_order(int mno);
 
 	/* 가장 최근 주문 번호 출력 */
-	public int recent_order_no(int mno);
+	public Integer recent_order_no(int mno);
 
 	/* 가장 최근 주문 번호에 해당하는 상세 주문 리스트 출력 */
 	public List<OrdersListVO> recent_order_detail(int ono);

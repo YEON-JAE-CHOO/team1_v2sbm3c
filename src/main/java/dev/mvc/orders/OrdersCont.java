@@ -183,23 +183,34 @@ public class OrdersCont {
 		System.out.println("membersVO-->" + membersVO);
 		List<OrdersListVO> ol = null;
 
-		int ono = this.ordersProc.recent_order_no(mno);
+		Integer ono = this.ordersProc.recent_order_no(mno);
 		System.out.println("ono-->" + ono);
-		OrdersVO ordersVO = this.ordersProc.read_recent_by_ono(ono);
-		System.out.println("ordersVO-->" + ordersVO.toString());
-		ol = this.ordersProc.recent_order_detail(ono);
-		System.out.println("olList" + ol.toString());
 
-		RestaurantVO rvo = this.restaurantProc.read_restaurant(ordersVO.getRno());
-		int delete_cnt = this.shoppingcartProc.delete_all(mno);
-		mav.addObject("leastprice", rvo.getLeastprice());
-		mav.addObject("deliverytip", rvo.getDeliverytip());
-		mav.addObject("ol", ol);
-		mav.addObject("ordersvo", ordersVO);
-		mav.setViewName("/order/check_order");
+		if (ono != null) {
+			System.out.println("ono null 아님-->" + ono);
+
+			OrdersVO ordersVO = this.ordersProc.read_recent_by_ono(ono);
+			System.out.println("ordersVO-->" + ordersVO.toString());
+			ol = this.ordersProc.recent_order_detail(ono);
+			System.out.println("olList" + ol.toString());
+
+			RestaurantVO rvo = this.restaurantProc.read_restaurant(ordersVO.getRno());
+			int delete_cnt = this.shoppingcartProc.delete_all(mno);
+			mav.addObject("leastprice", rvo.getLeastprice());
+			mav.addObject("deliverytip", rvo.getDeliverytip());
+			mav.addObject("ol", ol);
+			mav.addObject("ordersvo", ordersVO);
+			mav.setViewName("/order/check_order");
+
+		} else {
+			System.out.println("ono null 카테고리 담은 적 없음");
+			mav.setViewName("/index");
+		}
 
 		return mav;
 	}
+
+
 
 	/** 주문 상태 확인 */
 	/**/
@@ -271,6 +282,5 @@ public class OrdersCont {
 		return mav;
 
 	}
-	
 
 }
