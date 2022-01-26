@@ -28,9 +28,7 @@ crossorigin="anonymous">
                 <div class="container px-4 px-lg-5 my-5"
                         style="background-color: #ef9578;">
                 <div class="text-center text-white">
-                        <h1 class="display-4 fw-bolder">Shop in style</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">With this shop
-                        hompeage template</p>
+                        <h1 class="display-4 fw-bolder">카테고리 내용 변경</h1>
                </div>
               </div>
            </header>

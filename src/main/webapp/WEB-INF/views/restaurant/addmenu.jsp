@@ -4,6 +4,7 @@
 
 <c:set var="rno" value="${rno }" />
 <c:set var="menuno" value="${menuno }" />
+<c:set var="name" value="${RestaurantVO.name }" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,11 +43,10 @@
 	<DIV class='container'>
 
 		<br> <br>
-		<H3>메뉴 수정</H3>
-		<h2>${rno }</h2>
+		<H3>메뉴 등록</H3>
 		<div style="height: 100px; background-color: #ef9578;"text-align:center; display:flex;>
 
-			<H2>김밥프렌즈</H2>
+			<H2>${name }</H2>
 		</div>
 
 

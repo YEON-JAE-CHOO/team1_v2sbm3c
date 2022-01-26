@@ -30,7 +30,7 @@ public class NoticeCont {
     @RequestMapping(value = "/notice/create.do", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("/notice/create"); // webapp/WEB-INF/views/categrp/create.jsp
+        mav.setViewName("/notice/create"); 
 
         return mav; // forward
     }
