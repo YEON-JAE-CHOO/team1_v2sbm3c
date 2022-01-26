@@ -56,8 +56,11 @@ public class CateCont {
         String file1 = ""; // 원본 파일명 image
         String file1saved = ""; // 저장된 파일명, image
         String thumb1 = ""; // preview image
-        String uploadDir = this.uploadDir; // 파일 업로드 경로
-
+     // 기준 경로 확인
+        String user_dir = System.getProperty("user.dir"); // 시스템 제공
+        // System.out.println("-> User dir: " + user_dir);
+        //  --> User dir: C:\kd1\ws_java\resort_v1sbm3c
+        String upDir =  user_dir + "/src/main/resources/static/cate/storage/"; // 절대 경로
         // 전송 파일이 없어도 file1MF 객체가 생성됨.
         // <input type='file' class="form-control" name='file1MF' id='file1MF'
         // value='' placeholder="파일 선택">
@@ -70,11 +73,11 @@ public class CateCont {
 
         if (size1 > 0) { // 파일 크기 체크
             // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-            file1saved = Upload.saveFileSpring(mf, uploadDir);
+            file1saved = Upload.saveFileSpring(mf, upDir);
 
             if (Tool.isImage(file1saved)) { // 이미지인지 검사
                 // thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
-                thumb1 = Tool.preview(uploadDir, file1saved, 200, 150);
+                thumb1 = Tool.preview(upDir, file1saved, 200, 150);
             }
 
         }
@@ -207,10 +210,10 @@ public class CateCont {
         boolean sw = false;
 
         // 완성된 경로 C:/.kd1/deploy/team1_v2sbm3c/cate/storage/
-        // String upDir = System.getProperty("user.dir") + "/"; // 절대 경로
+         String upDir = System.getProperty("user.dir") + "/"; // 절대 경로
 
-        sw = Tool.deleteFile(uploadDir, file1saved); // Folder에서 1건의 파일 삭제
-        sw = Tool.deleteFile(uploadDir, thumb1); // Folder에서 1건의 파일 삭제
+        sw = Tool.deleteFile(upDir, file1saved); // Folder에서 1건의 파일 삭제
+        sw = Tool.deleteFile(upDir, thumb1); // Folder에서 1건의 파일 삭제
         // System.out.println("sw: " + sw);
         // -------------------------------------------------------------------
         // 파일 삭제 종료
@@ -236,11 +239,11 @@ public class CateCont {
 
         if (size1 > 0) { // 파일 크기 체크
             // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-            file1saved = Upload.saveFileSpring(mf, uploadDir);
+            file1saved = Upload.saveFileSpring(mf, upDir);
 
             if (Tool.isImage(file1saved)) { // 이미지인지 검사
                 // thumb 이미지 생성후 파일명 리턴됨, width: 250, height: 200
-                thumb1 = Tool.preview(uploadDir, file1saved, 250, 200);
+                thumb1 = Tool.preview(upDir, file1saved, 250, 200);
             }
 
         } else { // 파일이 삭제만 되고 새로 올리지 않는 경우
@@ -310,11 +313,11 @@ public class CateCont {
 
         // 완성된 경로
         // F:/ai8/ws_frame/resort_v1sbm3a/src/main/resources/static/contents/storage/
-        // String upDir = System.getProperty("user.dir") +
-        // "/src/main/resources/static/contents/storage/"; // 절대 경로
+         String upDir = System.getProperty("user.dir") +
+         "/src/main/resources/static/cate/storage/"; // 절대 경로
 
-        sw = Tool.deleteFile(uploadDir, file1saved); // Folder에서 1건의 파일 삭제
-        sw = Tool.deleteFile(uploadDir, thumb1); // Folder에서 1건의 파일 삭제
+        sw = Tool.deleteFile(upDir, file1saved); // Folder에서 1건의 파일 삭제
+        sw = Tool.deleteFile(upDir, thumb1); // Folder에서 1건의 파일 삭제
         // System.out.println("sw: " + sw);
         // -------------------------------------------------------------------
         // 파일 삭제 종료 시작
