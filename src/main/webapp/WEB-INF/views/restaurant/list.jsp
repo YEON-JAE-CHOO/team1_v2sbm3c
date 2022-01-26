@@ -85,7 +85,7 @@
 							<TD class="td_bs"><c:choose>
 									<c:when
 										test="${thumb.endsWith('jpg') || thumb.endsWith('png') || thumb.endsWith('gif')}">
-										<IMG src="/team1/storage/${thumb }"
+										<IMG src="/restaurant/storage/${thumb }"
 											class="card-img-top mb-5 mb-md-0" style="width: 150px; height: 100px;">
 
 									</c:when>

@@ -93,8 +93,10 @@ public class RestaurantCont {
 		String file1 = ""; // 원본 파일명 image
 		String filesaved1 = ""; // 저장된 파일명, image
 		String thumb1 = ""; // preview image
-		String uploadDir = this.uploadDir; // 파일 업로드 경로
+		String user_dir = System.getProperty("user.dir"); // 시스템 제공
 
+		
+		 String upDir =  user_dir + "/src/main/resources/static/restaurant/storage/"; // 절대 경로
 		// 전송 파일이 없어도 file1MF 객체가 생성됨.
 		// <input type='file' class="form-control" name='file1MF' id='file1MF'
 		// value='' placeholder="파일 선택">
@@ -107,11 +109,11 @@ public class RestaurantCont {
 
 		if (size1 > 0) { // 파일 크기 체크
 			// 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
-			filesaved1 = Upload.saveFileSpring(mf, uploadDir);
+			filesaved1 = Upload.saveFileSpring(mf, upDir);
 
 			if (Tool.isImage(filesaved1)) { // 이미지인지 검사
 				// thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
-				thumb1 = Tool.preview(uploadDir, filesaved1, 200, 150);
+				thumb1 = Tool.preview(upDir, filesaved1, 200, 150);
 			}
 
 		}
