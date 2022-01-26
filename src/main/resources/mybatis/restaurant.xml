@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
 		SELECT
 		rno,
-		rono, name, address1, address2, explanation,
+		rono, name, code, address1, address2, explanation,
 		type, leastprice,
 		deliverytip, call, score,
 		reviewcount, recocnt, ordercnt,
@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="dev.mvc.restaurant.RestaurantVO" parameterType="int">
 		SELECT
 		rno,
-		rono, name, address1, address2, explanation,
+		rono, name, code, address1, address2, explanation,
 		type, leastprice,
 		deliverytip, call, score,
 		reviewcount, recocnt, ordercnt, cateno
